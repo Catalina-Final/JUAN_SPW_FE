@@ -4,7 +4,7 @@ import PrivateRoute from "./PrivateRoutes";
 import DashboardPage from "../DashboardPage";
 import PublicLayout from "../layouts/PublicLayout";
 
-const Routes = (props) => {
+const Routes = () => {
   return (
     <Switch>
       <PrivateRoute exact path="/dashboard" component={DashboardPage} />

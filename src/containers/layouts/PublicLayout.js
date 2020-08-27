@@ -7,6 +7,7 @@ import { Container } from "react-bootstrap";
 import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./Alerts";
 import PublicNavbar from "../PublicNavbar";
+import BlogDetailPage from "../BlogDetailPage";
 
 const PublicLayout = () => {
   return (
@@ -18,6 +19,7 @@ const PublicLayout = () => {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/blogs/:id" component={BlogDetailPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Container>
