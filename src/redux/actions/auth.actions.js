@@ -9,7 +9,37 @@ const loginRequest = (email, password) => async (dispatch) => {
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
       "Bearer " + res.data.accessToken;
-    const name = res.data.data.name;
+    let name = res.data.data.user.name;
+    dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
+  } catch (error) {
+    dispatch({ type: types.LOGIN_FAILURE, payload: error });
+  }
+};
+
+const loginWithFacebook = (token) => async (dispatch) => {
+  dispatch({ type: types.LOGIN_REQUEST, payload: null });
+  try {
+    const res = await api.get("/auth/login/facebook/" + token);
+    dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
+    api.defaults.headers.common["authorization"] =
+      "Bearer " + res.data.accessToken;
+    const name = res.data.data.user.name;
+    dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
+  } catch (error) {
+    dispatch({ type: types.LOGIN_FAILURE, payload: error });
+  }
+};
+
+const loginWithGoogle = (token) => async (dispatch) => {
+  dispatch({ type: types.LOGIN_REQUEST, payload: null });
+  try {
+    const res = await api.get("/auth/login/google/" + token);
+
+    dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
+    api.defaults.headers.common["authorization"] =
+      "Bearer " + res.data.accessToken;
+    const name = res.data.data.user.email;
+    console.log("GOOOOGLEEE", name);
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
   } catch (error) {
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
@@ -34,7 +64,10 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
   }
   try {
     const res = await api.get("/users/me");
-    dispatch({ type: types.GET_CURRENT_USER_SUCCESS, payload: res.data.data });
+    dispatch({
+      type: types.GET_CURRENT_USER_SUCCESS,
+      payload: res.data.data,
+    });
   } catch (error) {
     dispatch({ type: types.GET_CURRENT_USER_FAILURE, payload: error });
   }
@@ -51,4 +84,6 @@ export const authActions = {
   register,
   getCurrentUser,
   logout,
+  loginWithFacebook,
+  loginWithGoogle,
 };

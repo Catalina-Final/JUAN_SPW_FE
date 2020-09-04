@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import logo from "../../images/favicon.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
+import FacebookLogin from "react-facebook-login";
+import GoogleLogin from "react-google-login";
 
 const PublicNavbar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -22,6 +24,17 @@ const PublicNavbar = () => {
       </Nav.Link>
     </Nav>
   );
+
+  const loginWithFacebook = (response) => {
+    console.log(response);
+    dispatch(authActions.loginWithFacebook(response.accessToken));
+  };
+
+  const loginWithGoogle = (response) => {
+    console.log("Google", response);
+    dispatch(authActions.loginWithGoogle(response.accessToken));
+  };
+
   const publicLinks = (
     <Nav>
       <Nav.Link as={Link} to="/register">
@@ -30,6 +43,18 @@ const PublicNavbar = () => {
       <Nav.Link as={Link} to="/login">
         <i className="fas fa-sign-in-alt" /> Login
       </Nav.Link>
+      <FacebookLogin
+        appId="355021229222362"
+        autoLoad={false}
+        fields="name,email,picture"
+        callback={loginWithFacebook}
+      />
+      <GoogleLogin
+        clientId="1058099593253-1gdouri8klivpfdo7lf0bvf7ff5fovaa.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={loginWithGoogle}
+        onFailure={loginWithGoogle}
+      />
     </Nav>
   );
 
