@@ -32,7 +32,7 @@ const HomePageBlogs = () => {
             <h1>Social Blog</h1>
             <p>Write about your amazing experiences.</p>
             {isAuthenticated && (
-              <Link to="/blogs">
+              <Link to="/blogs/">
                 <Button variant="primary">Write now</Button>
               </Link>
             )}

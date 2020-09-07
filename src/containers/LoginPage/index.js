@@ -11,6 +11,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+  // eslint-disable-next-line
   const [errors, setErrors] = useState({
     email: "",
     password: "",

@@ -65,7 +65,7 @@ const AddEditBlogPage = () => {
         history.push(redirectTo);
         dispatch(blogActions.setRedirectTo(""));
       }
-    }
+    } // eslint-disable-next-line
   }, [redirectTo]);
 
   return (
