@@ -3,6 +3,8 @@ import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
+import FacebookLogin from "react-facebook-login";
+import GoogleLogin from "react-google-login";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +27,16 @@ const LoginPage = () => {
     dispatch(authActions.loginRequest(email, password));
   };
   if (isAuthenticated) return <Redirect to="/" />;
+
+  const loginWithFacebook = (response) => {
+    console.log(response);
+    dispatch(authActions.loginWithFacebook(response.accessToken));
+  };
+
+  const loginWithGoogle = (response) => {
+    console.log("Google", response);
+    dispatch(authActions.loginWithGoogle(response.accessToken));
+  };
 
   return (
     <Container>
@@ -90,7 +102,19 @@ const LoginPage = () => {
             </p>
           </Form>
         </Col>
-      </Row>
+      </Row>{" "}
+      <FacebookLogin
+        appId="355021229222362"
+        autoLoad={false}
+        fields="name,email,picture"
+        callback={loginWithFacebook}
+      />
+      <GoogleLogin
+        clientId="1058099593253-1gdouri8klivpfdo7lf0bvf7ff5fovaa.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={loginWithGoogle}
+        onFailure={loginWithGoogle}
+      />
     </Container>
   );
 };

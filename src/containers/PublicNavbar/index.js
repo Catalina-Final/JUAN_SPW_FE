@@ -1,11 +1,12 @@
 import React from "react";
+import "../../App.css";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../../images/favicon.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
-import FacebookLogin from "react-facebook-login";
-import GoogleLogin from "react-google-login";
+// import FacebookLogin from "react-facebook-login";
+// import GoogleLogin from "react-google-login";
 
 const PublicNavbar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -19,31 +20,40 @@ const PublicNavbar = () => {
       <Nav.Link as={Link} to="/dashboard">
         <i className="fas fa-chart-line" /> Dashboard
       </Nav.Link>
+      <Nav.Link as={Link} to="/blogs">
+        <i className="fas fa-registered" /> Blog
+      </Nav.Link>{" "}
       <Nav.Link onClick={handleLogout}>
         <i className="fas fa-sign-out-alt" /> Logout
       </Nav.Link>
     </Nav>
   );
 
-  const loginWithFacebook = (response) => {
-    console.log(response);
-    dispatch(authActions.loginWithFacebook(response.accessToken));
-  };
+  // const loginWithFacebook = (response) => {
+  //   console.log(response);
+  //   dispatch(authActions.loginWithFacebook(response.accessToken));
+  // };
 
-  const loginWithGoogle = (response) => {
-    console.log("Google", response);
-    dispatch(authActions.loginWithGoogle(response.accessToken));
-  };
+  // const loginWithGoogle = (response) => {
+  //   console.log("Google", response);
+  //   dispatch(authActions.loginWithGoogle(response.accessToken));
+  // };
 
   const publicLinks = (
-    <Nav>
+    <Nav className="navBar">
+      <Nav.Link as={Link} to="/blogs">
+        <i className="fas fa-registered" /> Blog
+      </Nav.Link>{" "}
+      <Nav.Link as={Link} to="/events">
+        <i className="fas fa-registered" /> Events
+      </Nav.Link>
       <Nav.Link as={Link} to="/register">
         <i className="fas fa-registered" /> Register
       </Nav.Link>
       <Nav.Link as={Link} to="/login">
         <i className="fas fa-sign-in-alt" /> Login
       </Nav.Link>
-      <FacebookLogin
+      {/* <FacebookLogin
         appId="355021229222362"
         autoLoad={false}
         fields="name,email,picture"
@@ -54,12 +64,12 @@ const PublicNavbar = () => {
         buttonText="Login"
         onSuccess={loginWithGoogle}
         onFailure={loginWithGoogle}
-      />
+      /> */}
     </Nav>
   );
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navBar" bg="dark" expand="lg">
       <Navbar.Brand as={Link} to="/" className="mr-auto">
         <img src={logo} alt="SPW" width="50" />
       </Navbar.Brand>
