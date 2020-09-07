@@ -38,8 +38,8 @@ const loginWithGoogle = (token) => async (dispatch) => {
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
       "Bearer " + res.data.accessToken;
-    const name = res.data.data.user.email;
-    console.log("name", name);
+    const name = res.data.data.user.name;
+    console.log("Full name", name);
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
   } catch (error) {
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
