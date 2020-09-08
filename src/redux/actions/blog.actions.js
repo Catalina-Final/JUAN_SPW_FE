@@ -6,15 +6,14 @@ const blogsRequest = () => async (dispatch) => {
   dispatch({ type: types.BLOG_REQUEST, payload: null });
   try {
     const res = await api.get("/blogs");
-
     dispatch({ type: types.BLOG_REQUEST_SUCCESS, payload: res.data.data });
   } catch (error) {
     dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
   }
 };
+
 const getSingleBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
-  // console.log("in getSingleBlog", blogId);
   try {
     const res = await api.get(`/blogs/${blogId}`);
     dispatch({
@@ -41,13 +40,18 @@ const createReview = (blogId, reviewText) => async (dispatch) => {
   }
 };
 
-const createNewBlog = (title, content) => async (dispatch) => {
+const createNewBlog = (title, content, images) => async (dispatch) => {
   dispatch({ type: types.CREATE_BLOG_REQUEST, payload: null });
   try {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    const res = await api.post("/blogs", formData);
+    if (images && images.lenth) {
+      for (let index = 0; index < images.length; index++) {
+        formData.append("imagesUpload", images[index]);
+      }
+    }
+    const res = await api.post("/blogs", { title, content });
 
     dispatch({
       type: types.CREATE_BLOG_SUCCESS,
@@ -55,6 +59,7 @@ const createNewBlog = (title, content) => async (dispatch) => {
     });
     dispatch(alertActions.setAlert("New blog has been created!", "success"));
   } catch (error) {
+    console.log(error.message);
     dispatch({ type: types.CREATE_BLOG_FAILURE, payload: error });
   }
 };
@@ -62,9 +67,9 @@ const createNewBlog = (title, content) => async (dispatch) => {
 const updateBlog = (blogId, title, content) => async (dispatch) => {
   dispatch({ type: types.UPDATE_BLOG_REQUEST, payload: null });
   try {
-    let formData = new FormData();
-    formData.set("title", title);
-    formData.set("content", content);
+    // let formData = new FormData();
+    // formData.set("title", title);
+    // formData.set("content", content);
     const res = await api.put(`/blogs/${blogId}`, { title, content });
 
     dispatch({

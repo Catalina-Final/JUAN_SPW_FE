@@ -15,11 +15,9 @@ function App() {
     }
   }, [dispatch]);
   return (
-    <div className="App">
-      <Router>
-        <Routes />
-      </Router>
-    </div>
+    <Router>
+      <Routes />
+    </Router>
   );
 }
 

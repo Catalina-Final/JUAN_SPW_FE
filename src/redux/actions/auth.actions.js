@@ -8,7 +8,9 @@ const loginRequest = (email, password) => async (dispatch) => {
     const res = await api.post("/auth/login", { email, password });
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
+      "Bearer " + res.data.data.accessToken;
+    localStorage.setItem("accessToken", res.data.data.accessToken);
+
     let name = res.data.data.user.name;
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
   } catch (error) {
@@ -22,7 +24,9 @@ const loginWithFacebook = (token) => async (dispatch) => {
     const res = await api.get("/auth/login/facebook/" + token);
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
+      "Bearer " + res.data.data.accessToken;
+    localStorage.setItem("accessToken", res.data.data.accessToken);
+
     const name = res.data.data.user.name;
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
   } catch (error) {
@@ -37,7 +41,8 @@ const loginWithGoogle = (token) => async (dispatch) => {
 
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
+      "Bearer " + res.data.data.accessToken;
+    localStorage.setItem("accessToken", res.data.data.accessToken);
     const name = res.data.data.user.name;
     console.log("Full name", name);
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
@@ -58,6 +63,7 @@ const register = (name, email, password) => async (dispatch) => {
 
 const getCurrentUser = (accessToken) => async (dispatch) => {
   dispatch({ type: types.GET_CURRENT_USER_REQUEST, payload: null });
+  console.log(accessToken);
   if (accessToken) {
     const bearerToken = "Bearer " + accessToken;
     api.defaults.headers.common["authorization"] = bearerToken;
