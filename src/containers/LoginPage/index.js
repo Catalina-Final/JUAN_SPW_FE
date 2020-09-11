@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
+import "../../App.css";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -104,18 +105,25 @@ const LoginPage = () => {
           </Form>
         </Col>
       </Row>{" "}
-      <FacebookLogin
-        appId="355021229222362"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={loginWithFacebook}
-      />
-      <GoogleLogin
-        clientId="1058099593253-1gdouri8klivpfdo7lf0bvf7ff5fovaa.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={loginWithGoogle}
-        onFailure={loginWithGoogle}
-      />
+      <Row>
+        <Col md={{ span: 6, offset: 3 }} className="text-center space-between">
+          <FacebookLogin
+            className="facebookLogin"
+            appId="355021229222362"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={loginWithFacebook}
+          />
+
+          <GoogleLogin
+            style={{ margin: "10px" }}
+            clientId="1058099593253-1gdouri8klivpfdo7lf0bvf7ff5fovaa.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={loginWithGoogle}
+            onFailure={loginWithGoogle}
+          />
+        </Col>
+      </Row>
     </Container>
   );
 };

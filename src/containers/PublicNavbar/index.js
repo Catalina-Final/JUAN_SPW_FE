@@ -29,16 +29,6 @@ const PublicNavbar = () => {
     </Nav>
   );
 
-  // const loginWithFacebook = (response) => {
-  //   console.log(response);
-  //   dispatch(authActions.loginWithFacebook(response.accessToken));
-  // };
-
-  // const loginWithGoogle = (response) => {
-  //   console.log("Google", response);
-  //   dispatch(authActions.loginWithGoogle(response.accessToken));
-  // };
-
   const publicLinks = (
     <Nav className="navBar">
       <Nav.Link as={Link} to="/blogs">
@@ -53,23 +43,11 @@ const PublicNavbar = () => {
       <Nav.Link as={Link} to="/login">
         <i className="fas fa-sign-in-alt" /> Login
       </Nav.Link>
-      {/* <FacebookLogin
-        appId="355021229222362"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={loginWithFacebook}
-      />
-      <GoogleLogin
-        clientId="1058099593253-1gdouri8klivpfdo7lf0bvf7ff5fovaa.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={loginWithGoogle}
-        onFailure={loginWithGoogle}
-      /> */}
     </Nav>
   );
 
   return (
-    <Navbar className="navBar" bg="dark" expand="lg">
+    <Navbar className="navBar" expand="lg">
       <Navbar.Brand as={Link} to="/" className="mr-auto">
         <img src={logo} alt="SPW" width="50" />
       </Navbar.Brand>
