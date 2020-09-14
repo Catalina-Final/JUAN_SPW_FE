@@ -75,6 +75,24 @@ const AddEditBlogPage = () => {
     }
   }, [redirectTo, dispatch, history]);
 
+  const uploadWidget = () => {
+    window.cloudinary.openUploadWidget(
+      {
+        cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+        upload_preset: process.env.REACT_APP_CLOUDINARY_PRESET,
+        tags: ["SPW", "blog images"],
+      },
+      function (error, result) {
+        if (result && result.length) {
+          setFormData({
+            ...formData,
+            images: result.map((res) => res.secure_url),
+          });
+        }
+      }
+    );
+  };
+
   return (
     <Container>
       <Row>
@@ -106,7 +124,7 @@ const AddEditBlogPage = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Control
                 type="file"
                 name="images"
@@ -114,6 +132,20 @@ const AddEditBlogPage = () => {
                 accept="image/png image/jpeg image/jpg"
                 onChange={handleChange}
               />
+            </Form.Group> */}
+            <Form.Group>
+              {formData?.images?.map((image) => (
+                <img
+                  src={image}
+                  key={image}
+                  width="90px"
+                  height="60px"
+                  alt="blog images"
+                ></img>
+              ))}
+              <Button variant="info" onClick={uploadWidget}>
+                {addOrEdit} Images
+              </Button>
             </Form.Group>
             <ButtonGroup className="d-flex mb-3">
               {loading ? (

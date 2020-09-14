@@ -8,6 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import ReviewList from "../../components/ReviewList";
 import { useState } from "react";
 import ReviewBlog from "../../components/ReviewBlog";
+import ShowImages from "../../components/ShowImages";
 
 const BlogDetailPage = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const BlogDetailPage = () => {
               </span>
               <hr />
               <Markdown source={blog.content} />
+              <ShowImages imagesGallery={blog.images} />
               <hr />
               <ReviewList reviews={blog.reviews} />
             </div>

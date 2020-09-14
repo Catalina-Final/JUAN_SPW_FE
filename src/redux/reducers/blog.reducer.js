@@ -6,7 +6,7 @@ const initialState = {
   totalPages: 0,
   currentPage: 0,
   loading: false,
-  selectedBlog: {},
+  selectedBlog: null,
 };
 
 const blogReducer = (state = initialState, action) => {

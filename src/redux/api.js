@@ -3,7 +3,7 @@ import store from "./store";
 import { alertActions } from "./actions";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_host,
+  baseURL: process.env.REACT_APP_HOST,
   headers: {
     "Content-Type": "application/json",
   },
@@ -23,7 +23,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    // console.log("Response:", response);
+    console.log("Response:", response);
     return response;
   },
   function (error) {

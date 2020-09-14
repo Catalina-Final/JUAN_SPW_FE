@@ -23,6 +23,9 @@ const PublicNavbar = () => {
       <Nav.Link as={Link} to="/blogs">
         <i className="fas fa-registered" /> Blog
       </Nav.Link>{" "}
+      <Nav.Link as={Link} to="/events">
+        <i className="fas fa-registered" /> Events
+      </Nav.Link>
       <Nav.Link onClick={handleLogout}>
         <i className="fas fa-sign-out-alt" /> Logout
       </Nav.Link>

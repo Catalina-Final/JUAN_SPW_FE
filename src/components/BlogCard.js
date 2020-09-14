@@ -4,8 +4,15 @@ import Moment from "react-moment";
 
 const BlogCard = ({ blog, handleClick }) => {
   return (
-    <Card md={6} onClick={() => handleClick(blog._id)}>
-      <Card.Img variant="top" src="https://via.placeholder.com/160x100" />
+    <Card onClick={() => handleClick(blog._id)}>
+      <Card.Img
+        variant="top"
+        src={
+          blog?.images?.length
+            ? blog.images[0]
+            : "https://via.placeholder.com/160x100"
+        }
+      />{" "}
       <Card.Body>
         <Card.Title>
           {blog.title.length <= 50
