@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { blogActions } from "../../redux/actions";
+import { eventActions } from "../../redux/actions";
 import Moment from "react-moment";
 import Markdown from "react-markdown";
 import ClipLoader from "react-spinners/ClipLoader";
 import ReviewList from "../../components/ReviewList";
 import { useState } from "react";
-import ReviewBlog from "../../components/ReviewBlog";
+import ReviewEvent from "../../components/ReviewEvent";
 import ShowImages from "../../components/ShowImages";
 
-const BlogDetailPage = () => {
+const EventDetailPage = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.blog.loading);
+  const loading = useSelector((state) => state.event.loading);
   const params = useParams();
-  const blog = useSelector((state) => state.blog.selectedBlog);
-  console.log("Blogs", blog);
+  const event = useSelector((state) => state.event.selectedEvent);
+  console.log("Event", event);
   const submitReviewLoading = useSelector(
-    (state) => state.blog.submitReviewLoading
+    (state) => state.event.submitReviewLoading
   );
   const [reviewText, setReviewText] = useState("");
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -27,14 +27,14 @@ const BlogDetailPage = () => {
 
   const handleSubmitReview = (e) => {
     e.preventDefault();
-    dispatch(blogActions.createReview(blog._id, reviewText));
+    dispatch(eventActions.createReview(event._id, reviewText));
     setReviewText("");
   };
 
   useEffect(() => {
     if (params?.id) {
       console.log(params?.id);
-      dispatch(blogActions.getSingleBlog(params.id));
+      dispatch(eventActions.getSingleEvent(params.id));
     }
   }, [dispatch, params]);
 
@@ -44,28 +44,28 @@ const BlogDetailPage = () => {
         <ClipLoader color="#f86c6b" size={150} loading={loading} />
       ) : (
         <>
-          {blog && (
+          {event && (
             <div className="mb-5">
-              <h1>{blog.title}</h1>
+              <h1>{event.title}</h1>
               <span className="text-muted">
-                @{blog?.user?.name} wrote{" "}
-                <Moment fromNow>{blog.createdAt}</Moment>
+                @{event?.user?.name} wrote{" "}
+                <Moment fromNow>{event.createdAt}</Moment>
               </span>
               <hr />
-              <Markdown source={blog.content} />
+              <Markdown source={event.content} />
               <ShowImages
                 imagesGallery={
-                  Array.isArray(blog.images)
-                    ? blog.images
+                  Array.isArray(event.images)
+                    ? event.images
                     : ["https://via.placeholder.com/160x100"]
                 }
               />
               <hr />
-              <ReviewList reviews={blog.reviews} />
+              <ReviewList reviews={event.reviews} />
             </div>
           )}
           {isAuthenticated && (
-            <ReviewBlog
+            <ReviewEvent
               reviewText={reviewText}
               handleInputChange={handleInputChange}
               handleSubmitReview={handleSubmitReview}
@@ -78,4 +78,4 @@ const BlogDetailPage = () => {
   );
 };
 
-export default BlogDetailPage;
+export default EventDetailPage;

@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import logo from "../../images/favicon.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
-// import FacebookLogin from "react-facebook-login";
-// import GoogleLogin from "react-google-login";
 
 const PublicNavbar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

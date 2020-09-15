@@ -23,18 +23,19 @@ function ShowImages({ imagesGallery }) {
     <div>
       {imagesGallery.length === 1 ? (
         <img
+          style={{ marginLeft: "20%" }}
           src={imagesGallery[0]}
-          alt="images of blog"
-          width="300px"
-          height="400px"
+          alt="images content"
+          sizes="(min-width: 600px) 600px, 100vw"
+          width="600"
         />
       ) : (
         <>
           <Gallery
             photos={imagesGallery.map((imageUrl) => ({
               src: imageUrl,
-              width: 1,
-              height: 1,
+              width: 3,
+              height: 4,
             }))}
             onClick={openLightbox}
           />
@@ -44,7 +45,7 @@ function ShowImages({ imagesGallery }) {
                 <Carousel
                   currentIndex={currentImage}
                   views={imagesGallery.map((imageUrl) => ({
-                    srcset: imageUrl,
+                    src: imageUrl,
                   }))}
                 />
               </Modal>
