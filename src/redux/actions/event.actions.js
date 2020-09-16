@@ -12,6 +12,16 @@ const eventsRequest = () => async (dispatch) => {
   }
 };
 
+const getEventTypes = () => async (dispatch) => {
+  dispatch({ type: types.GET_EVENT_TYPES_REQUEST, payload: null });
+  try {
+    const res = await api.get("/events/types");
+    dispatch({ type: types.GET_EVENT_TYPES_SUCCESS, payload: res.data.data });
+  } catch (error) {
+    dispatch({ type: types.GET_EVENT_TYPES_FAILURE, payload: error });
+  }
+};
+
 const getSingleEvent = (eventId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_EVENT_REQUEST, payload: null });
   try {
@@ -40,7 +50,9 @@ const createReview = (eventId, reviewText) => async (dispatch) => {
   }
 };
 
-const createNewEvent = (title, content, images) => async (dispatch) => {
+const createNewEvent = (title, content, images, eventType) => async (
+  dispatch
+) => {
   dispatch({ type: types.CREATE_EVENT_REQUEST, payload: null });
   try {
     // const formData = new FormData();
@@ -51,7 +63,12 @@ const createNewEvent = (title, content, images) => async (dispatch) => {
     //     formData.append("imagesUpload", images[index]);
     //   }
     // }
-    const res = await api.post("/events", { title, content, images });
+    const res = await api.post("/events", {
+      title,
+      content,
+      images,
+      eventType,
+    });
 
     dispatch({
       type: types.CREATE_EVENT_SUCCESS,
@@ -110,4 +127,5 @@ export const eventActions = {
   updateEvent,
   deleteEvent,
   setRedirectTo,
+  getEventTypes,
 };

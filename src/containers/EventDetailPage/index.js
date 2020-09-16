@@ -62,6 +62,8 @@ const EventDetailPage = () => {
               />
               <hr />
               <ReviewList reviews={event.reviews} />
+              <h3>Category</h3>
+              <h5>{event.eventType.type}</h5>
             </div>
           )}
           {isAuthenticated && (

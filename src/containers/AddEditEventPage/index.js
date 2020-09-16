@@ -16,6 +16,7 @@ const AddEditEventPage = () => {
     title: "",
     content: "",
     images: null,
+    eventType: "",
   });
   const loading = useSelector((state) => state.event.loading);
   const eventTypes = useSelector((state) => state.event.eventTypes);
@@ -36,26 +37,40 @@ const AddEditEventPage = () => {
     }
   }, [addOrEdit, selectedEvent]);
 
+  // get the list of types from api
+  // update State
   useEffect(() => {
-    // get the list of types from api
-    // update State
-  }, []);
+    dispatch(eventActions.getEventTypes());
+  }, [dispatch]);
+
   const handleChange = (e) => {
     if (e.target.name === "images") {
-      console.log(e.target.files);
       setFormData({ ...formData, images: e.target.files });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   };
 
+  // const handleSelectCountry = (c) => {
+  //   setFormData({
+  //     ...formData,
+  //     contactInfo: { ...formData.contactInfo, nationality: c },
+  //   });
+  // };
+
+  // const handleChangeEventType = (eventType) => {
+  //   setFormData({ ...formData, eventType: eventType });
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, content, images } = formData;
+    const { title, content, images, eventType } = formData;
     if (addOrEdit === "Add") {
-      dispatch(eventActions.createNewEvent(title, content, images));
+      dispatch(eventActions.createNewEvent(title, content, images, eventType));
     } else if (addOrEdit === "Edit") {
-      dispatch(eventActions.updateEvent(selectedEvent._id, title, content));
+      dispatch(
+        eventActions.updateEvent(selectedEvent._id, title, content, eventType)
+      );
     }
   };
 
@@ -129,15 +144,6 @@ const AddEditEventPage = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            {/* <Form.Group>
-              <Form.Control
-                type="file"
-                name="images"
-                multiple
-                accept="image/png image/jpeg image/jpg"
-                onChange={handleChange}
-              />
-            </Form.Group> */}
             <Form.Group>
               {formData?.images?.map((image) => (
                 <img
@@ -151,6 +157,21 @@ const AddEditEventPage = () => {
               <Button variant="info" onClick={uploadWidget}>
                 {addOrEdit} Images
               </Button>
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                size="sm"
+                as="select"
+                value={formData.eventType}
+                name="eventType"
+                onChange={handleChange}
+              >
+                {eventTypes?.map((eventType) => (
+                  <option value={eventType._id} key={eventType._id}>
+                    {eventType.type}
+                  </option>
+                ))}
+              </Form.Control>
             </Form.Group>
             <ButtonGroup className="d-flex mb-3">
               {loading ? (

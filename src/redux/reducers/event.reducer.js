@@ -63,6 +63,14 @@ const eventReducer = (state = initialState, action) => {
       return { ...state, submitReviewLoading: false };
     case types.SET_REDIRECT_TO:
       return { ...state, redirectTo: payload };
+
+    case types.GET_EVENT_TYPES_REQUEST:
+      return { ...state, loading: true };
+    case types.GET_EVENT_TYPES_SUCCESS:
+      return { ...state, loading: false, eventTypes: payload };
+    case types.GET_EVENT_TYPES_FAILURE:
+      return { ...state, loading: false };
+
     default:
       return state;
   }
