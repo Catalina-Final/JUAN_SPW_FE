@@ -17,7 +17,7 @@ const ReviewList = ({ reviews }) => {
 const ReviewContent = ({ review }) => {
   return (
     <div>
-      <span className="text-muted">@{review?.author?.name}: </span>
+      <span className="text-muted">@{review?.user.name}: </span>
       <span> {review.content} </span>
     </div>
   );

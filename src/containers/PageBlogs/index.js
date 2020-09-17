@@ -1,22 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, CardColumns, Jumbotron, Button } from "react-bootstrap";
 import BlogCard from "../../components/BlogCard";
 import { useSelector, useDispatch } from "react-redux";
 import { blogActions } from "../../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory, Link } from "react-router-dom";
-import ReviewList from "../../components/ReviewList";
+import PaginationItem from "../../components/PaginationItem";
 
 const HomePageBlogs = () => {
+  const [pageNum, setPageNum] = useState(1);
   const dispatch = useDispatch();
   const history = useHistory();
   const loading = useSelector((state) => state.blog.loading);
   const blogs = useSelector((state) => state.blog.blogs);
-
+  const totalPageNum = useSelector((state) => state.blog.totalPageNum);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   useEffect(() => {
-    dispatch(blogActions.blogsRequest());
-  }, [dispatch]);
+    dispatch(blogActions.blogsRequest(pageNum));
+  }, [dispatch, pageNum]);
 
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
@@ -26,7 +28,6 @@ const HomePageBlogs = () => {
     <div>
       <Container>
         {" "}
-        <h1>Home Page</h1>
         <Container>
           <Jumbotron className="text-center">
             <h1>Social Blog</h1>
@@ -56,12 +57,18 @@ const HomePageBlogs = () => {
                     ))}
                   </CardColumns>
                 ) : (
-                  <ReviewList />
+                  <p>There are no blogs </p>
                 )}
               </>
             )}
           </CardColumns>
         </Container>
+        <PaginationItem
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          totalPageNum={totalPageNum}
+          loading={loading}
+        />
       </Container>
     </div>
   );

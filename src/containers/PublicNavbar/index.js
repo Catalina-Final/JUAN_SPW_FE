@@ -2,7 +2,7 @@ import React from "react";
 import "../../App.css";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../../images/favicon.svg";
+import logo from "../../images/SPW logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
 
@@ -50,7 +50,7 @@ const PublicNavbar = () => {
   return (
     <Navbar className="navBar" expand="lg">
       <Navbar.Brand as={Link} to="/" className="mr-auto">
-        <img src={logo} alt="SPW" width="50" />
+        <img src={logo} alt="SPW" width="150" height="80" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -15,7 +15,7 @@ const BlogDetailPage = () => {
   const loading = useSelector((state) => state.blog.loading);
   const params = useParams();
   const blog = useSelector((state) => state.blog.selectedBlog);
-  console.log("Blogs", blog);
+  // console.log("Blogs", blog);
   const submitReviewLoading = useSelector(
     (state) => state.blog.submitReviewLoading
   );
@@ -35,6 +35,7 @@ const BlogDetailPage = () => {
     if (params?.id) {
       console.log(params?.id);
       dispatch(blogActions.getSingleBlog(params.id));
+      dispatch(blogActions.getReviewsOfBlog(params.id));
     }
   }, [dispatch, params]);
 

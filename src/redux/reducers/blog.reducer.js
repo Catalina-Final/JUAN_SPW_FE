@@ -20,10 +20,19 @@ const blogReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case types.BLOG_REQUEST_SUCCESS:
-      return { ...state, blogs: payload.blogs, loading: false };
+      return {
+        ...state,
+        blogs: payload.blogs,
+        loading: false,
+        totalPageNum: payload.totalPages,
+      };
 
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
-      return { ...state, selectedBlog: payload, loading: false };
+      return {
+        ...state,
+        selectedBlog: { ...state.selectedBlog, ...payload },
+        loading: false,
+      };
 
     case types.UPDATE_BLOG_SUCCESS:
       return {
@@ -63,6 +72,19 @@ const blogReducer = (state = initialState, action) => {
       return { ...state, submitReviewLoading: false };
     case types.SET_REDIRECT_TO:
       return { ...state, redirectTo: payload };
+
+    case types.GET_REVIEWS_OF_BLOG_REQUEST:
+      return { ...state, loading: true };
+
+    case types.GET_REVIEWS_OF_BLOG_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        selectedBlog: { ...state.selectedBlog, reviews: payload.reviews },
+      };
+
+    case types.GET_REVIEWS_OF_BLOG_FAILURE:
+      return { ...state, submitReviewLoading: false };
     default:
       return state;
   }

@@ -17,7 +17,6 @@ function ShowImages({ imagesGallery }) {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
-  console.log(imagesGallery);
 
   return (
     <div>
