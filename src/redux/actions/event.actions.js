@@ -2,15 +2,39 @@ import * as types from "../constants/event.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
 
-const eventsRequest = () => async (dispatch) => {
+const eventsRequest = (
+  pageNum = 1,
+  limit = 3,
+  query = null,
+  ownerId = null,
+  sortBy = null
+) => async (dispatch) => {
   dispatch({ type: types.EVENT_REQUEST, payload: null });
   try {
-    const res = await api.get("/events");
-    dispatch({ type: types.EVENT_REQUEST_SUCCESS, payload: res.data.data });
+    let queryString = "";
+    if (query) {
+      queryString = `&title[$regex]=${query}&title[$options]=i`;
+    }
+    if (ownerId) {
+      queryString = `${queryString}&author=${ownerId}`;
+    }
+    let sortByString = "";
+    if (sortBy?.key) {
+      sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
+    }
+    const res = await api.get(
+      `/events?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+    );
+    dispatch({
+      type: types.EVENT_REQUEST_SUCCESS,
+      payload: res.data.data,
+    });
   } catch (error) {
     dispatch({ type: types.EVENT_REQUEST_FAILURE, payload: error });
   }
 };
+
+//
 
 const getEventTypes = () => async (dispatch) => {
   dispatch({ type: types.GET_EVENT_TYPES_REQUEST, payload: null });

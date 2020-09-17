@@ -9,6 +9,7 @@ import ReviewList from "../../components/ReviewList";
 import { useState } from "react";
 import ReviewEvent from "../../components/ReviewEvent";
 import ShowImages from "../../components/ShowImages";
+import Chat from "../../components/Chat";
 
 const EventDetailPage = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const EventDetailPage = () => {
           )}
         </>
       )}
+      <Chat/>
     </>
   );
 };

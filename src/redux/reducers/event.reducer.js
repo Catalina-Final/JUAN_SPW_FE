@@ -20,7 +20,12 @@ const eventReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case types.EVENT_REQUEST_SUCCESS:
-      return { ...state, events: payload.events, loading: false };
+      return {
+        ...state,
+        events: payload.events,
+        loading: false,
+        totalPageNum: payload.totalPages,
+      };
 
     case types.GET_SINGLE_EVENT_REQUEST_SUCCESS:
       return { ...state, selectedEvent: payload, loading: false };
