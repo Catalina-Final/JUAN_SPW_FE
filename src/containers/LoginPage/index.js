@@ -31,7 +31,6 @@ const LoginPage = () => {
   if (isAuthenticated) return <Redirect to="/" />;
 
   const loginWithFacebook = (response) => {
-    console.log(response);
     dispatch(authActions.loginWithFacebook(response.accessToken));
   };
 

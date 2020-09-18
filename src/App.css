@@ -1,18 +1,19 @@
 .App {
-  text-align: center;
-  background-color: rgb(36, 36, 36);
- height: 100vh;
- color:white
+text-align: center;
+background-color: #3333332a;
+height: 100%;
+color:white
 }
 
 .carouselCover{
-  margin: "none" !important;
+  /* margin: "none" !important; */
   background-size: 100%;
 }
 
 .navBar {
  
   width: 100%;
+  background-color: white;
   display: flex;
   justify-content: space-around;
   color: white !important;
@@ -23,3 +24,8 @@
 .facebookLogin{
   margin: 20px ;
 }
+
+
+
+/* CHAT STYLES */
+

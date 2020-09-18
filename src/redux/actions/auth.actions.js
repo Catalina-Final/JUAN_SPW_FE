@@ -26,6 +26,7 @@ const loginWithFacebook = (token) => async (dispatch) => {
     api.defaults.headers.common["authorization"] =
       "Bearer " + res.data.data.accessToken;
     localStorage.setItem("accessToken", res.data.data.accessToken);
+    console.log("FACEBOOKLOOOGIN", res.data);
 
     const name = res.data.data.user.name;
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));

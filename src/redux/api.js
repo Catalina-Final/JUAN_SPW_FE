@@ -3,7 +3,7 @@ import store from "./store";
 import { alertActions } from "./actions";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_HOST,
+  baseURL: process.env.REACT_APP_HOST + "api",
   headers: {
     "Content-Type": "application/json",
   },

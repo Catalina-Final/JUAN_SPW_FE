@@ -5,11 +5,9 @@ import { eventActions } from "../../redux/actions";
 import Moment from "react-moment";
 import Markdown from "react-markdown";
 import ClipLoader from "react-spinners/ClipLoader";
-import ReviewList from "../../components/ReviewList";
-import { useState } from "react";
-import ReviewEvent from "../../components/ReviewEvent";
 import ShowImages from "../../components/ShowImages";
-import Chat from "../../components/Chat";
+import MessengerPage from "../MessengerPage";
+import { Badge } from "react-bootstrap";
 
 const EventDetailPage = () => {
   const dispatch = useDispatch();
@@ -17,20 +15,8 @@ const EventDetailPage = () => {
   const params = useParams();
   const event = useSelector((state) => state.event.selectedEvent);
   console.log("Event", event);
-  const submitReviewLoading = useSelector(
-    (state) => state.event.submitReviewLoading
-  );
-  const [reviewText, setReviewText] = useState("");
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const handleInputChange = (e) => {
-    setReviewText(e.target.value);
-  };
 
-  const handleSubmitReview = (e) => {
-    e.preventDefault();
-    dispatch(eventActions.createReview(event._id, reviewText));
-    setReviewText("");
-  };
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     if (params?.id) {
@@ -46,38 +32,38 @@ const EventDetailPage = () => {
       ) : (
         <>
           {event && (
-            <div className="mb-5">
-              <h1>{event.title}</h1>
-              <span className="text-muted">
-                @{event?.user?.name} wrote{" "}
-                <Moment fromNow>{event.createdAt}</Moment>
-              </span>
-              <hr />
-              <Markdown source={event.content} />
-              <ShowImages
-                imagesGallery={
-                  Array.isArray(event.images)
-                    ? event.images
-                    : ["https://via.placeholder.com/160x100"]
-                }
-              />
-              <hr />
-              <ReviewList reviews={event.reviews} />
-              <h3>Category</h3>
-              <h5>{event.eventType.type}</h5>
-            </div>
-          )}
-          {isAuthenticated && (
-            <ReviewEvent
-              reviewText={reviewText}
-              handleInputChange={handleInputChange}
-              handleSubmitReview={handleSubmitReview}
-              loading={submitReviewLoading}
-            />
+            <>
+              <div className="mb-5">
+                <h1>{event.title}</h1>
+                <span className="text-muted">
+                  @{event?.user?.name} wrote{" "}
+                  <Moment fromNow>{event.createdAt}</Moment>
+                </span>
+                <hr />
+                <Markdown source={event.content} />
+                <ShowImages
+                  imagesGallery={
+                    Array.isArray(event.images)
+                      ? event.images
+                      : ["https://via.placeholder.com/160x100"]
+                  }
+                />
+                <hr />
+                <div className="main"></div>
+
+                <h3>Category</h3>
+                <Badge styele={{ fontWeight: "100" }} variant="danger">
+                  {event.eventType.type}
+                </Badge>
+
+                <div>
+                  <MessengerPage roomId={event._id} />
+                </div>
+              </div>
+            </>
           )}
         </>
       )}
-      <Chat/>
     </>
   );
 };

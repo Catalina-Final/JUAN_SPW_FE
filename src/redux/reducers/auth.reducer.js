@@ -3,6 +3,7 @@ const initialState = {
   user: {},
   isAuthenticated: false,
   loading: false,
+  accessToken: localStorage.getItem("accessToken"),
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,15 +17,15 @@ const authReducer = (state = initialState, action) => {
       localStorage.setItem("accessToken", payload.accessToken);
       return {
         ...state,
-        user: { ...payload.data },
-        accessToken: payload.accessToken,
+        user: { ...payload.data.user },
+        accessToken: payload.data.accessToken,
         loading: false,
         isAuthenticated: true,
       };
     case types.GET_CURRENT_USER_SUCCESS:
       return {
         ...state,
-        user: payload,
+        user: payload.user,
         loading: false,
         isAuthenticated: true,
       };
