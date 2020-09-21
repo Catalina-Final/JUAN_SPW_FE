@@ -31,8 +31,9 @@ const BlogCard = ({ blog, handleClick }) => {
             @{blog?.author?.name} wrote{" "}
             <Moment fromNow>{blog.createdAt}</Moment>
             <p>
-              {blog.reactions.like}
-              {blog.reactions.sad}
+              {/* {blog.reactions.like}
+              {blog.reactions.sad} */}
+              {blog.reviewCount}
             </p>
           </span>
         </small>

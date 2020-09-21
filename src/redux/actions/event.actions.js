@@ -4,7 +4,7 @@ import { alertActions } from "./alert.actions";
 
 const eventsRequest = (
   pageNum = 1,
-  limit = 3,
+  limit = 8,
   query = null,
   ownerId = null,
   sortBy = null

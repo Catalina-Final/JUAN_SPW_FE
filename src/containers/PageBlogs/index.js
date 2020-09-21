@@ -6,6 +6,7 @@ import { blogActions } from "../../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory, Link } from "react-router-dom";
 import PaginationItem from "../../components/PaginationItem";
+import pageBlogsCover from "../HomePage/imagesCover/pageBlogsCover.jpg";
 
 const HomePageBlogs = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -17,7 +18,11 @@ const HomePageBlogs = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
-    dispatch(blogActions.blogsRequest(pageNum));
+    const sortBy = {
+      key: "reviewCount",
+      ascending: -1,
+    };
+    dispatch(blogActions.blogsRequest(pageNum, 8, null, null, sortBy));
   }, [dispatch, pageNum]);
 
   const handleClickOnBlog = (id) => {
@@ -29,18 +34,26 @@ const HomePageBlogs = () => {
       <Container>
         {" "}
         <Container>
-          <Jumbotron className="text-center">
-            <h1>Social Blog</h1>
-            <p>Write about your amazing experiences.</p>
+          <Jumbotron
+            style={{
+              backgroundImage: `url(${pageBlogsCover})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+            className="text-center whiteTextBlackBackground"
+          >
+            <h1>Blogs</h1>
+            <h4>Share your experiences and knowledge.</h4>
             {isAuthenticated && (
               <Link to="/blog/add">
-                <Button variant="primary">Write now</Button>
+                <Button variant="warning">Write now</Button>
               </Link>
             )}
           </Jumbotron>
           <CardColumns
             style={{ flexWrap: "wrap", flexDirection: "row" }}
-            className="d-flex text-center"
+            className="d-flex text-center "
           >
             {loading ? (
               <ClipLoader color="#f86c6b" size={150} loading={loading} />

@@ -8,7 +8,14 @@ import ScrollToBottom from "react-scroll-to-bottom";
 // import ConversationList from "./ConversationList";
 import Message from "./Message";
 // import { socketTypes, conversationTypes } from "../../../config/constants";
-
+import _ from "lodash";
+import { compose, withProps } from "recompose";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
 const socketTypes = {
   NOTIFICATION: "SOCKET.NOTIFICATION",
   CLIENT_SEND: "SOCKET.CLIENT_SEND",
@@ -16,13 +23,36 @@ const socketTypes = {
   ERROR: "SOCKET.ERROR",
 };
 
+const MyMapComponent = compose(
+  withProps({
+    googleMapURL:
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyDuyLQ-LwLrf0mVaQGwc8K2ho1iNxI7CHM&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `400px` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  withScriptjs,
+  withGoogleMap
+)((props) => {
+  console.log(props);
+  return (
+    <GoogleMap
+      defaultZoom={8}
+      defaultCenter={{ lat: 10.76253, lng: 106.70770119999999 }}
+    >
+      <Marker position={props.coords} />
+    </GoogleMap>
+  );
+});
+const enhance = _.identity;
+
 let socket;
 
 const MessengerPage = ({ roomId }) => {
   const [messages, setMessages] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-
+  const [coords, setCoords] = useState({});
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.auth.accessToken);
   const currentUser = useSelector((state) => state.auth.user);
@@ -58,6 +88,11 @@ const MessengerPage = ({ roomId }) => {
         setMessages((messages) => [...messages, msg]);
       });
 
+      socket.on("sharingLocation", ({ lng, lat, room }) => {
+        console.log(lng, lat);
+        setCoords({ lng, lat });
+      });
+
       socket.on(socketTypes.ERROR, (err) => {
         dispatch(alertActions.setAlert(err, "danger"));
       });
@@ -86,10 +121,21 @@ const MessengerPage = ({ roomId }) => {
     setNewMessage("");
   };
 
+  function getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      console.log(coords.latitude, coords.longitude);
+      socket.emit("shareLocation", {
+        lat: coords.latitude,
+        lng: coords.longitude,
+        room: roomId,
+      });
+    });
+  }
+
   return (
     <Container fluid>
       <br />
-
+      <MyMapComponent key="map" coords={coords} />
       <h4>Chat Room</h4>
       <h6 className="text-success">
         {onlineUsers && (
@@ -130,6 +176,14 @@ const MessengerPage = ({ roomId }) => {
                 >
                   Send
                 </Button>
+                <Button
+                  type="submit"
+                  variant="success"
+                  // disabled={!newMessage || !currentUser}
+                  onClick={getCurrentLocation}
+                >
+                  Share Location
+                </Button>
               </Form.Row>
             </Form>
           </div>
@@ -146,4 +200,4 @@ const MessengerPage = ({ roomId }) => {
   );
 };
 
-export default MessengerPage;
+export default enhance(MessengerPage);
