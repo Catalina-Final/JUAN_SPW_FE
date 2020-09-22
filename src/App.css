@@ -64,6 +64,48 @@ color:white
 
   }
   
+  /* Reactions */
+  .reactions {
+    background-color: white;
+    display: flex;
+    padding: 0;
+    margin-top: 5px;
+  }
+  .reactions li {
+    list-style: none;
+    margin-right: 30px;
+    color: #d7d73e;
+    font-weight: bold;
+  }
+  
+  .reactions button {
+    border: none;
+    color: #3a444b;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .reactions button:hover {
+    color: #1e262b;
+  }
+
+  .comment{
+    padding-bottom: 1.5em;
+  }
+  .comment_body {
+    font-size: 20px;
+    font-style: italic;
+    line-height:1.8;
+  }
+  
+  .comment_author, .comment_date {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  
+
+
   .CommunitysectionBlock{
     height: 250px;
     justify-content: space-around;
@@ -96,7 +138,7 @@ color:white
   width: 100px;
   }
 
-
+ 
   .SingleBlogStyles{
   height: 300px;
 
@@ -109,19 +151,85 @@ color:white
     font-size: 14px;
   }
 
-  
+  .marginPopularBlogs{
+    margin: 20px;
+  }
 
   .MarginPopular{
     padding: 20px;
     text-align: center;
-    margin: 30px;
+    /* margin: 30px; */
     border: solid .1px rgba(0, 0, 0, 0.057);
   }
 
   .textContentBlog{
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
+    }
+
+
+
+@media only screen and (max-width: 600px) {
+  
+.ContainerPopularBlogs{
+  margin-top: 10rem;
+}
+
+.CardStyles{
+  min-width: 300px;
+}
+
+
+  .MarginPopular{
+    margin-top: 2rem;
+    
   }
+  /* .mainPopularBlog {
+ 
+  } */
+  .ColResponsiveSections{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+  .responsivePopularBlogs{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+Col{
+ 
+  padding-left: 0px;
+  padding-right: 0px !important;
+
+}
+
+
+.sectionBlock{
+  margin-bottom: 60px;
+}
+
+.ImagePopularBlogs{
+  max-height: 400px;
+  width: 100%;
+  margin: 0 !important;
+}
+
+.ImageSection1{
+  padding-right: 10px !important;
+}
+.EventSection{
+  margin-bottom: 15px;
+}
+
+img{
+    margin: auto;
+    height: 60%;
+    width: 60%;
+
+  }
+
+}
 
 
   /* Footer */
@@ -134,13 +242,7 @@ color:white
   #footer{
     padding: 20px;
     background-color: rgba(31, 31, 31, 0.379);
-  }
-
-  .contact-icon{
-    font-size: 60px;
-    color: rgba(255, 204, 0, 0.947);
-    margin: 20px;
-    
+    margin-top: 50px;
   }
 
 

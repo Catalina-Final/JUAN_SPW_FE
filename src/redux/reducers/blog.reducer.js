@@ -41,7 +41,7 @@ const blogReducer = (state = initialState, action) => {
         loading: false,
         redirectTo: "__GO_BACK__",
       };
-
+    case types.SEND_REACTION_REQUEST:
     case types.BLOG_REQUEST_FAILURE:
     case types.GET_SINGLE_BLOG_REQUEST_FAILURE:
     case types.CREATE_BLOG_FAILURE:
@@ -68,6 +68,29 @@ const blogReducer = (state = initialState, action) => {
         },
       };
 
+    case types.BLOG_REACTION_SUCCESS:
+      return {
+        ...state,
+        selectedBlog: { ...state.selectedBlog, reactions: payload },
+        submitLoading: false,
+      };
+
+    case types.REVIEW_REACTION_SUCCESS:
+      return {
+        ...state,
+        selectedBlog: {
+          ...state.selectedBlog,
+          reviews: [
+            ...state.selectedBlog.reviews.map((review) => {
+              if (review._id !== payload.reviewId) return review;
+              return { ...review, reactions: payload.reactions };
+            }),
+          ],
+        },
+        submitLoading: false,
+      };
+
+    case types.SEND_REACTION_FAILURE:
     case types.CREATE_REVIEW_FAILURE:
       return { ...state, submitReviewLoading: false };
     case types.SET_REDIRECT_TO:

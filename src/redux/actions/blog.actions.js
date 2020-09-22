@@ -137,6 +137,27 @@ const setRedirectTo = (redirectTo) => ({
   payload: redirectTo,
 });
 
+const sendEmojiReaction = (targetType, target, emoji) => async (dispatch) => {
+  dispatch({ type: types.SEND_REACTION_REQUEST, payload: null });
+  try {
+    const res = await api.post(`/reactions`, { targetType, target, emoji });
+    if (targetType === "Blog") {
+      dispatch({
+        type: types.BLOG_REACTION_SUCCESS,
+        payload: res.data.data,
+      });
+    }
+    if (targetType === "Review") {
+      dispatch({
+        type: types.REVIEW_REACTION_SUCCESS,
+        payload: { reactions: res.data.data, reviewId: target },
+      });
+    }
+  } catch (error) {
+    dispatch({ type: types.SEND_REACTION_FAILURE, payload: error });
+  }
+};
+
 export const blogActions = {
   blogsRequest,
   getSingleBlog,
@@ -146,4 +167,5 @@ export const blogActions = {
   deleteBlog,
   setRedirectTo,
   getReviewsOfBlog,
+  sendEmojiReaction,
 };

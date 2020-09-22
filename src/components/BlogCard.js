@@ -1,10 +1,13 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import Moment from "react-moment";
+import "../App.css";
+import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BlogCard = ({ blog, handleClick }) => {
   return (
-    <Card onClick={() => handleClick(blog._id)}>
+    <Card className="CardStyles" onClick={() => handleClick(blog._id)}>
       <Card.Img
         variant="top"
         src={
@@ -19,10 +22,10 @@ const BlogCard = ({ blog, handleClick }) => {
             ? blog.title
             : blog.title.slice(0, 30) + "..."}
         </Card.Title>
-        <Card.Text>
+        <Card.Text className="text-justify">
           {blog.content.length <= 99
             ? blog.content
-            : blog.content.slice(0, 40) + "..."}
+            : blog.content.slice(0, 150) + "..."}
         </Card.Text>
       </Card.Body>
       <Card.Footer>
@@ -30,14 +33,15 @@ const BlogCard = ({ blog, handleClick }) => {
           <span className="text-muted">
             @{blog?.author?.name} wrote{" "}
             <Moment fromNow>{blog.createdAt}</Moment>
-            <p>
-              {/* {blog.reactions.like}
-              {blog.reactions.sad} */}
-              {blog.reviewCount}
-            </p>
           </span>
         </small>
       </Card.Footer>
+      <FontAwesomeIcon
+        className="reactionsIcons"
+        icon={faCommentAlt}
+        size="sm"
+      />
+      <div>{blog.reviewCount}</div>
     </Card>
   );
 };

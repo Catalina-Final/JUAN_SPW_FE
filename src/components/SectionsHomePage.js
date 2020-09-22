@@ -5,7 +5,7 @@ import sectionPic1 from "../containers/HomePage/imagesCover/homepagesection2.jpg
 import sectionPic3 from "../containers/HomePage/imagesCover/homepagesection4.jpg";
 import sectionPic4 from "../containers/HomePage/imagesCover/homepagesection5.jpg";
 import "../App.css";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function SectionsHomePage() {
   const history = useHistory();
@@ -48,7 +48,7 @@ export default function SectionsHomePage() {
             </div>
           </Col>
 
-          <Col md={8}>
+          <Col className="ColResponsiveSections" md={8} sm={10}>
             <div
               className="CommunitysectionBlock ImageSection1 OnHover "
               style={{
@@ -78,7 +78,7 @@ export default function SectionsHomePage() {
                   backgroundSize: "cover",
                   marginRight: "10px",
                 }}
-                className="ImageSection1 OnHover"
+                className="ImageSection1 OnHover EventSection"
               >
                 <span className="PhotoWalkSectionTags badge badge-success">
                   Events

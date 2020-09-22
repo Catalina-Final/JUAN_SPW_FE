@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
@@ -33,33 +33,31 @@ const PopularBlogs = () => {
 
   return (
     <div className="MarginPopular">
-      <h1 className="PopularBlogsText">Popular Blogs</h1>
-      <Container>
+      <Container className="ContainerPopularBlogs">
+        <h1 className="PopularBlogsText">Popular Blogs</h1>
         <Row>
-          <Col md={6}>
-            <Card
+          <Col className="MAINPOPULARBLOG" md={6}>
+            <div
               style={{ flexWrap: "wrap", flexDirection: "row" }}
-              className="d-flex text-center"
+              className="d-flex text-center OnHover mainPopularBlog responsivePopularBlogs"
             >
               {loading ? (
                 <ClipLoader color="#f86c6b" size={150} loading={loading} />
               ) : (
                 <>
                   {blogs.length ? (
-                    <div>
+                    <div className="MarginPopular">
                       <img
                         src={blogs[0].images[0]}
                         width="100%"
                         alt="Popular blog"
                         onClick={() => handleClickOnBlog(blogs[0]._id)}
                       />
-                      <h5 className="textContentBlog MarginPopular">
-                        {blogs[0].title}
-                      </h5>
+                      <h5 className="textContentBlog ">{blogs[0].title}</h5>
                       <p>
                         {blogs[0].content.length <= 99
                           ? blogs[0].content
-                          : blogs[0].content.slice(0, 100) + "..."}
+                          : blogs[0].content.slice(0, 150) + "..."}
                       </p>
                       <span class="badge badge-secondary">
                         By {blogs[0].author.name}
@@ -70,12 +68,15 @@ const PopularBlogs = () => {
                   )}
                 </>
               )}
-            </Card>
+            </div>
           </Col>
-          <Col className="text-center PopularBlogs" md={6}>
-            <div className="secondBlogPopular MarginPopular">
+          <Col className="text-center PopularBlogs " md={6}>
+            <Col className=" responsivePopularBlogs secondBlogPopular MarginPopular OnHover">
               {blogs.length > 1 ? (
-                <div className="d-flex" style={{ border: "none" }}>
+                <div
+                  className="d-flex responsivePopularBlogs"
+                  style={{ border: "none" }}
+                >
                   <div>
                     <h5 className="textContentBlog">
                       {blogs[1].title.length <= 99
@@ -98,15 +99,16 @@ const PopularBlogs = () => {
                     height="100px"
                     alt="Popular Blogs Second "
                     src={blogs[1].images[0]}
+                    className="ImagePopularBlogs"
                   />
                 </div>
               ) : (
                 <p>There are no blogs </p>
               )}
-            </div>
-            <div className="thirdBlogPopular MarginPopular">
+            </Col>
+            <Col className="responsivePopularBlogs thirdBlogPopular MarginPopular OnHover">
               {blogs.length > 1 ? (
-                <div className="d-flex" style={{ border: "none" }}>
+                <div className="d-flex responsivePopularBlogs">
                   <div>
                     <h5 className="textContentBlog">
                       {blogs[2].title.length <= 99
@@ -129,15 +131,19 @@ const PopularBlogs = () => {
                     height="100px"
                     alt="Popular Blogs Second "
                     src={blogs[2].images[0]}
+                    className="ImagePopularBlogs"
                   />
                 </div>
               ) : (
                 loading
               )}
-            </div>
-            <div className="fourthBlogPopular MarginPopular">
+            </Col>
+            <Col className="fourthBlogPopular MarginPopular OnHover">
               {blogs.length >= 1 ? (
-                <div className="d-flex" style={{ border: "none" }}>
+                <div
+                  className="d-flex responsivePopularBlogs"
+                  style={{ border: "none" }}
+                >
                   <div>
                     <h5 className="textContentBlog">
                       {blogs[3].title.length <= 99
@@ -155,17 +161,18 @@ const PopularBlogs = () => {
                   </div>
                   <img
                     style={{ margin: "20px" }}
-                    onClick={() => handleClickOnBlog(blogs[2]._id)}
+                    onClick={() => handleClickOnBlog(blogs[3]._id)}
                     width="150px"
                     height="100px"
                     alt="Popular Blogs Second "
                     src={blogs[3].images[0]}
+                    className="ImagePopularBlogs"
                   />
                 </div>
               ) : (
                 loading
               )}
-            </div>
+            </Col>
           </Col>
         </Row>
       </Container>
