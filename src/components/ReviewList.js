@@ -21,7 +21,7 @@ const ReviewContent = ({ review }) => {
     <div className="comment">
       <span className="text-muted">@{review?.user.name}: </span>
       <span> {review.content} </span>
-      <span className="comment_body">{review?.content}</span>
+      {/* <span className="comment_body">{review?.content}</span> */}
       <br />
       <span className="comment_by">posted by </span>
       <span className="comment_author">{review?.user?.name}</span>

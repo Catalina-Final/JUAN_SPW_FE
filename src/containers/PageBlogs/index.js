@@ -7,6 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory, Link } from "react-router-dom";
 import PaginationItem from "../../components/PaginationItem";
 import pageBlogsCover from "../HomePage/imagesCover/pageBlogsCover.jpg";
+import "../../App.css";
 
 const HomePageBlogs = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -43,8 +44,14 @@ const HomePageBlogs = () => {
             }}
             className="text-center whiteTextBlackBackground"
           >
-            <h1>Blogs</h1>
-            <h4>Share your experiences and knowledge.</h4>
+            <h1
+              style={{
+                fontWeight: "200",
+              }}
+              className="BlogPageText"
+            >
+              Share your experiences with the community.
+            </h1>
             {isAuthenticated && (
               <Link to="/blog/add">
                 <Button variant="warning">Write now</Button>

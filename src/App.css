@@ -1,3 +1,5 @@
+
+
 html{
   scroll-behavior: smooth;
 }
@@ -51,6 +53,13 @@ color:white
   max-width: 250px;
   }
   
+
+  .BlogPageText{
+    margin: "50px";
+    font-size: 60px;
+    background-color: rgba(0, 0, 0, 0.283);
+  color: white;
+  }
 
   .CommunitySectionText{
   margin: 0px 0px 15px 10px;
@@ -138,7 +147,11 @@ color:white
   width: 100px;
   }
 
- 
+ .text-blog-card{
+font-size: 14px;
+font-weight: 100;
+
+ }
   .SingleBlogStyles{
   height: 300px;
 
@@ -166,6 +179,27 @@ color:white
     text-align: left;
     }
 
+
+
+/* Event styling */
+
+.ImageEventSingle{
+  height: 100% !important;
+}
+
+.SingleEvent{
+  margin-top: 50px;
+}
+
+
+.textsingleevent{
+  margin-top: 5%;
+  text-align: left;
+  vertical-align: middle;
+  border: solid .5px #1e262b15;
+  ;
+     
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -207,6 +241,7 @@ Col{
 
 .sectionBlock{
   margin-bottom: 60px;
+
 }
 
 .ImagePopularBlogs{
@@ -251,4 +286,18 @@ img{
   .whiteTextBlackBackground{
     color:white;
     background-color: rgba(21, 21, 21, 0.933);
+  }
+
+  /* Calendar */
+  .calendar{
+    margin: 30px;
+  }
+
+  /* Profile Page */
+  
+  .avatar-lg {
+    vertical-align: middle;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
   }

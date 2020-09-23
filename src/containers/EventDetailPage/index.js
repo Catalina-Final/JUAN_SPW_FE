@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { eventActions } from "../../redux/actions";
 import Moment from "react-moment";
 import Markdown from "react-markdown";
 import ClipLoader from "react-spinners/ClipLoader";
 import ShowImages from "../../components/ShowImages";
 import MessengerPage from "../MessengerPage";
-import { Badge } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EventDetailPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.event.loading);
   const params = useParams();
   const event = useSelector((state) => state.event.selectedEvent);
-  console.log("Event", event);
-
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const history = useHistory();
+  const currentUser = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (params?.id) {
@@ -25,8 +26,29 @@ const EventDetailPage = () => {
     }
   }, [dispatch, params]);
 
+  const handleGoBackClick = (e) => {
+    history.goBack();
+  };
+
+  // if (!event) return <></>;
+
   return (
     <>
+      <div className="d-flex justify-content-between">
+        <Button onClick={handleGoBackClick}>
+          <FontAwesomeIcon icon="chevron-left" size="1x" /> Back
+        </Button>
+        {currentUser?._id === event?.author._id ? (
+          <Link to={`/event/edit/${event?._id}`}>
+            <Button variant="danger">
+              <FontAwesomeIcon icon="edit" size="1x" /> Edit
+            </Button>
+          </Link>
+        ) : (
+          <></>
+        )}
+      </div>
+
       {loading ? (
         <ClipLoader color="#f86c6b" size={150} loading={loading} />
       ) : (
@@ -36,7 +58,7 @@ const EventDetailPage = () => {
               <div className="mb-5">
                 <h1>{event.title}</h1>
                 <span className="text-muted">
-                  @{event?.user?.name} wrote{" "}
+                  @{event?.author.name} wrote{" "}
                   <Moment fromNow>{event.createdAt}</Moment>
                 </span>
                 <hr />

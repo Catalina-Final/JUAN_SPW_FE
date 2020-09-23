@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { blogActions } from "../../redux/actions";
 import Moment from "react-moment";
 import Markdown from "react-markdown";
@@ -9,13 +9,16 @@ import ReviewList from "../../components/ReviewList";
 import { useState } from "react";
 import ReviewBlog from "../../components/ReviewBlog";
 import ShowImages from "../../components/ShowImages";
+import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BlogDetailPage = () => {
-  const dispatch = useDispatch();
   const loading = useSelector((state) => state.blog.loading);
-  const params = useParams();
   const blog = useSelector((state) => state.blog.selectedBlog);
-  // console.log("Blogs", blog);
+  const dispatch = useDispatch();
+  const params = useParams();
+  const history = useHistory();
+  const currentUser = useSelector((state) => state.auth.user);
   const submitReviewLoading = useSelector(
     (state) => state.blog.submitReviewLoading
   );
@@ -25,6 +28,9 @@ const BlogDetailPage = () => {
     setReviewText(e.target.value);
   };
 
+  // console.log("Current User", currentUser._id);
+  // console.log("Current Blog", blog._id);
+
   const handleSubmitReview = (e) => {
     e.preventDefault();
     dispatch(blogActions.createReview(blog._id, reviewText));
@@ -33,14 +39,32 @@ const BlogDetailPage = () => {
 
   useEffect(() => {
     if (params?.id) {
-      console.log(params?.id);
       dispatch(blogActions.getSingleBlog(params.id));
       dispatch(blogActions.getReviewsOfBlog(params.id));
     }
   }, [dispatch, params]);
 
+  const handleGoBackClick = (e) => {
+    history.goBack();
+  };
+
   return (
     <>
+      <div className="d-flex justify-content-between">
+        <Button onClick={handleGoBackClick}>
+          <FontAwesomeIcon icon="chevron-left" size="1x" /> Back
+        </Button>
+        {currentUser?._id === blog?.author._id ? (
+          <Link to={`/blog/edit/${blog?._id}`}>
+            <Button variant="danger">
+              <FontAwesomeIcon icon="edit" size="1x" /> Edit
+            </Button>
+          </Link>
+        ) : (
+          <></>
+        )}
+      </div>
+
       {loading ? (
         <ClipLoader color="#f86c6b" size={150} loading={loading} />
       ) : (
@@ -49,7 +73,7 @@ const BlogDetailPage = () => {
             <div className="mb-5">
               <h1>{blog.title}</h1>
               <span className="text-muted">
-                @{blog?.user?.name} wrote{" "}
+                @ {blog?.author.name} wrote{" "}
                 <Moment fromNow>{blog.createdAt}</Moment>
               </span>
               <hr />

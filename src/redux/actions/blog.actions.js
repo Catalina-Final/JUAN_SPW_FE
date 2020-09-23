@@ -34,6 +34,36 @@ const blogsRequest = (
   }
 };
 
+// Get Blogs By user
+const getBlogsByUser = (
+  userId,
+  pageNum = 1,
+  limit = 9,
+  query = null,
+  sortBy = null
+) => async (dispatch) => {
+  dispatch({ type: types.GET_BLOGS_OF_USER_REQUEST, payload: null });
+  try {
+    let queryString = "";
+    if (query) {
+      queryString = `&title[$regex]=${query}&title[$options]=i`;
+    }
+    let sortByString = "";
+    if (sortBy?.key) {
+      sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
+    }
+    const res = await api.get(
+      `/blogs/user/${userId}?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+    );
+    dispatch({
+      type: types.GET_BLOGS_OF_USER_SUCCESS,
+      payload: res.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_BLOGS_OF_USER_FAILURE, payload: error });
+  }
+};
+
 const getSingleBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
   try {
@@ -168,4 +198,5 @@ export const blogActions = {
   setRedirectTo,
   getReviewsOfBlog,
   sendEmojiReaction,
+  getBlogsByUser,
 };

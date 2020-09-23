@@ -31,6 +31,7 @@ const AddEditBlogPage = () => {
         ...formData,
         title: selectedBlog.title,
         content: selectedBlog.content,
+        images: selectedBlog.images,
       }));
     }
   }, [addOrEdit, selectedBlog]);

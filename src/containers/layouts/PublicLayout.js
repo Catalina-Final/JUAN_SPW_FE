@@ -14,6 +14,7 @@ import AddEditBlogPage from "../AddEditBlogPage";
 import HomePage from "../HomePage";
 import PageEvents from "../PageEvents";
 import AddEditEventPage from "../AddEditEventPage";
+import ProfilePage from "../ProfilePage";
 
 const PublicLayout = () => {
   return (
@@ -23,6 +24,7 @@ const PublicLayout = () => {
         <AlertMsg />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/dashboard" component={ProfilePage} />
           <Route exact path="/blogs" component={PageBlogs} />
           <Route exact path="/events" component={PageEvents} />
           <Route exact path="/login" component={LoginPage} />

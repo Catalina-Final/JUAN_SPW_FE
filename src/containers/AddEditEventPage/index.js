@@ -10,6 +10,9 @@ import {
 } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { eventActions } from "../../redux/actions";
+import TimePicker from "react-bootstrap-time-picker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddEditEventPage = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +20,9 @@ const AddEditEventPage = () => {
     content: "",
     images: null,
     eventType: "",
+    date: "",
+    startHour: "",
+    endHour: "",
   });
   const loading = useSelector((state) => state.event.loading);
   const eventTypes = useSelector((state) => state.event.eventTypes);
@@ -33,6 +39,7 @@ const AddEditEventPage = () => {
         ...formData,
         title: selectedEvent.title,
         content: selectedEvent.content,
+        images: selectedEvent.images,
       }));
     }
   }, [addOrEdit, selectedEvent]);
@@ -51,26 +58,35 @@ const AddEditEventPage = () => {
     }
   };
 
-  // const handleSelectCountry = (c) => {
-  //   setFormData({
-  //     ...formData,
-  //     contactInfo: { ...formData.contactInfo, nationality: c },
-  //   });
-  // };
+  const handleChangeStartTime = (time) => {
+    const dateTime = new Date(time * 1000).toISOString().substr(11, 8);
+    setFormData({
+      ...formData,
+      startHour: dateTime,
+    });
+  };
 
-  // const handleChangeEventType = (eventType) => {
-  //   setFormData({ ...formData, eventType: eventType });
-  // };
+  const handleChangeEndTime = (time) => {
+    const dateTime = new Date(time * 1000).toISOString().substr(11, 8);
+    setFormData({
+      ...formData,
+      endHour: dateTime,
+    });
+  };
+
+  const handleChangeDate = (date) => {
+    setFormData({
+      ...formData,
+      date: date,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, content, images, eventType } = formData;
     if (addOrEdit === "Add") {
-      dispatch(eventActions.createNewEvent(title, content, images, eventType));
+      dispatch(eventActions.createNewEvent(formData));
     } else if (addOrEdit === "Edit") {
-      dispatch(
-        eventActions.updateEvent(selectedEvent._id, title, content, eventType)
-      );
+      dispatch(eventActions.updateEvent(selectedEvent._id, formData));
     }
   };
 
@@ -159,6 +175,43 @@ const AddEditEventPage = () => {
               </Button>
             </Form.Group>
             <Form.Group>
+              <Form.Label className="mr-3">Event Date</Form.Label>
+              <DatePicker
+                selected={formData.date}
+                name="date"
+                value={formData.date}
+                onChange={handleChangeDate}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label className="mr-3">Event Hour</Form.Label>
+              <Row>
+                <Col>
+                  <span>Start Hour</span>
+                  <TimePicker
+                    start="00:00"
+                    end="23:59"
+                    step={30}
+                    name="startHour"
+                    value={formData.startHour}
+                    onChange={handleChangeStartTime}
+                  />
+                </Col>
+                <Col>
+                  <span> End Hour</span>
+                  <TimePicker
+                    start="00:00"
+                    end="23:59"
+                    step={30}
+                    name="endHour"
+                    value={formData.endHour}
+                    onChange={handleChangeEndTime}
+                  />
+                </Col>
+              </Row>
+            </Form.Group>
+            <Form.Group>
               <Form.Control
                 size="sm"
                 as="select"
@@ -173,6 +226,7 @@ const AddEditEventPage = () => {
                 ))}
               </Form.Control>
             </Form.Group>
+
             <ButtonGroup className="d-flex mb-3">
               {loading ? (
                 <Button
@@ -193,7 +247,7 @@ const AddEditEventPage = () => {
                   Submit
                 </Button>
               )}
-              <Button variant="light" onClick={handleCancel} disabled={loading}>
+              <Button variant="dark" onClick={handleCancel} disabled={loading}>
                 Cancel
               </Button>
             </ButtonGroup>

@@ -11,6 +11,7 @@ const RegisterPage = () => {
     password: "",
     password2: "",
   });
+
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -36,14 +37,14 @@ const RegisterPage = () => {
 
   if (isAuthenticated) return <Redirect to="/" />;
 
-  const fillFakeData = () => {
-    setFormData({
-      name: "Juan ",
-      email: "Juan@hola.mx",
-      password: "123",
-      password2: "123",
-    });
-  };
+  // const fillFakeData = () => {
+  //   setFormData({
+  //     name: "Juan ",
+  //     email: "Juan@hola.mx",
+  //     password: "123",
+  //     password2: "123",
+  //   });
+  // };
   return (
     <Container>
       <Row>
@@ -123,14 +124,14 @@ const RegisterPage = () => {
             )}
 
             {/* TODO: remove fake data */}
-            <Button
+            {/* <Button
               className="btn-block"
               type="button"
               variant="light"
               onClick={fillFakeData}
             >
               Fill in fake data
-            </Button>
+            </Button> */}
 
             <p>
               Already have an account? <Link to="/login">Sign In</Link>

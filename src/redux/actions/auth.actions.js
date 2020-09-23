@@ -80,6 +80,19 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
   }
 };
 
+const updateProfile = (name, avatarUrl) => async (dispatch) => {
+  dispatch({ type: types.UPDATE_PROFILE_REQUEST, payload: null });
+  try {
+    const res = await api.put("/users", { name, avatarUrl });
+    dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: res.data.data });
+    dispatch(
+      alertActions.setAlert(`Your profile has been updated.`, "success")
+    );
+  } catch (error) {
+    dispatch({ type: types.UPDATE_PROFILE_FAILURE, payload: error });
+  }
+};
+
 const logout = () => (dispatch) => {
   delete api.defaults.headers.common["authorization"];
   localStorage.setItem("accessToken", "");
@@ -93,4 +106,5 @@ export const authActions = {
   logout,
   loginWithFacebook,
   loginWithGoogle,
+  updateProfile,
 };

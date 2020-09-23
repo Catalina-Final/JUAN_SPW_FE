@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
@@ -59,9 +59,9 @@ const PopularBlogs = () => {
                           ? blogs[0].content
                           : blogs[0].content.slice(0, 150) + "..."}
                       </p>
-                      <span class="badge badge-secondary">
+                      <Badge variant="secondary">
                         By {blogs[0].author.name}
-                      </span>
+                      </Badge>
                     </div>
                   ) : (
                     <p>There are no blogs </p>
@@ -88,9 +88,7 @@ const PopularBlogs = () => {
                         ? blogs[1].content
                         : blogs[1].content.slice(0, 80) + "..."}
                     </p>
-                    <span class="badge badge-secondary">
-                      By {blogs[1].author.name}
-                    </span>
+                    <Badge variant="secondary">By {blogs[1].author.name}</Badge>
                   </div>
                   <img
                     style={{ margin: "20px" }}
@@ -159,6 +157,7 @@ const PopularBlogs = () => {
                       By {blogs[3].author.name}
                     </span>
                   </div>
+
                   <img
                     style={{ margin: "20px" }}
                     onClick={() => handleClickOnBlog(blogs[3]._id)}
@@ -170,7 +169,7 @@ const PopularBlogs = () => {
                   />
                 </div>
               ) : (
-                loading
+                <></>
               )}
             </Col>
           </Col>

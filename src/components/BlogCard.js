@@ -7,41 +7,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BlogCard = ({ blog, handleClick }) => {
   return (
-    <Card className="CardStyles" onClick={() => handleClick(blog._id)}>
+    <Card
+      className="text-center  SingleEvent"
+      onClick={() => handleClick(blog._id)}
+    >
       <Card.Img
+        className="ImageEventSingle"
         variant="top"
         src={
           blog?.images?.length
             ? blog.images[0]
             : "https://via.placeholder.com/160x100"
         }
-      />{" "}
-      <Card.Body>
+      />
+
+      <Card.Body className="textsingleevent">
         <Card.Title>
           {blog.title.length <= 50
             ? blog.title
             : blog.title.slice(0, 30) + "..."}
         </Card.Title>
-        <Card.Text className="text-justify">
+        <Card.Text className="text-justify text-blog-card">
           {blog.content.length <= 99
             ? blog.content
-            : blog.content.slice(0, 150) + "..."}
+            : blog.content.slice(0, 70) + "..."}
         </Card.Text>
-      </Card.Body>
-      <Card.Footer>
+
         <small className="text-muted">
           <span className="text-muted">
-            @{blog?.author?.name} wrote{" "}
+            @{blog?.author?.name} wrote <br></br>
             <Moment fromNow>{blog.createdAt}</Moment>
+            <div className="justify-content-end">
+              <FontAwesomeIcon
+                className="reactionsIcons"
+                icon={faCommentAlt}
+                size="sm"
+              />
+              {blog.reviewCount}
+            </div>
           </span>
         </small>
-      </Card.Footer>
-      <FontAwesomeIcon
-        className="reactionsIcons"
-        icon={faCommentAlt}
-        size="sm"
-      />
-      <div>{blog.reviewCount}</div>
+      </Card.Body>
     </Card>
   );
 };
