@@ -13,6 +13,7 @@ import { authActions } from "../../redux/actions";
 import { ClipLoader } from "react-spinners";
 import PublicNavbar from "../PublicNavbar";
 import EventsAdmin from "../../components/EventsAdmin";
+import BlogsAdmin from "../../components/BlogsAdmin";
 
 const ProfilePage = () => {
   const currentUser = useSelector((state) => state.auth.user);
@@ -172,9 +173,12 @@ const ProfilePage = () => {
         </Col>
         <h1>History</h1>
         <Col className="d-flex justify-content-center " md={7}>
+          {" "}
           <EventsAdmin />
         </Col>
-        <Col>{/* <BlogsAdmin /> */}</Col>
+        <Col>
+          <BlogsAdmin />
+        </Col>
       </Row>
     </Container>
   );

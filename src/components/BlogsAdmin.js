@@ -21,8 +21,8 @@ const BlogsAdmin = () => {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line
     dispatch(blogActions.getBlogsByUser(currentUser.id, pageNum));
+    // eslint-disable-next-line
   }, [dispatch, pageNum]);
 
   return (
