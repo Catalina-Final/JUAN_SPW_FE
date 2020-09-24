@@ -38,7 +38,7 @@ const blogsRequest = (
 const getBlogsByUser = (
   userId,
   pageNum = 1,
-  limit = 9,
+  limit = 3,
   query = null,
   sortBy = null
 ) => async (dispatch) => {

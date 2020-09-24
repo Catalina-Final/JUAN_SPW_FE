@@ -256,7 +256,10 @@ color: black;
 /* Event styling */
 
 .textEventTitle{
-  margin: 30px;
+  margin: auto;
+  padding-bottom: 50px;
+  padding-top: 20px
+  
 }
 
 .ImageEventSingle{
@@ -277,6 +280,11 @@ color: black;
 color:#000000eb;     
 }
 
+
+
+.BlogCardImages > img {
+  width: 300px;
+}
 
 @media only screen and (max-width: 600px) {
 
@@ -375,6 +383,11 @@ img{
   }
 
   /* Calendar */
+
+  .CalendarMargin{
+    margin: auto;
+  }
+
 
   .rbc-toolbar {
     display: flex;

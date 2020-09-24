@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PaginationItem from "../components/PaginationItem";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { eventActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
-// import SingleEvent from "../components/SingleEvent";
+import SingleEvent from "../components/SingleEvent";
 import "../App.css";
 
 // import moment from "moment";
@@ -20,11 +20,11 @@ const EventsAdmin = () => {
   const currentUser = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
-  // const history = useHistory();
+  const history = useHistory();
 
-  // const handleClickOnEvent = (id) => {
-  //   history.push(`/events/${id}`);
-  // };
+  const handleClickOnEvent = (id) => {
+    history.push(`/events/${id}`);
+  };
 
   useEffect(() => {
     dispatch(eventActions.getEventsByUser(currentUser.id, pageNum));
@@ -43,32 +43,32 @@ const EventsAdmin = () => {
               {events.length ? (
                 <div>
                   {events.map((event) => (
-                    // <SingleEvent
-                    //   event={event}
-                    //   key={event._id}
-                    //   handleClick={handleClickOnEvent}
-                    // />
+                    <SingleEvent
+                      event={event}
+                      key={event._id}
+                      handleClick={handleClickOnEvent}
+                    />
 
-                    <Col
-                      className="ImageEventsAdmin OnHover"
-                      md={6}
-                      style={{
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        backgroundImage: `url(${event.images[0]})`,
-                      }}
-                    >
-                      <h4>
-                        {event.title.length <= 50
-                          ? event.title
-                          : event.title.slice(0, 30) + "..."}
-                      </h4>
-                      <p>
-                        {event.content.length <= 100
-                          ? event.content
-                          : event.content.slice(0, 80) + "..."}
-                      </p>
-                    </Col>
+                    // <Col
+                    //   className="ImageEventsAdmin OnHover"
+                    //   md={6}
+                    //   style={{
+                    //     backgroundRepeat: "no-repeat",
+                    //     backgroundPosition: "center",
+                    //     backgroundImage: `url(${event.images[0]})`,
+                    //   }}
+                    // >
+                    //   <h4>
+                    //     {event.title.length <= 50
+                    //       ? event.title
+                    //       : event.title.slice(0, 30) + "..."}
+                    //   </h4>
+                    //   <p>
+                    //     {event.content.length <= 100
+                    //       ? event.content
+                    //       : event.content.slice(0, 80) + "..."}
+                    //   </p>
+                    // </Col>
                   ))}
                 </div>
               ) : (
@@ -78,13 +78,15 @@ const EventsAdmin = () => {
           )}
         </Row>
       </Container>
-      <PaginationItem
-        style={{ marginTop: "20px" }}
-        pageNum={pageNum}
-        setPageNum={setPageNum}
-        totalPageNum={totalPageNum}
-        loading={loading}
-      />
+      <div className="textEventTitle">
+        <PaginationItem
+          style={{ marginTop: "20px" }}
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          totalPageNum={totalPageNum}
+          loading={loading}
+        />
+      </div>
     </div>
   );
 };

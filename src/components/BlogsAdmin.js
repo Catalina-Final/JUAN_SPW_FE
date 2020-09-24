@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import PaginationItem from "../components/PaginationItem";
-import { Button, Carousel, Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import { blogActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
+import BlogCard from "./BlogCard";
+import "../App.css";
 
 const BlogsAdmin = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -29,50 +31,48 @@ const BlogsAdmin = () => {
     <div>
       <Container>
         <h2>Blogs Published</h2>
-        <Row>
+        <Row
+          style={{
+            flexWrap: "wrap",
+            flexDirection: "column",
+          }}
+          className="text-center"
+        >
           {loading ? (
             <ClipLoader color="#f86c6b" size={150} loading={loading} />
           ) : (
             <>
               {blogs.length ? (
-                <Container fluid className="carouselCover">
-                  <Carousel>
-                    {blogs.map((blog) => (
-                      <Carousel.Item>
-                        <div>
-                          <img
-                            className="d-block  w-100 "
-                            src={blog.images}
-                            alt="First slide"
-                          />
-                        </div>
-                        <Carousel.Caption onClick={handleClickOnBlog}>
-                          <h2>{blog.title}</h2>
-                          <h4>{blog.content}</h4>
-                        </Carousel.Caption>
-                      </Carousel.Item>
-                    ))}
-                  </Carousel>
-                </Container>
+                <div>
+                  {blogs.map((blog) => (
+                    <BlogCard
+                      blog={blog}
+                      key={blog._id}
+                      handleClick={handleClickOnBlog}
+                    />
+                  ))}
+                </div>
               ) : (
                 <div>
-                  <h1>There are no events </h1>
+                  <h1>There are no blogs </h1>
                   <Link to="/">
                     <Button variant="dark">Go to homepage</Button>
                   </Link>
                 </div>
-              )}{" "}
+              )}
             </>
           )}
         </Row>
       </Container>
-      <PaginationItem
-        style={{ marginTop: "20px" }}
-        pageNum={pageNum}
-        setPageNum={setPageNum}
-        totalPageNum={totalPageNum}
-        loading={loading}
-      />
+      <div className="textEventTitle">
+        <PaginationItem
+          style={{ marginTop: "20px" }}
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          totalPageNum={totalPageNum}
+          loading={loading}
+        />
+      </div>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import PaginationItem from "../../components/PaginationItem";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
+import "../../App.css";
 
 const PageEvents = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -30,7 +31,8 @@ const PageEvents = () => {
     React.cloneElement(Children.only(children), {
       style: {
         ...children.style,
-        backgroundColor: value < CURRENT_DATE ? "lightgray" : "darkgray",
+        backgroundColor: value < CURRENT_DATE ? "darkgray" : "lightgray",
+        width: "500",
       },
     });
 
@@ -41,25 +43,24 @@ const PageEvents = () => {
   return (
     <div>
       {" "}
+      <Col
+        className=" align-items-center Buttonnewevent text-center textEventTitle"
+        sm={12}
+        md={12}
+      >
+        <h1>Events</h1>
+        <h3>Start planning your NEXT event.</h3>
+        {isAuthenticated && (
+          <Link to="/event/add">
+            <Button variant="dark">Write now</Button>
+          </Link>
+        )}
+      </Col>
       <Container>
-        <div className="text-center textEventTitle">
-          <h1>Events</h1>
-        </div>
-
         <div>
           {events.length ? (
-            <Row>
-              <Col
-                className="d-flex align-items-center Buttonnewevent"
-                sm={12}
-                md={12}
-              >
-                <h3>Start planning your NEXT event.</h3>
-                {isAuthenticated && (
-                  <Link to="/event/add">
-                    <Button variant="dark">Write now</Button>
-                  </Link>
-                )}
+            <Col>
+              <div className="CalendarMargin">
                 <Calendar
                   className="calendar"
                   localizer={localizer}
@@ -75,18 +76,20 @@ const PageEvents = () => {
                     dateCellWrapper: ColoredDateCellWrapper,
                   }}
                   style={{ height: 500 }}
-                />{" "}
-              </Col>
-              <PaginationItem
-                pageNum={pageNum}
-                setPageNum={setPageNum}
-                totalPageNum={totalPageNum}
-                loading={loading}
-              />
-            </Row>
+                />
+              </div>
+            </Col>
           ) : (
             <> </>
           )}
+        </div>
+        <div className=" align-items-center Buttonnewevent text-center textEventTitle">
+          <PaginationItem
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+            totalPageNum={totalPageNum}
+            loading={loading}
+          />
         </div>
         <Row
           style={{

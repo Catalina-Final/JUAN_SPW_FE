@@ -29,12 +29,7 @@ const EventDetailPage = () => {
     history.goBack();
   };
 
-  if (!event)
-    return (
-      <>
-        <h1>No events!!</h1>
-      </>
-    );
+  if (!event) return loading;
 
   return (
     <>
