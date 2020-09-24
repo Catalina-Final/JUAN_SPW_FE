@@ -7,6 +7,7 @@ import { blogActions } from "../redux/actions";
 import "../App.css";
 
 const PopularBlogs = () => {
+  // eslint-disable-next-line
   const [pageNum, setPageNum] = useState(1);
   const blogs = useSelector((state) => state.blog.blogs);
   const history = useHistory();

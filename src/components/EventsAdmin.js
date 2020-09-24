@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import PaginationItem from "../components/PaginationItem";
 import { Col, Container, Row } from "react-bootstrap";
 import { eventActions } from "../redux/actions";
@@ -20,14 +20,15 @@ const EventsAdmin = () => {
   const currentUser = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
-  const handleClickOnEvent = (id) => {
-    history.push(`/events/${id}`);
-  };
+  // const handleClickOnEvent = (id) => {
+  //   history.push(`/events/${id}`);
+  // };
 
   useEffect(() => {
     dispatch(eventActions.getEventsByUser(currentUser.id, pageNum));
+    // eslint-disable-next-line
   }, [dispatch, pageNum]);
 
   return (
