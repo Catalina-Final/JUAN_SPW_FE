@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import PaginationItem from "../components/PaginationItem";
-import { Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { eventActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
-import SingleEvent from "../components/SingleEvent";
+// import SingleEvent from "../components/SingleEvent";
+import "../App.css";
 
 // import moment from "moment";
 
@@ -31,8 +32,8 @@ const EventsAdmin = () => {
 
   return (
     <div>
-      <h2>Events Hosting</h2>
       <Container>
+        <h2>Events Hosting</h2>
         <Row>
           {loading ? (
             <ClipLoader color="#f86c6b" size={150} loading={loading} />
@@ -41,11 +42,32 @@ const EventsAdmin = () => {
               {events.length ? (
                 <div>
                   {events.map((event) => (
-                    <SingleEvent
-                      event={event}
-                      key={event._id}
-                      handleClick={handleClickOnEvent}
-                    />
+                    // <SingleEvent
+                    //   event={event}
+                    //   key={event._id}
+                    //   handleClick={handleClickOnEvent}
+                    // />
+
+                    <Col
+                      className="ImageEventsAdmin OnHover"
+                      md={6}
+                      style={{
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        backgroundImage: `url(${event.images[0]})`,
+                      }}
+                    >
+                      <h4>
+                        {event.title.length <= 50
+                          ? event.title
+                          : event.title.slice(0, 30) + "..."}
+                      </h4>
+                      <p>
+                        {event.content.length <= 100
+                          ? event.content
+                          : event.content.slice(0, 80) + "..."}
+                      </p>
+                    </Col>
                   ))}
                 </div>
               ) : (

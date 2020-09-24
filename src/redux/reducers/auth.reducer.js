@@ -40,7 +40,11 @@ const authReducer = (state = initialState, action) => {
     case types.REGISTER_SUCCESS:
       return {
         ...state,
-        oading: false,
+        loading: false,
+        user: { ...payload.user },
+        accessToken: payload.accessToken,
+        loading: false,
+        isAuthenticated: true,
       };
     case types.LOGOUT:
       return {

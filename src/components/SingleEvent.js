@@ -5,13 +5,13 @@ import Moment from "react-moment";
 const SingleEvent = ({ event, handleClick }) => {
   return (
     <Card
-      className="text-center d-flex SingleEvent"
+      className="text-center  SingleEvent "
       onClick={() => handleClick(event._id)}
     >
       <Row>
         <Col sm={12} lg={6}>
           <Card.Img
-            className="ImageEventSingle"
+            className="ImageEventSingle OnHover"
             variant="top"
             src={
               event?.images?.length
@@ -20,7 +20,8 @@ const SingleEvent = ({ event, handleClick }) => {
             }
           />{" "}
         </Col>
-        <Col sm={12} lg={6}>
+
+        <Col sm={12} lg={6} className="d-flex align-items-center">
           <Card.Body className="textsingleevent">
             <Card.Title>
               {event.title.length <= 50
@@ -32,19 +33,14 @@ const SingleEvent = ({ event, handleClick }) => {
                 ? event.content
                 : event.content.slice(0, 200) + "..."}
             </Card.Text>
-          </Card.Body>
-          <Card.Footer>
+
             <small className="text-muted">
-              <span className="text-muted">
-                @{event?.author?.name} wrote{" "}
-                <Moment fromNow>{event.createdAt}</Moment>
-                <p>
-                  {/* {event.reactions.like}
-              {event.reactions.sad} */}
-                </p>
-              </span>
+              <span className="text-muted">By{event?.author?.name} </span>
+              <Moment className="textsingleevent" fromNow>
+                {event.createdAt}
+              </Moment>
             </small>
-          </Card.Footer>
+          </Card.Body>{" "}
         </Col>
       </Row>
     </Card>

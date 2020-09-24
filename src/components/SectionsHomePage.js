@@ -29,6 +29,7 @@ export default function SectionsHomePage() {
           <Col
             className="ImageSection1 OnHover"
             md={4}
+            onClick={handleClickBlogSection}
             style={{
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",

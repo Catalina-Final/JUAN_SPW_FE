@@ -118,9 +118,7 @@ const PopularBlogs = () => {
                         ? blogs[2].content
                         : blogs[2].content.slice(0, 80) + "..."}
                     </p>
-                    <span class="badge badge-secondary">
-                      By {blogs[2].author.name}
-                    </span>
+                    <Badge variant="secondary">By {blogs[2].author.name}</Badge>
                   </div>
                   <img
                     style={{ margin: "20px" }}

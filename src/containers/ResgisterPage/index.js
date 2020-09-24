@@ -36,15 +36,6 @@ const RegisterPage = () => {
   };
 
   if (isAuthenticated) return <Redirect to="/" />;
-
-  // const fillFakeData = () => {
-  //   setFormData({
-  //     name: "Juan ",
-  //     email: "Juan@hola.mx",
-  //     password: "123",
-  //     password2: "123",
-  //   });
-  // };
   return (
     <Container>
       <Row>
@@ -118,20 +109,15 @@ const RegisterPage = () => {
                 Loading...
               </Button>
             ) : (
-              <Button className="btn-block" type="submit" variant="danger">
+              <Button
+                className="btn-block"
+                onClick={handleSubmit}
+                type="submit"
+                variant="danger"
+              >
                 Register
               </Button>
             )}
-
-            {/* TODO: remove fake data */}
-            {/* <Button
-              className="btn-block"
-              type="button"
-              variant="light"
-              onClick={fillFakeData}
-            >
-              Fill in fake data
-            </Button> */}
 
             <p>
               Already have an account? <Link to="/login">Sign In</Link>

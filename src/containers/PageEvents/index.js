@@ -1,5 +1,5 @@
 import React, { Children, useEffect, useState } from "react";
-import { Container, Button, Row } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import SingleEvent from "../../components/SingleEvent";
 import { useSelector, useDispatch } from "react-redux";
 import { eventActions } from "../../redux/actions";
@@ -42,46 +42,57 @@ const PageEvents = () => {
     <div>
       {" "}
       <Container>
-        <div className="text-center">
+        <div className="text-center textEventTitle">
           <h1>Events</h1>
-          <p>Start planning your event.</p>
-          {isAuthenticated && (
-            <Link to="/event/add">
-              <Button variant="primary">Write now</Button>
-            </Link>
-          )}
         </div>
 
-        <>
+        <div>
           {events.length ? (
-            <div>
-              <Calendar
-                className="calendar"
-                localizer={localizer}
-                events={eventDates.map((e) => ({
-                  ...e,
-                  start: new Date(e.start),
-                  end: new Date(e.end),
-                }))}
-                startAccessor="start"
-                endAccessor="end"
-                onSelectEvent={(event) => handleClickOnEvent(event._id)}
-                components={{
-                  dateCellWrapper: ColoredDateCellWrapper,
-                }}
-                style={{ height: 500 }}
-              />
+            <Row>
+              <Col
+                className="d-flex align-items-center Buttonnewevent"
+                sm={12}
+                md={6}
+              >
+                <div>
+                  <h3>Start planning your NEXT event.</h3>
+                  {isAuthenticated && (
+                    <Link to="/event/add">
+                      <Button variant="dark">Write now</Button>
+                    </Link>
+                  )}
+                </div>
+              </Col>
+
+              <Col sm={12} md={6}>
+                <Calendar
+                  className="calendar"
+                  localizer={localizer}
+                  events={eventDates.map((e) => ({
+                    ...e,
+                    start: new Date(e.start),
+                    end: new Date(e.end),
+                  }))}
+                  startAccessor="start"
+                  endAccessor="end"
+                  onSelectEvent={(event) => handleClickOnEvent(event._id)}
+                  components={{
+                    dateCellWrapper: ColoredDateCellWrapper,
+                  }}
+                  style={{ height: 500 }}
+                />
+              </Col>
               <PaginationItem
                 pageNum={pageNum}
                 setPageNum={setPageNum}
                 totalPageNum={totalPageNum}
                 loading={loading}
               />
-            </div>
+            </Row>
           ) : (
-            <p>There are no events</p>
+            <> </>
           )}
-        </>
+        </div>
         <Row
           style={{
             flexWrap: "wrap",
@@ -104,7 +115,12 @@ const PageEvents = () => {
                   ))}
                 </div>
               ) : (
-                <p>There are no events </p>
+                <div>
+                  <h1>There are no events </h1>
+                  <Link to="/">
+                    <Button variant="dark">Go to homepage</Button>
+                  </Link>
+                </div>
               )}
             </>
           )}

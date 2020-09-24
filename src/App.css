@@ -2,8 +2,13 @@
 
 html{
   scroll-behavior: smooth;
+  background-color: #000000eb;
 }
 
+#root{
+  background-color: #000000eb;
+  color: white;
+}
 
 .App {
 text-align: center;
@@ -13,22 +18,22 @@ width: 100%;
 color:white
 }
 
+
+
+.full-screen {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;  }
+
 .carouselCover{
-  /* margin: "none" !important; */
   background-size: 100%;
 }
 .Container{
   background-color: rgba(21, 21, 21, 0.933);
 }
 
-.navBar {
-  width: 100%;
-  background-color: white;
-  display: flex;
-  justify-content: space-around;
-  color: white !important;
-  font-weight: 600;
-  
+.itemMenu{
+margin: 30px;
 }
 
 .facebookLogin{
@@ -73,34 +78,102 @@ color:white
 
   }
   
+
+  /* Events admin */
+
+  .ImageEventsAdmin{
+   min-height: 300px;
+   float: left;
+   width: 100%;
+  
+  }
+
+  @media (max-width: 1200px) {
+    #photos {
+    -moz-column-count:    4;
+    -webkit-column-count: 4;
+    column-count:         4;
+    }
+  }
+  @media (max-width: 1000px) {
+    #photos {
+    -moz-column-count:    3;
+    -webkit-column-count: 3;
+    column-count:         3;
+    }
+  }
+  @media (max-width: 800px) {
+    #photos {
+    -moz-column-count:    2;
+    -webkit-column-count: 2;
+    column-count:         2;
+    }
+  }
+  @media (max-width: 400px) {
+    #photos {
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+    column-count:         1;
+    }
+  }
+
+  #photos {
+    /* Prevent vertical gaps */
+    line-height: 0;
+     
+    -webkit-column-count: 5;
+    -webkit-column-gap:   0px;
+    -moz-column-count:    5;
+    -moz-column-gap:      0px;
+    column-count:         5;
+    column-gap:           0px;  
+  }
+  
+  #photos img {
+    /* Just in case there are inline attributes */
+    width: 100% !important;
+    height: auto !important;
+  }
+  
   /* Reactions */
+
+
+  .reactionsIcons{
+    margin: 5px;
+  }
+  
   .reactions {
-    background-color: white;
     display: flex;
     padding: 0;
     margin-top: 5px;
+   
   }
   .reactions li {
     list-style: none;
     margin-right: 30px;
-    color: #d7d73e;
     font-weight: bold;
   }
+
   
-  .reactions button {
+  .reactionsbutton > button {
     border: none;
-    color: #3a444b;
-    font-size: 16px;
+    margin: 2px;
+    border-radius: 20px;
+    font-size: 15px;
+  
     cursor: pointer;
   }
   
   .reactions button:hover {
-    color: #1e262b;
+    color: #3c5565;
+    opacity: 50%;
   }
 
   .comment{
     padding-bottom: 1.5em;
   }
+
+
   .comment_body {
     font-size: 20px;
     font-style: italic;
@@ -148,8 +221,9 @@ color:white
   }
 
  .text-blog-card{
-font-size: 14px;
-font-weight: 100;
+font-size: 12px;
+font-weight: 300;
+color: black;
 
  }
   .SingleBlogStyles{
@@ -183,26 +257,40 @@ font-weight: 100;
 
 /* Event styling */
 
+.textEventTitle{
+  margin: 30px;
+}
+
 .ImageEventSingle{
   height: 100% !important;
 }
 
 .SingleEvent{
   margin-top: 50px;
+  border: none !important;
+  box-shadow: 2px 5px #88888817;
+  border-radius: 5px;
 }
 
 
 .textsingleevent{
   margin-top: 5%;
   text-align: left;
-  vertical-align: middle;
-  border: solid .5px #1e262b15;
-  ;
-     
+color:#000000eb;     
 }
 
 
 @media only screen and (max-width: 600px) {
+
+
+  .Buttonnewevent{
+    margin: 20%;
+  }
+
+  .pagination{
+    padding-top: 5%;
+    margin: auto;
+  }
   
 .ContainerPopularBlogs{
   margin-top: 10rem;
@@ -289,9 +377,40 @@ img{
   }
 
   /* Calendar */
-  .calendar{
-    margin: 30px;
+  .rbc-toolbar {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between !important;
+    font-size: 15px !important;
+  
   }
+  .rbc-event{
+    background-color: rgba(27, 27, 31, 0.933) !important;
+  }
+  /* Pagination */
+
+  .pagination > li > a,
+.pagination > li > span {
+    color: black;
+    background-color: white;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: rgba(21, 21, 21, 0.933);
+    border-color: rgba(21, 21, 21, 0.933);
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: rgba(21, 21, 21, 0.933);; 
+  border-color: rgba(21, 21, 21, 0.933);;
+}
 
   /* Profile Page */
   

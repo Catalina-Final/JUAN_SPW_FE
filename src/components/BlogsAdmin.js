@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PaginationItem from "../components/PaginationItem";
-import { Carousel, Container, Row } from "react-bootstrap";
+import { Button, Carousel, Container, Row } from "react-bootstrap";
 import { blogActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
-import SingleBlog from "../components/BlogCard";
-
-import "../App.css";
-import BlogCard from "../components/BlogCard";
 
 const BlogsAdmin = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -30,8 +26,8 @@ const BlogsAdmin = () => {
 
   return (
     <div>
-      <h2>Blogs Published</h2>
       <Container>
+        <h2>Blogs Published</h2>
         <Row>
           {loading ? (
             <ClipLoader color="#f86c6b" size={150} loading={loading} />
@@ -58,7 +54,12 @@ const BlogsAdmin = () => {
                   </Carousel>
                 </Container>
               ) : (
-                <p>There are no events </p>
+                <div>
+                  <h1>There are no events </h1>
+                  <Link to="/">
+                    <Button variant="dark">Go to homepage</Button>
+                  </Link>
+                </div>
               )}{" "}
             </>
           )}
