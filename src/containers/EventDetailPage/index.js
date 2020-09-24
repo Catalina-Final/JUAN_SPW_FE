@@ -74,7 +74,7 @@ const EventDetailPage = () => {
                 <div className="main"></div>
 
                 <h3>Category</h3>
-                <Badge styele={{ fontWeight: "100" }} variant="danger">
+                <Badge style={{ fontWeight: "100" }} variant="danger">
                   {event.eventType.type}
                 </Badge>
 

@@ -38,10 +38,7 @@ export default function SectionsHomePage() {
             }}
           >
             <div>
-              <Badge
-                className="PhotoWalkSectionTags badge badge-danger"
-                variant="secondary"
-              >
+              <Badge className="PhotoWalkSectionTags" variant="danger">
                 PhotoWalks
               </Badge>
 
@@ -63,10 +60,7 @@ export default function SectionsHomePage() {
                 backgroundSize: "cover",
               }}
             >
-              <Badge
-                className="PhotoWalkSectionTags badge badge-warning"
-                variant="secondary"
-              >
+              <Badge className="PhotoWalkSectionTags" variant="warning">
                 Community
               </Badge>
 
@@ -89,10 +83,7 @@ export default function SectionsHomePage() {
                 }}
                 className="ImageSection1 OnHover EventSection"
               >
-                <Badge
-                  className="PhotoWalkSectionTags badge badge-success"
-                  variant="secondary"
-                >
+                <Badge className="PhotoWalkSectionTags " variant="success">
                   Events
                 </Badge>
 
@@ -113,10 +104,7 @@ export default function SectionsHomePage() {
                 }}
                 className="ImageSection1 OnHover"
               >
-                <Badge
-                  className="PhotoWalkSectionTags badge badge-primary"
-                  variant="secondary"
-                >
+                <Badge className="PhotoWalkSectionTags " variant="primary">
                   Blog
                 </Badge>
 
