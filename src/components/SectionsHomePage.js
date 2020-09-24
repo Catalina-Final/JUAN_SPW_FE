@@ -52,6 +52,7 @@ export default function SectionsHomePage() {
 
           <Col className="ColResponsiveSections" md={8} sm={10}>
             <div
+              onClick={handleClickBlogSection}
               className="CommunitysectionBlock ImageSection1 OnHover "
               style={{
                 backgroundRepeat: "no-repeat",

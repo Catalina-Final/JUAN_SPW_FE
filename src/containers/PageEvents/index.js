@@ -31,7 +31,7 @@ const PageEvents = () => {
     React.cloneElement(Children.only(children), {
       style: {
         ...children.style,
-        backgroundColor: value < CURRENT_DATE ? "darkgray" : "lightgray",
+        backgroundColor: value < CURRENT_DATE ? "#bfb6a4" : "#f5ecda",
         width: "500",
       },
     });

@@ -46,6 +46,7 @@ const BlogsAdmin = () => {
                 <div>
                   {blogs.map((blog) => (
                     <BlogCard
+                      className="BlogCardImages"
                       blog={blog}
                       key={blog._id}
                       handleClick={handleClickOnBlog}

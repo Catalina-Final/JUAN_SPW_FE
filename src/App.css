@@ -386,19 +386,24 @@ img{
 
   .CalendarMargin{
     margin: auto;
+    color: #797469;
   }
+ .rbc-active {
+   color:red !important;
+ }
+  .rbc-btn-group > button{
+background-color: white !important;  }
 
 
   .rbc-toolbar {
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between !important;
-    font-size: 15px !important;
-    width: 500;
-  
+    font-size: 18px !important;  
+    font-weight: 300;
   }
   .rbc-event{
-    background-color: rgba(27, 27, 31, 0.933) !important;
+    background-color:#009473 !important;
   }
   /* Pagination */
 
