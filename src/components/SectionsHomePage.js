@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
 import sectionPic2 from "../containers/HomePage/imagesCover/homepagesection7.jpg";
 import sectionPic1 from "../containers/HomePage/imagesCover/homepagesection2.jpg";
 import sectionPic3 from "../containers/HomePage/imagesCover/homepagesection4.jpg";
@@ -38,9 +38,13 @@ export default function SectionsHomePage() {
             }}
           >
             <div>
-              <span className="PhotoWalkSectionTags badge badge-danger">
+              <Badge
+                className="PhotoWalkSectionTags badge badge-danger"
+                variant="secondary"
+              >
                 PhotoWalks
-              </span>
+              </Badge>
+
               <div>
                 <h2 className="PhotoWalkSectionText">
                   Join us in a different way to explore your city.
@@ -59,9 +63,13 @@ export default function SectionsHomePage() {
                 backgroundSize: "cover",
               }}
             >
-              <span className="PhotoWalkSectionTags badge badge-warning">
+              <Badge
+                className="PhotoWalkSectionTags badge badge-warning"
+                variant="secondary"
+              >
                 Community
-              </span>{" "}
+              </Badge>
+
               <h2 className="CommunitySectionText ">
                 The most active community of photogaphers in Ho Chi Minh city.
               </h2>
@@ -81,9 +89,13 @@ export default function SectionsHomePage() {
                 }}
                 className="ImageSection1 OnHover EventSection"
               >
-                <span className="PhotoWalkSectionTags badge badge-success">
+                <Badge
+                  className="PhotoWalkSectionTags badge badge-success"
+                  variant="secondary"
+                >
                   Events
-                </span>{" "}
+                </Badge>
+
                 <h2 className="CommunitySectionText ">
                   The most active community of photogaphers in Ho Chi Minh city.
                 </h2>
@@ -101,9 +113,13 @@ export default function SectionsHomePage() {
                 }}
                 className="ImageSection1 OnHover"
               >
-                <span className="PhotoWalkSectionTags badge badge-primary">
+                <Badge
+                  className="PhotoWalkSectionTags badge badge-primary"
+                  variant="secondary"
+                >
                   Blog
-                </span>{" "}
+                </Badge>
+
                 <h2 className="CommunitySectionText ">
                   Share your experiences and knowledge with the community.
                 </h2>
