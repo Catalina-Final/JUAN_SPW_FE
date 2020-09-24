@@ -15,7 +15,6 @@ const EventDetailPage = () => {
   const loading = useSelector((state) => state.event.loading);
   const params = useParams();
   const event = useSelector((state) => state.event.selectedEvent);
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const history = useHistory();
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -30,7 +29,12 @@ const EventDetailPage = () => {
     history.goBack();
   };
 
-  // if (!event) return <></>;
+  if (!event)
+    return (
+      <>
+        <h1>No events!!</h1>
+      </>
+    );
 
   return (
     <>

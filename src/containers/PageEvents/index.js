@@ -30,7 +30,7 @@ const PageEvents = () => {
     React.cloneElement(Children.only(children), {
       style: {
         ...children.style,
-        backgroundColor: value < CURRENT_DATE ? "lightgray" : "white",
+        backgroundColor: value < CURRENT_DATE ? "lightgray" : "darkgray",
       },
     });
 
@@ -52,19 +52,14 @@ const PageEvents = () => {
               <Col
                 className="d-flex align-items-center Buttonnewevent"
                 sm={12}
-                md={6}
+                md={12}
               >
-                <div>
-                  <h3>Start planning your NEXT event.</h3>
-                  {isAuthenticated && (
-                    <Link to="/event/add">
-                      <Button variant="dark">Write now</Button>
-                    </Link>
-                  )}
-                </div>
-              </Col>
-
-              <Col sm={12} md={6}>
+                <h3>Start planning your NEXT event.</h3>
+                {isAuthenticated && (
+                  <Link to="/event/add">
+                    <Button variant="dark">Write now</Button>
+                  </Link>
+                )}
                 <Calendar
                   className="calendar"
                   localizer={localizer}
@@ -80,7 +75,7 @@ const PageEvents = () => {
                     dateCellWrapper: ColoredDateCellWrapper,
                   }}
                   style={{ height: 500 }}
-                />
+                />{" "}
               </Col>
               <PaginationItem
                 pageNum={pageNum}

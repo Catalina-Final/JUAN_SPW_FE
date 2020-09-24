@@ -377,11 +377,13 @@ img{
   }
 
   /* Calendar */
+
   .rbc-toolbar {
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between !important;
     font-size: 15px !important;
+    width: 500;
   
   }
   .rbc-event{
