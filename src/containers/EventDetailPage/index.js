@@ -24,7 +24,7 @@ const EventDetailPage = () => {
       dispatch(eventActions.getSingleEvent(params.id));
     }
   }, [dispatch, params]);
-
+  // console.log("BADGE", event.eventType.type);
   const handleGoBackClick = (e) => {
     history.goBack();
   };
@@ -54,13 +54,13 @@ const EventDetailPage = () => {
       </div>
 
       {loading ? (
-        <ClipLoader color="#f86c6b" size={150} loading={loading} />
+        <ClipLoader color="#f86c6b" size={350} loading={loading} />
       ) : (
         <>
           {event && (
             <>
               <div className="mb-5">
-                <h1>{event.title}</h1>
+                <h1>{event?.title}</h1>
                 <span className="text-muted">
                   @{event?.author.name} wrote{" "}
                   <Moment fromNow>{event.createdAt}</Moment>
@@ -74,12 +74,11 @@ const EventDetailPage = () => {
                       : ["https://via.placeholder.com/160x100"]
                   }
                 />
-                <hr />
-                <div className="main"></div>
 
                 <h3>Category</h3>
-                <Badge style={{ fontWeight: "100" }} variant="danger">
-                  {event.eventType.type}
+
+                <Badge variant="danger" style={{ fontWeight: "300" }}>
+                  {event.eventType?.type}
                 </Badge>
 
                 <div>

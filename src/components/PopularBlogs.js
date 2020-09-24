@@ -52,16 +52,16 @@ const PopularBlogs = () => {
                         src={blogs[0].images[0]}
                         width="100%"
                         alt="Popular blog"
-                        onClick={() => handleClickOnBlog(blogs[0]._id)}
+                        onClick={() => handleClickOnBlog(blogs[0]?._id)}
                       />
-                      <h5 className="textContentBlog ">{blogs[0].title}</h5>
+                      <h5 className="textContentBlog ">{blogs[0]?.title}</h5>
                       <p>
-                        {blogs[0].content.length <= 99
-                          ? blogs[0].content
-                          : blogs[0].content.slice(0, 150) + "..."}
+                        {blogs[0]?.content.length <= 99
+                          ? blogs[0]?.content
+                          : blogs[0]?.content.slice(0, 150) + "..."}
                       </p>
                       <Badge variant="secondary">
-                        By {blogs[0].author.name}
+                        By {blogs[0]?.author.name}
                       </Badge>
                     </div>
                   ) : (
