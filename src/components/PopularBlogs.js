@@ -111,7 +111,7 @@ const PopularBlogs = () => {
                   <div>
                     <h5 className="textContentBlog">
                       {blogs[2].title.length <= 99
-                        ? blogs[2].title
+                        ? blogs[2]?.title
                         : blogs[2].title.slice(0, 80) + "..."}
                     </h5>
                     <p className="textContentBlog">
@@ -143,7 +143,7 @@ const PopularBlogs = () => {
                 >
                   <div>
                     <h5 className="textContentBlog">
-                      {blogs[3].title.length <= 99
+                      {blogs[3]?.title.length <= 99
                         ? blogs[3].title
                         : blogs[3].title.slice(0, 80) + "..."}
                     </h5>
@@ -163,7 +163,7 @@ const PopularBlogs = () => {
                     width="150px"
                     height="100px"
                     alt="Popular Blogs Second "
-                    src={blogs[3].images[0]}
+                    src={blogs[3]?.images?.length > 0 ? blogs[3].images[0] : ""}
                     className="ImagePopularBlogs"
                   />
                 </div>

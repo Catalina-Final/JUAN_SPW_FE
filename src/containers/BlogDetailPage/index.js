@@ -54,7 +54,7 @@ const BlogDetailPage = () => {
         <Button onClick={handleGoBackClick}>
           <FontAwesomeIcon icon="chevron-left" size="1x" /> Back
         </Button>
-        {currentUser?._id === blog?.author._id ? (
+        {currentUser._id === blog?.author._id ? (
           <Link to={`/blog/edit/${blog?._id}`}>
             <Button variant="danger">
               <FontAwesomeIcon icon="edit" size="1x" /> Edit
