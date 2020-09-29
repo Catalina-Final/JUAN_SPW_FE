@@ -29,7 +29,15 @@ const PopularBlogs = () => {
   console.log("RESULY", blogs);
 
   if (loading) {
-    return <ClipLoader color="#f86c6b" size={150} loading={loading} />;
+    return (
+      <ClipLoader
+        animation="grow"
+        variant="warning"
+        color="#f86c6b"
+        size={250}
+        loading={loading}
+      />
+    );
   }
 
   return (
@@ -43,7 +51,12 @@ const PopularBlogs = () => {
               className="d-flex text-center OnHover mainPopularBlog responsivePopularBlogs"
             >
               {loading ? (
-                <ClipLoader color="#f86c6b" size={150} loading={loading} />
+                <ClipLoader
+                  className="loaderSpinner"
+                  color="#f86c6b"
+                  size={350}
+                  loading={loading}
+                />
               ) : (
                 <>
                   {blogs.length ? (
@@ -152,9 +165,10 @@ const PopularBlogs = () => {
                         ? blogs[3].content
                         : blogs[3].content.slice(0, 80) + "..."}
                     </p>
-                    <span class="badge badge-secondary">
+                    <Badge class="badge badge-secondary" variant="secondary">
+                      {" "}
                       By {blogs[3].author.name}
-                    </span>
+                    </Badge>
                   </div>
 
                   <img
