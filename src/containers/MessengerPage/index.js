@@ -51,6 +51,7 @@ let socket;
 
 const MessengerPage = ({ roomId }) => {
   const [messages, setMessages] = useState([]);
+  // eslint-disable-next-line
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [coords, setCoords] = useState({});
