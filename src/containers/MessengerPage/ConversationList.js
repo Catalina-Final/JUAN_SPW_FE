@@ -10,6 +10,7 @@ import {
   messengerTabNames,
   conversationTypes,
 } from "../../../config/constants";
+import "../App.css";
 
 const ConversationList = ({
   onlineUsers,

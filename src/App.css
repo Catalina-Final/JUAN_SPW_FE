@@ -437,3 +437,7 @@ background-color: white !important;  }
     border-radius: 20%;
     margin-right: 10px;
   }
+
+  .avatar-sm{
+    object-fit: cover;
+  }

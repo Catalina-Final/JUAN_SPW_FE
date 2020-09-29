@@ -79,31 +79,22 @@ const ProfilePage = () => {
               </div>
             ) : (
               <Form className="text-center" onSubmit={handleSubmit}>
-                <Form.Group className="text-center">
-                  <Col className="text-center" md={6}>
-                    <div className="text-center">
-                      {formData.avatarUrl && (
-                        <div className="text-align-center mb-3">
-                          <img
-                            width="50%"
-                            src={formData.avatarUrl}
-                            className="avatar-lg"
-                            alt="avatar"
-                          />
-                          <Button
-                            variant="info"
-                            // className="btn-block w-50 "
-                            onClick={uploadWidget}
-                            disabled={!editable}
-                          >
-                            Edit avatar
-                          </Button>
-                        </div>
-                      )}
-                    </div>
-                  </Col>
-                  <h3>Personal Information</h3>
-                </Form.Group>
+                <Col className="text-center" md={8}>
+                  <div className="text-center">
+                    {formData.avatarUrl && (
+                      <div className="text-align-center mb-3">
+                        <img
+                          width="50%"
+                          src={formData.avatarUrl}
+                          className="avatar-lg"
+                          alt="avatar"
+                        />
+                      </div>
+                    )}
+                    <h3>Personal Information</h3>
+                  </div>
+                </Col>
+                <Form.Group className="text-center"></Form.Group>
                 <Form.Group as={Row}>
                   <Form.Label column sm="2">
                     Name
@@ -133,6 +124,14 @@ const ProfilePage = () => {
                       value={formData.email}
                       disabled={true}
                     />
+                    <Button
+                      variant="info"
+                      // className="btn-block w-50 "
+                      onClick={uploadWidget}
+                      disabled={!editable}
+                    >
+                      Edit avatar
+                    </Button>
                     <Button
                       style={{ margin: "30px" }}
                       variant="primary"
