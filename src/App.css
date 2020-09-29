@@ -434,8 +434,6 @@ background-color: white !important;  }
   /* Profile Page */
   
   .avatar-lg {
-    vertical-align: middle;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
+    border-radius: 20%;
+    margin-right: 10px;
   }

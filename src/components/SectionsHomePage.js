@@ -89,7 +89,7 @@ export default function SectionsHomePage() {
                 </Badge>
 
                 <h2 className="CommunitySectionText ">
-                  The most active community of photogaphers in Ho Chi Minh city.
+                  A great way to learn from others, art events in Saigon.
                 </h2>
               </div>
 
