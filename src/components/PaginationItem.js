@@ -38,7 +38,11 @@ const PaginationItem = ({ pageNum, setPageNum, totalPageNum, loading }) => {
     >
       <Pagination.First disabled={pageNum === 1} onClick={handleClickOnFirst} />
       <Pagination.Prev disabled={pageNum === 1} onClick={handleClickOnPrev} />
-      <Pagination.Item active={pageNum === 1} onClick={() => handleClick(1)}>
+      <Pagination.Item
+        className="page-item active"
+        active={pageNum === 1}
+        onClick={() => handleClick(1)}
+      >
         {1}
       </Pagination.Item>
 

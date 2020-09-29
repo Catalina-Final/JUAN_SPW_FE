@@ -281,10 +281,17 @@ color: black;
 color:#000000eb;     
 }
 
-
+.page-item.active{
+  color: gray !important;
+  background-color: blanchedalmond !important;
+}
 
 .BlogCardImages > img {
   width: 300px;
+}
+
+.ChatRoomText{
+  margin: 20px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -298,6 +305,8 @@ color:#000000eb;
     padding-top: 5%;
     margin: auto;
   }
+
+  
   
 .ContainerPopularBlogs{
   margin-top: 10rem;

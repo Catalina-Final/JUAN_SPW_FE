@@ -10,7 +10,11 @@ const Message = ({ msg }) => {
   return (
     <Media as="li">
       <img
-        src={msg.user.avatarUrl}
+        src={
+          msg?.user.avatarUrl
+            ? msg.user.avatarUrl
+            : "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png"
+        }
         alt="User Avatar"
         className="avatar-sm mr-3"
         style={{ width: "50px", height: "50px" }}

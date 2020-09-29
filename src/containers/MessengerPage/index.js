@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { alertActions } from "../../redux/actions";
 import ScrollToBottom from "react-scroll-to-bottom";
+import "../../App.css";
 // import ConversationList from "./ConversationList";
 import Message from "./Message";
 // import { socketTypes, conversationTypes } from "../../../config/constants";
@@ -136,8 +137,8 @@ const MessengerPage = ({ roomId }) => {
     <Container fluid>
       <br />
       <MyMapComponent key="map" coords={coords} />
-      <h4>Chat Room</h4>
-      <h6 className="text-success">
+      <h4 className="ChatRoomText">Chat Room</h4>
+      {/* <h6 className="text-success">
         {onlineUsers && (
           <>
             {onlineUsers.length < 2
@@ -145,7 +146,7 @@ const MessengerPage = ({ roomId }) => {
               : onlineUsers.length + " users online"}
           </>
         )}
-      </h6>
+      </h6> */}
 
       <Row>
         <Col md={8} className="pr-4 d-flex flex-column justify-content-between">
