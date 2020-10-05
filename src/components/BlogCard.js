@@ -7,19 +7,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BlogCard = ({ blog, handleClick }) => {
   return (
-    <Card
-      className="text-center  SingleEvent"
-      onClick={() => handleClick(blog._id)}
-    >
-      <Card.Img
-        className="ImageEventSingle"
-        variant="top"
-        src={
-          blog?.images?.length
-            ? blog.images[0]
-            : "https://via.placeholder.com/160x100"
-        }
-      />
+    <Card className="text-center " onClick={() => handleClick(blog._id)}>
+      <div>
+        <Card.Img
+          // className="ImageEventSingle"
+          variant="top"
+          src={
+            blog?.images?.length
+              ? blog.images[0]
+              : "https://via.placeholder.com/160x100"
+          }
+        />
+      </div>
 
       <Card.Body className="textsingleevent">
         <Card.Title>

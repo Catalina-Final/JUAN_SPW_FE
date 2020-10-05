@@ -45,7 +45,7 @@ const PopularBlogs = () => {
       <Container className="ContainerPopularBlogs">
         <h1 className="PopularBlogsText">Popular Blogs</h1>
         <Row>
-          <Col className="MAINPOPULARBLOG" md={6}>
+          <Col className="MAINPOPULARBLOG" lg={4}>
             <div
               style={{ flexWrap: "wrap", flexDirection: "row" }}
               className="d-flex text-center OnHover mainPopularBlog responsivePopularBlogs"
@@ -63,7 +63,7 @@ const PopularBlogs = () => {
                     <div className="MarginPopular">
                       <img
                         src={blogs[0].images[0]}
-                        width="100%"
+                        width="50%"
                         alt="Popular blog"
                         onClick={() => handleClickOnBlog(blogs[0]?._id)}
                       />
@@ -84,7 +84,7 @@ const PopularBlogs = () => {
               )}
             </div>
           </Col>
-          <Col className="text-center PopularBlogs " md={6}>
+          <Col className="text-center PopularBlogs " lg={7}>
             <Col className=" responsivePopularBlogs secondBlogPopular MarginPopular OnHover">
               {blogs.length > 1 ? (
                 <div
@@ -100,7 +100,7 @@ const PopularBlogs = () => {
                     <p className="textContentBlog">
                       {blogs[1].content.length <= 99
                         ? blogs[1].content
-                        : blogs[1].content.slice(0, 80) + "..."}
+                        : blogs[1].content.slice(0, 200) + "..."}
                     </p>
                     <Badge variant="secondary">By {blogs[1].author.name}</Badge>
                   </div>
@@ -124,13 +124,13 @@ const PopularBlogs = () => {
                   <div>
                     <h5 className="textContentBlog">
                       {blogs[2].title.length <= 99
-                        ? blogs[2]?.title
+                        ? blogs[2].title
                         : blogs[2].title.slice(0, 80) + "..."}
                     </h5>
                     <p className="textContentBlog">
                       {blogs[2].content.length <= 99
                         ? blogs[2].content
-                        : blogs[2].content.slice(0, 80) + "..."}
+                        : blogs[2].content.slice(0, 200) + "..."}
                     </p>
                     <Badge variant="secondary">By {blogs[2].author.name}</Badge>
                   </div>
@@ -163,9 +163,12 @@ const PopularBlogs = () => {
                     <p className="textContentBlog">
                       {blogs[3].content.length <= 99
                         ? blogs[3].content
-                        : blogs[3].content.slice(0, 80) + "..."}
+                        : blogs[3].content.slice(0, 200) + "..."}
                     </p>
-                    <Badge class="badge badge-secondary" variant="secondary">
+                    <Badge
+                      className="badge badge-secondary"
+                      variant="secondary"
+                    >
                       {" "}
                       By {blogs[3].author.name}
                     </Badge>

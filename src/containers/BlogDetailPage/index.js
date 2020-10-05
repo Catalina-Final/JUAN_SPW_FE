@@ -71,7 +71,7 @@ const BlogDetailPage = () => {
         <>
           {blog && (
             <div className="mb-5">
-              <h1>{blog.title}</h1>
+              <h1>{blog?.title}</h1>
               <span className="text-muted">
                 @ {blog?.author.name} wrote{" "}
                 <Moment fromNow>{blog.createdAt}</Moment>

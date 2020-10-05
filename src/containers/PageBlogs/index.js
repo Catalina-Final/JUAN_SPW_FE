@@ -41,17 +41,18 @@ const HomePageBlogs = () => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",
+              height: "50vh",
             }}
             className="text-center whiteTextBlackBackground"
           >
-            <h1
+            <div
               style={{
                 fontWeight: "200",
               }}
               className="BlogPageText"
             >
               Share your experiences with the community.
-            </h1>
+            </div>
             {isAuthenticated && (
               <Link to="/blog/add">
                 <Button variant="warning">Write now</Button>

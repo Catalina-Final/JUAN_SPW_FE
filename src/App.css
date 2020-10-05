@@ -26,6 +26,11 @@ color:white
     background-position: center;
     background-repeat: no-repeat;  }
 
+.container{
+  max-width: 100% !important;
+}
+
+
 .carouselCover{
   background-size: 100%;
 }
@@ -61,7 +66,7 @@ margin: 30px;
   
 
   .BlogPageText{
-    margin: "50px";
+    margin-top: "10%";
     font-size: 60px;
     background-color: rgba(0, 0, 0, 0.283);
   color: white;
@@ -230,6 +235,12 @@ color: black;
 
   }
 
+.BlogCardStyles{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+
   /* Popular Blogs Section */
 
   .PopularBlogs{
@@ -263,9 +274,9 @@ color: black;
   
 }
 
-.ImageEventSingle{
+/* .ImageEventSingle{
   height: 100% !important;
-}
+} */
 
 .SingleEvent{
   margin-top: 50px;
@@ -285,17 +296,42 @@ color:#000000eb;
   color: gray !important;
   background-color: blanchedalmond !important;
 }
-
+/* 
 .BlogCardImages > img {
-  width: 300px;
-}
+  width: 200px;
+} */
 
 .ChatRoomText{
   margin: 20px;
 }
 
+.pagination{
+  
+  margin: 30px;
+}
+
+/* .card-columns {
+  column-count: 5 !important;
+
+} */
+
+.card{
+  min-height: 680px !important;
+  min-width: 350px !important;
+}
+
+
+
 @media only screen and (max-width: 600px) {
 
+  .BlogPageText{
+    font-size: 50px;
+  }
+
+  .card-columns {
+    column-count: 1 !important;
+  
+  }
 
   /* .Buttonnewevent{
     margin: 20%;
@@ -306,14 +342,16 @@ color:#000000eb;
     margin: auto;
   }
 
-  
+  .BlogCardStyles{
+    min-width: 600px;
+  }
   
 .ContainerPopularBlogs{
   margin-top: 10rem;
 }
 
 .CardStyles{
-  min-width: 300px;
+  min-width: 100px;
 }
 
 
@@ -334,6 +372,7 @@ color:#000000eb;
     flex-direction: column-reverse;
     text-align: center;
   }
+
 
 Col{
  
@@ -445,6 +484,7 @@ background-color: white !important;  }
   .avatar-lg {
     border-radius: 20%;
     margin-right: 10px;
+    width: 30%;
   }
 
   .avatar-sm{
