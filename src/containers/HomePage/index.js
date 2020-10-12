@@ -7,6 +7,7 @@ import Third from "./imagesCover/coverImg3.jpg";
 import Fourth from "./imagesCover/coverImg4.jpg";
 import SectionsHomePage from "../../components/SectionsHomePage";
 import PopularBlogs from "../../components/PopularBlogs";
+import MagazineSection from "../MagazineSection";
 import Footer from "../../components/Footer";
 
 const HomePage = () => {
@@ -58,6 +59,7 @@ const HomePage = () => {
 
       <SectionsHomePage />
       <PopularBlogs />
+      <MagazineSection />
       <Footer />
     </>
   );
