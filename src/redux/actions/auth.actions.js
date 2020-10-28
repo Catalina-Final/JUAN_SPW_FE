@@ -1,22 +1,33 @@
 import * as types from "../constants/auth.constants";
+import setAuthorizationToken from "./setAuthorizationToken";
+import axios from "axios";
 import api from "../api";
+import {
+  SET_CURRENT_USER,
+  SET_CURRENT_USER_DETAIL,
+  CLEAR_CURRENT_USER_DETAIL,
+  FORGOT_PASSWORD,
+} from "./types";
+
 import { alertActions } from "./alert.actions";
+import { clearProfile } from "./profileActions";
+import { setAlert } from "./alertAction";
 
-const loginRequest = (email, password) => async (dispatch) => {
-  dispatch({ type: types.LOGIN_REQUEST, payload: null });
-  try {
-    const res = await api.post("/auth/login", { email, password });
-    dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
-    api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.data.accessToken;
-    localStorage.setItem("accessToken", res.data.data.accessToken);
+// const loginRequest = (email, password) => async (dispatch) => {
+//   dispatch({ type: types.LOGIN_REQUEST, payload: null });
+//   try {
+//     const res = await api.post("/auth/login", { email, password });
+//     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
+//     api.defaults.headers.common["authorization"] =
+//       "Bearer " + res.data.data.accessToken;
+//     localStorage.setItem("accessToken", res.data.data.accessToken);
 
-    let name = res.data.data.user.name;
-    dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
-  } catch (error) {
-    dispatch({ type: types.LOGIN_FAILURE, payload: error });
-  }
-};
+//     let name = res.data.data.user.name;
+//     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
+//   } catch (error) {
+//     dispatch({ type: types.LOGIN_FAILURE, payload: error });
+//   }
+// };
 
 const loginWithFacebook = (token) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
@@ -93,18 +104,73 @@ const updateProfile = (name, avatarUrl) => async (dispatch) => {
   }
 };
 
-const logout = () => (dispatch) => {
-  delete api.defaults.headers.common["authorization"];
-  localStorage.setItem("accessToken", "");
-  dispatch({ type: types.LOGOUT, payload: null });
+// const logout = () => (dispatch) => {
+//   delete api.defaults.headers.common["authorization"];
+//   localStorage.setItem("accessToken", "");
+//   dispatch({ type: types.LOGOUT, payload: null });
+// };
+
+// NEW PROFILE SECTION
+
+export const logout = () => async (dispatch) => {
+  try {
+    const response = await axios.post("/api/users/logout");
+    if (response.data.status === "Success") {
+      localStorage.removeItem("jwtToken");
+      setAuthorizationToken(false);
+      dispatch(setCurrentUser(null));
+      dispatch(clearCurrentUserDetail());
+      dispatch(clearProfile());
+
+      window.location.href = "/login";
+      // dispatch(setAlert(response.data.message, 'success', 5000));
+    }
+  } catch (error) {
+    dispatch(setAlert(error.response.data.message, "danger", 3000));
+  }
+};
+
+export const setCurrentUser = (decodedToken) => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decodedToken,
+  };
+};
+
+export const setCurrentUserDetail = (user) => {
+  return {
+    type: SET_CURRENT_USER_DETAIL,
+    payload: user,
+  };
+};
+
+export const clearCurrentUserDetail = () => {
+  return {
+    type: CLEAR_CURRENT_USER_DETAIL,
+  };
+};
+
+export const fetchCurrentUserDetail = () => async (dispatch) => {
+  try {
+    const response = await axios.get("/api/users/me");
+    dispatch(setCurrentUserDetail(response.data.data.user));
+  } catch (error) {
+    if (error.response.data.message === "Please authenticate") {
+      localStorage.removeItem("jwtToken");
+      window.location.href = "/login";
+    }
+  }
 };
 
 export const authActions = {
-  loginRequest,
+  // loginRequest,
   register,
   getCurrentUser,
   logout,
   loginWithFacebook,
   loginWithGoogle,
   updateProfile,
+  clearCurrentUserDetail,
+  fetchCurrentUserDetail,
+  setCurrentUser,
 };
