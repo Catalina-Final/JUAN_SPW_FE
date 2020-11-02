@@ -13,9 +13,8 @@ import { authActions } from "../../redux/actions";
 import { ClipLoader } from "react-spinners";
 import PublicNavbar from "../PublicNavbar";
 import EventsAdmin from "../../components/EventsAdmin";
-import Profile from "../../components/profile/Profile";
 // import Profile from "../../components/profile/Profile";
-// import BlogsAdmin from "../../components/BlogsAdmin";
+import BlogsAdmin from "../../components/BlogsAdmin";
 
 const ProfilePage = () => {
   const currentUser = useSelector((state) => state.auth.user);
@@ -64,7 +63,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container>
         <PublicNavbar />
         <br />
         {/* 
@@ -73,7 +72,7 @@ const ProfilePage = () => {
         </Row> */}
         <br />
 
-        <Profile />
+        {/* <Profile /> */}
         <Row>
           <Col className="" md={4}>
             {loading ? (

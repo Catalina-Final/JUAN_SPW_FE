@@ -28,15 +28,14 @@ color:white
 
 .container{
   max-width: 100% !important;
+  background-color: rgba(21, 21, 21, 0.933);
 }
 
 
 .carouselCover{
   background-size: 100%;
 }
-.Container{
-  background-color: rgba(21, 21, 21, 0.933);
-}
+
 
 .itemMenu{
 margin: 30px;

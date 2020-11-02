@@ -21,12 +21,10 @@ const PopularBlogs = () => {
     };
     dispatch(blogActions.blogsRequest(pageNum, 5, null, null, sortBy));
   }, [dispatch, pageNum]);
-  console.log("blooogs", blogs);
 
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
   };
-  console.log("RESULY", blogs);
 
   if (loading) {
     return (

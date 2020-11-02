@@ -21,8 +21,7 @@ import setAuthorizationToken from "./setAuthorizationToken";
 
 export const fetchProfile = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`/api/users/profile/${id}`);
-
+    const response = await axios.get(`/users/profile/${id}`);
     dispatch(loadProfile(response.data.user));
   } catch (error) {
     dispatch(setErrors(error.response.data.message));
