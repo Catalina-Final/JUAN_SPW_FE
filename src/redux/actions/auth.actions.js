@@ -39,6 +39,7 @@ const loginWithGoogle = (token) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
   try {
     const res = await api.get("/auth/login/google/" + token);
+    console.log("TEEEEEEESSSSSST", res);
 
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
@@ -64,7 +65,6 @@ const register = (name, email, password) => async (dispatch) => {
 
 const getCurrentUser = (accessToken) => async (dispatch) => {
   dispatch({ type: types.GET_CURRENT_USER_REQUEST, payload: null });
-  console.log(accessToken);
   if (accessToken) {
     const bearerToken = "Bearer " + accessToken;
     api.defaults.headers.common["authorization"] = bearerToken;
@@ -76,6 +76,7 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
       payload: res.data.data,
     });
   } catch (error) {
+    console.log("NOTOKKKKKEEEEEEEEN");
     dispatch({ type: types.GET_CURRENT_USER_FAILURE, payload: error });
   }
 };

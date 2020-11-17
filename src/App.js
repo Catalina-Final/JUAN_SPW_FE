@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Routes from "./containers/Routes";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./redux/actions/auth.actions";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -28,6 +28,7 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { ClipLoader } from "react-spinners";
 
 library.add(
   fab,
@@ -54,6 +55,7 @@ library.add(
 
 function App() {
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -63,9 +65,17 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
-      <Routes />
-    </Router>
+    <>
+      {isAuthenticated === undefined ? (
+        <div className="vh-100 vw-100 d-flex justify-content-center align-items-center">
+          <ClipLoader color="#f86c6b" size={150} loading={true} />
+        </div>
+      ) : (
+        <Router>
+          <Routes />
+        </Router>
+      )}
+    </>
   );
 }
 

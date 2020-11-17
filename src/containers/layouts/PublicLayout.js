@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import PageBlogs from "../PageBlogs";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../ResgisterPage";
-import { Container } from "react-bootstrap";
 import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./Alerts";
 import PublicNavbar from "../PublicNavbar";
@@ -20,7 +19,7 @@ const PublicLayout = () => {
   return (
     <>
       <PublicNavbar />
-      <Container>
+      <>
         <AlertMsg />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -45,7 +44,7 @@ const PublicLayout = () => {
           />
           <Route component={NotFoundPage} />
         </Switch>
-      </Container>
+      </>
     </>
   );
 };

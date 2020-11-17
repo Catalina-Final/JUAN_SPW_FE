@@ -19,6 +19,7 @@ const LoginPage = () => {
   });
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   const loading = useSelector((state) => state.auth.loading);
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

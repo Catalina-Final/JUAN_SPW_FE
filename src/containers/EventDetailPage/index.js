@@ -7,7 +7,7 @@ import Markdown from "react-markdown";
 import ClipLoader from "react-spinners/ClipLoader";
 import ShowImages from "../../components/ShowImages";
 import MessengerPage from "../MessengerPage";
-import { Badge, Button } from "react-bootstrap";
+import { Badge, Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EventDetailPage = () => {
@@ -32,7 +32,7 @@ const EventDetailPage = () => {
   if (!event) return loading;
 
   return (
-    <>
+    <Container>
       <div className="d-flex justify-content-between">
         <Button onClick={handleGoBackClick}>
           <FontAwesomeIcon icon="chevron-left" size="1x" /> Back
@@ -84,7 +84,7 @@ const EventDetailPage = () => {
           )}
         </>
       )}
-    </>
+    </Container>
   );
 };
 

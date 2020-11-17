@@ -10,6 +10,9 @@ const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case types.GET_CURRENT_USER_REQUEST:
+      return { ...state, loading: true };
+
     case types.LOGIN_REQUEST:
     case types.REGISTER_REQUEST:
     case types.UPDATE_PROFILE_REQUEST:
@@ -37,6 +40,7 @@ const authReducer = (state = initialState, action) => {
     case types.REGISTER_FAILURE:
     case types.GET_CURRENT_USER_FAILURE:
       return { ...state, loading: false };
+
     case types.REGISTER_SUCCESS:
       return {
         ...state,

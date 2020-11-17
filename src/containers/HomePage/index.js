@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Container } from "react-bootstrap";
 import First from "./imagesCover/coverImg1.jpg";
 import Second from "./imagesCover/coverImg2.jpg";
 import Third from "./imagesCover/coverImg3.jpg";
@@ -15,7 +15,7 @@ const HomePage = () => {
     <>
       <Carousel>
         <Carousel.Item>
-          <img className="d-block  w-100 " src={First} alt="First slide" />
+          <img className="d-block  w-100" src={First} alt="First slide" />
           <Carousel.Caption>
             <h2>Photo Walks in Vietnam</h2>
             <h4>
@@ -59,7 +59,7 @@ const HomePage = () => {
 
       <SectionsHomePage />
       <PopularBlogs />
-      <MagazineSection />
+      {/* <MagazineSection /> */}
       <Footer />
     </>
   );

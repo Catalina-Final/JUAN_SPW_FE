@@ -30,7 +30,7 @@ const blogReducer = (state = initialState, action) => {
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
       return {
         ...state,
-        selectedBlog: { ...state.selectedBlog, ...payload },
+        selectedBlog: payload,
         loading: false,
       };
 

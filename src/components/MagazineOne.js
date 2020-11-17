@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+// import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+// import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 // import "./Sample.less";
-import samplePDF from "./SPW_Magazine_1.pdf";
+// import samplePDF from "./SPW_Magazine_1.pdf";
 import "../App.css";
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -34,9 +34,9 @@ export default function Magazines() {
     <Container>
       <Row>
         <Col md={3} className="MagazineSection">
-          <Document file={samplePDF} onLoadSuccess={onDocumentLoadSuccess}>
+          {/* <Document file={samplePDF} onLoadSuccess={onDocumentLoadSuccess}>
             <Page pageNumber={pageNumber} />
-          </Document>
+          </Document> */}
           <div>
             <p>
               Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}

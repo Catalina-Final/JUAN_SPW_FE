@@ -65,10 +65,10 @@ const ProfilePage = () => {
       <Container fluid>
         <PublicNavbar />
         <br />
-        {/* 
+
         <Row>
           <Col className="d-flex justify-content-end align-items-start"></Col>
-        </Row> */}
+        </Row>
         <br />
 
         <Row>
@@ -123,6 +123,7 @@ const ProfilePage = () => {
                         disabled={true}
                       />
                       <Button
+                        className="m-2"
                         variant="info"
                         // className="btn-block w-50 "
                         onClick={uploadWidget}

@@ -3,14 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { blogActions } from "../../redux/actions";
 import Moment from "react-moment";
-import Markdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import ClipLoader from "react-spinners/ClipLoader";
 import ReviewList from "../../components/ReviewList";
 import { useState } from "react";
 import ReviewBlog from "../../components/ReviewBlog";
 import ShowImages from "../../components/ShowImages";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Linkify from "react-linkify";
 
 const BlogDetailPage = () => {
   const loading = useSelector((state) => state.blog.loading);
@@ -26,6 +27,10 @@ const BlogDetailPage = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const handleInputChange = (e) => {
     setReviewText(e.target.value);
+  };
+  const linkProperties = {
+    target: "_new",
+    rel: "nofollow noopener noreferrer",
   };
 
   // console.log("Current User", currentUser._id);
@@ -49,7 +54,7 @@ const BlogDetailPage = () => {
   };
 
   return (
-    <>
+    <Container>
       <div className="d-flex justify-content-between">
         <Button onClick={handleGoBackClick}>
           <FontAwesomeIcon icon="chevron-left" size="1x" /> Back
@@ -77,7 +82,16 @@ const BlogDetailPage = () => {
                 <Moment fromNow>{blog.createdAt}</Moment>
               </span>
               <hr />
-              <Markdown source={blog.content} />
+              <ReactMarkdown
+                source={blog.content}
+                renderers={{
+                  paragraph: (props) => (
+                    <Linkify properties={linkProperties}>
+                      <p>{props.children}</p>
+                    </Linkify>
+                  ),
+                }}
+              />
               <ShowImages
                 imagesGallery={
                   Array.isArray(blog.images)
@@ -99,7 +113,7 @@ const BlogDetailPage = () => {
           )}
         </>
       )}
-    </>
+    </Container>
   );
 };
 
