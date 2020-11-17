@@ -5,7 +5,7 @@ import PaginationItem from "../components/PaginationItem";
 import { Button, Container, Row } from "react-bootstrap";
 import { blogActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
-import BlogCard from "./BlogCard";
+import SingleBlogAdmin from "./SingleBlogAdmin";
 import "../App.css";
 
 const BlogsAdmin = () => {
@@ -24,20 +24,13 @@ const BlogsAdmin = () => {
 
   useEffect(() => {
     dispatch(blogActions.getBlogsByUser(currentUser.id, pageNum));
-    // eslint-disable-next-line
-  }, [dispatch, pageNum]);
+  }, [dispatch, pageNum, currentUser.id]);
 
   return (
     <div>
       <Container>
         <h2>Blogs Published</h2>
-        <Row
-          style={{
-            flexWrap: "wrap",
-            flexDirection: "column",
-          }}
-          className="text-center"
-        >
+        <Row>
           {loading ? (
             <ClipLoader color="#f86c6b" size={150} loading={loading} />
           ) : (
@@ -45,8 +38,8 @@ const BlogsAdmin = () => {
               {blogs.length ? (
                 <div>
                   {blogs.map((blog) => (
-                    <BlogCard
-                      className="BlogCardImages"
+                    <SingleBlogAdmin
+                      // className="BlogCardImages"
                       blog={blog}
                       key={blog._id}
                       handleClick={handleClickOnBlog}
@@ -56,8 +49,8 @@ const BlogsAdmin = () => {
               ) : (
                 <div>
                   <h1>There are no blogs </h1>
-                  <Link to="/">
-                    <Button variant="dark">Go to homepage</Button>
+                  <Link to="/blog/add">
+                    <Button variant="dark">Start sharing your stories</Button>
                   </Link>
                 </div>
               )}
@@ -78,9 +71,4 @@ const BlogsAdmin = () => {
   );
 };
 
-// <BlogCard
-//   blog={blog}
-//   key={blog._id}
-//   handleClick={handleClickOnBlog}
-// />
 export default BlogsAdmin;

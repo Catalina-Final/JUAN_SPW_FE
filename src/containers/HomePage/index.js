@@ -1,13 +1,13 @@
 import React from "react";
 import "../../App.css";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import First from "./imagesCover/coverImg1.jpg";
 import Second from "./imagesCover/coverImg2.jpg";
 import Third from "./imagesCover/coverImg3.jpg";
 import Fourth from "./imagesCover/coverImg4.jpg";
 import SectionsHomePage from "../../components/SectionsHomePage";
 import PopularBlogs from "../../components/PopularBlogs";
-import MagazineSection from "../MagazineSection";
+// import MagazineSection from "../MagazineSection";
 import Footer from "../../components/Footer";
 
 const HomePage = () => {

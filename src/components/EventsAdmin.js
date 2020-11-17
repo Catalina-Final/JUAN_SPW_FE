@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PaginationItem from "../components/PaginationItem";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import { eventActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
 import SingleEvent from "../components/SingleEvent";
@@ -48,31 +48,15 @@ const EventsAdmin = () => {
                       key={event._id}
                       handleClick={handleClickOnEvent}
                     />
-
-                    // <Col
-                    //   className="ImageEventsAdmin OnHover"
-                    //   md={6}
-                    //   style={{
-                    //     backgroundRepeat: "no-repeat",
-                    //     backgroundPosition: "center",
-                    //     backgroundImage: `url(${event.images[0]})`,
-                    //   }}
-                    // >
-                    //   <h4>
-                    //     {event.title.length <= 50
-                    //       ? event.title
-                    //       : event.title.slice(0, 30) + "..."}
-                    //   </h4>
-                    //   <p>
-                    //     {event.content.length <= 100
-                    //       ? event.content
-                    //       : event.content.slice(0, 80) + "..."}
-                    //   </p>
-                    // </Col>
                   ))}
                 </div>
               ) : (
-                <p>There are no events </p>
+                <div>
+                  <p>There are no events </p>
+                  <Link to="/event/add">
+                    <Button variant="dark">Start sharing your stories</Button>
+                  </Link>
+                </div>
               )}
             </>
           )}

@@ -33,9 +33,6 @@ const BlogDetailPage = () => {
     rel: "nofollow noopener noreferrer",
   };
 
-  // console.log("Current User", currentUser._id);
-  // console.log("Current Blog", blog._id);
-
   const handleSubmitReview = (e) => {
     e.preventDefault();
     dispatch(blogActions.createReview(blog._id, reviewText));

@@ -38,7 +38,6 @@ const AddEditBlogPage = () => {
 
   const handleChange = (e) => {
     if (e.target.name === "images") {
-      console.log(e.target.files);
       setFormData({ ...formData, images: e.target.files });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });

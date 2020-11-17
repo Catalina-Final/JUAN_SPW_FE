@@ -35,7 +35,6 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
-  console.log(props);
   return (
     <GoogleMap
       defaultZoom={10}

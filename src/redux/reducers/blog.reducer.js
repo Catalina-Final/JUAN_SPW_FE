@@ -108,6 +108,19 @@ const blogReducer = (state = initialState, action) => {
 
     case types.GET_REVIEWS_OF_BLOG_FAILURE:
       return { ...state, submitReviewLoading: false };
+
+    case types.GET_BLOGS_OF_USER_REQUEST:
+      return { ...state, loading: true };
+    case types.GET_BLOGS_OF_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        blogs: payload.blogs,
+        totalPageNum: payload.totalPages,
+      };
+    case types.GET_BLOGS_OF_USER_FAILURE:
+      return { ...state, loading: false };
+
     default:
       return state;
   }

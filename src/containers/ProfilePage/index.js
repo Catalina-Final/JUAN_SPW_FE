@@ -13,7 +13,7 @@ import { authActions } from "../../redux/actions";
 import { ClipLoader } from "react-spinners";
 import PublicNavbar from "../PublicNavbar";
 import EventsAdmin from "../../components/EventsAdmin";
-// import BlogsAdmin from "../../components/BlogsAdmin";
+import BlogsAdmin from "../../components/BlogsAdmin";
 
 const ProfilePage = () => {
   const currentUser = useSelector((state) => state.auth.user);
@@ -23,6 +23,7 @@ const ProfilePage = () => {
     name: currentUser.name,
     email: currentUser.email,
     avatarUrl: currentUser.avatarUrl,
+    coverUrl: currentUser.coverUrl,
   });
   const dispatch = useDispatch();
 
@@ -32,8 +33,8 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, avatarUrl } = formData;
-    dispatch(authActions.updateProfile(name, avatarUrl));
+    const { name, avatarUrl, coverUrl } = formData;
+    dispatch(authActions.updateProfile(name, avatarUrl, coverUrl));
     setEditable(false);
   };
 
@@ -41,7 +42,7 @@ const ProfilePage = () => {
     setEditable(false);
   };
 
-  const uploadWidget = () => {
+  const uploadProfileWidget = () => {
     window.cloudinary.openUploadWidget(
       {
         cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
@@ -60,12 +61,38 @@ const ProfilePage = () => {
     );
   };
 
+  const uploadCoverWidget = () => {
+    window.cloudinary.openUploadWidget(
+      {
+        cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+        upload_preset: process.env.REACT_APP_CLOUDINARY_PRESET,
+        tags: ["socialBlog", "userCover"],
+      },
+      function (error, result) {
+        if (error) console.log(error);
+        if (result && result.length && !error) {
+          setFormData({
+            ...formData,
+            coverUrl: result[0].secure_url,
+          });
+        }
+      }
+    );
+  };
+
   return (
     <>
       <Container fluid>
         <PublicNavbar />
         <br />
-
+        <div className="text-center">
+          <img
+            width="100%"
+            height="300px"
+            src={formData?.coverUrl}
+            alt="coverImage user"
+          ></img>
+        </div>
         <Row>
           <Col className="d-flex justify-content-end align-items-start"></Col>
         </Row>
@@ -92,7 +119,6 @@ const ProfilePage = () => {
                     )}
                     <h3>Personal Information</h3>
                   </div>
-                  <Form.Group className="text-center"></Form.Group>
                   <Form.Group as={Row}>
                     <Form.Label column sm="2">
                       Name
@@ -122,15 +148,26 @@ const ProfilePage = () => {
                         value={formData.email}
                         disabled={true}
                       />
-                      <Button
-                        className="m-2"
-                        variant="info"
-                        // className="btn-block w-50 "
-                        onClick={uploadWidget}
-                        disabled={!editable}
-                      >
-                        Edit avatar
-                      </Button>
+                      <Row className="text-right">
+                        <Button
+                          className="m-2"
+                          variant="info"
+                          // className="btn-block w-50 "
+                          onClick={uploadProfileWidget}
+                          disabled={!editable}
+                        >
+                          Edit avatar
+                        </Button>
+                        <Button
+                          className="m-2"
+                          variant="info"
+                          // className="btn-block w-50 "
+                          onClick={uploadCoverWidget}
+                          disabled={!editable}
+                        >
+                          Edit Cover
+                        </Button>
+                      </Row>
                       <Button
                         style={{ margin: "30px" }}
                         variant="primary"
@@ -180,13 +217,14 @@ const ProfilePage = () => {
             )}
           </Col>
           {/* <h1>History</h1> */}
-          <Col className="d-flex justify-content-center " md={7}>
-            {" "}
-            <EventsAdmin />
+          <Col md={7}>
+            <Row>
+              <EventsAdmin />
+            </Row>
+            <Row>
+              <BlogsAdmin />
+            </Row>
           </Col>
-          {/* <Col>
-          <BlogsAdmin />
-        </Col> */}
         </Row>
       </Container>
     </>

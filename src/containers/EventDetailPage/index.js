@@ -24,7 +24,6 @@ const EventDetailPage = () => {
       dispatch(eventActions.getSingleEvent(params.id));
     }
   }, [dispatch, params]);
-  // console.log("BADGE", event.eventType.type);
   const handleGoBackClick = (e) => {
     history.goBack();
   };

@@ -9,25 +9,29 @@ const PaginationItem = ({ pageNum, setPageNum, totalPageNum, loading }) => {
     }
   };
 
-  const handleClickOnFirst = () => {
+  const handleClickOnFirst = (e) => {
     if (!loading) {
       setPageNum(1);
+      e.preventDefault();
     }
   };
 
-  const handleClickOnLast = () => {
+  const handleClickOnLast = (e) => {
     if (!loading) {
       setPageNum(totalPageNum);
+      e.preventDefault();
     }
   };
-  const handleClickOnNext = () => {
+  const handleClickOnNext = (e) => {
     if (pageNum < totalPageNum && !loading) {
       setPageNum((num) => num + 1);
+      e.preventDefault();
     }
   };
-  const handleClickOnPrev = () => {
+  const handleClickOnPrev = (e) => {
     if (pageNum > 1 && !loading) {
       setPageNum((num) => num - 1);
+      e.preventDefault();
     }
   };
 

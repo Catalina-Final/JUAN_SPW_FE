@@ -81,10 +81,10 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
   }
 };
 
-const updateProfile = (name, avatarUrl) => async (dispatch) => {
+const updateProfile = (name, avatarUrl, coverUrl) => async (dispatch) => {
   dispatch({ type: types.UPDATE_PROFILE_REQUEST, payload: null });
   try {
-    const res = await api.put("/users", { name, avatarUrl });
+    const res = await api.put("/users", { name, avatarUrl, coverUrl });
     dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: res.data.data });
     dispatch(
       alertActions.setAlert(`Your profile has been updated.`, "success")

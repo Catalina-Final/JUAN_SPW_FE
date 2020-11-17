@@ -19,14 +19,12 @@ const PopularBlogs = () => {
       key: "reviewCount",
       ascending: -1,
     };
-    dispatch(blogActions.blogsRequest(pageNum, 5, null, null, sortBy));
+    dispatch(blogActions.blogsRequest(pageNum, 4, null, null, sortBy));
   }, [dispatch, pageNum]);
-  console.log("blooogs", blogs);
 
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
   };
-  console.log("RESULY", blogs);
 
   if (loading) {
     return (
@@ -86,7 +84,7 @@ const PopularBlogs = () => {
           </Col>
           <Col className="text-center PopularBlogs " lg={7}>
             <Col className=" responsivePopularBlogs secondBlogPopular MarginPopular OnHover">
-              {blogs.length > 1 ? (
+              {blogs.length ? (
                 <div
                   className="d-flex responsivePopularBlogs"
                   style={{ border: "none" }}
@@ -119,7 +117,7 @@ const PopularBlogs = () => {
               )}
             </Col>
             <Col className="responsivePopularBlogs thirdBlogPopular MarginPopular OnHover">
-              {blogs.length > 1 ? (
+              {blogs.length ? (
                 <div className="d-flex responsivePopularBlogs">
                   <div>
                     <h5 className="textContentBlog">
@@ -145,18 +143,18 @@ const PopularBlogs = () => {
                   />
                 </div>
               ) : (
-                loading
+                <p>There are no blogs </p>
               )}
             </Col>
             <Col className="fourthBlogPopular MarginPopular OnHover">
-              {blogs.length >= 1 ? (
+              {blogs.length ? (
                 <div
                   className="d-flex responsivePopularBlogs"
                   style={{ border: "none" }}
                 >
                   <div>
                     <h5 className="textContentBlog">
-                      {blogs[3]?.title.length <= 99
+                      {blogs[3].title?.length <= 99
                         ? blogs[3].title
                         : blogs[3].title.slice(0, 80) + "..."}
                     </h5>
@@ -185,7 +183,7 @@ const PopularBlogs = () => {
                   />
                 </div>
               ) : (
-                <></>
+                <p>There are no blogs </p>
               )}
             </Col>
           </Col>
