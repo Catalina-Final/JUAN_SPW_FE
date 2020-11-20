@@ -3,7 +3,6 @@ import { Card, Col, Row } from "react-bootstrap";
 import Moment from "react-moment";
 
 const singleBlogAdmin = ({ blog, handleClick }) => {
-  console.log("BBBLOOOOOGGGG", blog);
   return (
     <Card
       className="text-center  SingleEvent "

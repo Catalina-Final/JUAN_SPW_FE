@@ -26,7 +26,6 @@ const loginWithFacebook = (token) => async (dispatch) => {
     api.defaults.headers.common["authorization"] =
       "Bearer " + res.data.data.accessToken;
     localStorage.setItem("accessToken", res.data.data.accessToken);
-    console.log("FACEBOOKLOOOGIN", res.data);
 
     const name = res.data.data.user.name;
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
@@ -39,14 +38,12 @@ const loginWithGoogle = (token) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
   try {
     const res = await api.get("/auth/login/google/" + token);
-    console.log("TEEEEEEESSSSSST", res);
 
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
     api.defaults.headers.common["authorization"] =
       "Bearer " + res.data.data.accessToken;
     localStorage.setItem("accessToken", res.data.data.accessToken);
     const name = res.data.data.user.name;
-    console.log("Full name", name);
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
   } catch (error) {
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
@@ -76,15 +73,28 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
       payload: res.data.data,
     });
   } catch (error) {
-    console.log("NOTOKKKKKEEEEEEEEN");
     dispatch({ type: types.GET_CURRENT_USER_FAILURE, payload: error });
   }
 };
 
-const updateProfile = (name, avatarUrl, coverUrl) => async (dispatch) => {
+const updateProfile = (
+  name,
+  avatarUrl,
+  coverUrl,
+  facebook,
+  instagram,
+  portfolioUrl
+) => async (dispatch) => {
   dispatch({ type: types.UPDATE_PROFILE_REQUEST, payload: null });
   try {
-    const res = await api.put("/users", { name, avatarUrl, coverUrl });
+    const res = await api.put("/users", {
+      name,
+      avatarUrl,
+      coverUrl,
+      facebook,
+      instagram,
+      portfolioUrl,
+    });
     dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: res.data.data });
     dispatch(
       alertActions.setAlert(`Your profile has been updated.`, "success")

@@ -5,6 +5,7 @@ import Routes from "./containers/Routes";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./redux/actions/auth.actions";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngry,
@@ -27,8 +28,9 @@ import {
   faSignOutAlt,
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fab, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { ClipLoader } from "react-spinners";
+import ScrollToTop from "./utils/ScrollToTop";
 
 library.add(
   fab,
@@ -50,7 +52,8 @@ library.add(
   faRegistered,
   faChartLine,
   faSignOutAlt,
-  faSignInAlt
+  faSignInAlt,
+  faFacebook
 );
 
 function App() {
@@ -59,6 +62,7 @@ function App() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
+    window.scrollTo(0, 0);
     if (accessToken && accessToken !== "undefined") {
       dispatch(authActions.getCurrentUser(accessToken));
     }
@@ -72,6 +76,7 @@ function App() {
         </div>
       ) : (
         <Router>
+          <ScrollToTop />
           <Routes />
         </Router>
       )}

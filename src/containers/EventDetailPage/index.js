@@ -20,10 +20,10 @@ const EventDetailPage = () => {
 
   useEffect(() => {
     if (params?.id) {
-      console.log(params?.id);
       dispatch(eventActions.getSingleEvent(params.id));
     }
   }, [dispatch, params]);
+
   const handleGoBackClick = (e) => {
     history.goBack();
   };

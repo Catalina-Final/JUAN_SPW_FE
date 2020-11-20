@@ -40,9 +40,6 @@ html {
 .carouselCover {
   background-size: 100%;
 }
-.Container {
-  background-color: rgba(21, 21, 21, 0.933);
-}
 
 .itemMenu {
   margin: 30px;
@@ -387,9 +384,6 @@ html {
 
 /* Footer */
 
-.footer-bg {
-  background-color: black !important;
-}
 
 #footer {
   padding: 20px;
@@ -461,4 +455,11 @@ html {
 
 .avatar-sm {
   object-fit: cover;
+}
+
+.linkPersonalinfo{
+  word-wrap: break-word;
+}
+.personalInfo{
+  margin:10%;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoutes";
 import PublicLayout from "../layouts/PublicLayout";
-import ProfilePage from "../ProfilePage";
+import ProfilePage from "../Admin/ProfilePage";
 
 const Routes = () => {
   return (

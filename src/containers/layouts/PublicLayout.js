@@ -13,7 +13,7 @@ import AddEditBlogPage from "../AddEditBlogPage";
 import HomePage from "../HomePage";
 import PageEvents from "../PageEvents";
 import AddEditEventPage from "../AddEditEventPage";
-import ProfilePage from "../ProfilePage";
+import ProfilePage from "../Admin/ProfilePage";
 
 const PublicLayout = () => {
   return (
