@@ -1,14 +1,14 @@
 import * as types from "../constants/user.constants";
-// import { conversationTypes } from "../../config/constants";
+import { conversationTypes } from "../../config/constants";
 
-// const globalConversation = {
-//   _id: conversationTypes.GLOBAL,
-//   type: conversationTypes.GLOBAL,
-// };
+const globalConversation = {
+  _id: conversationTypes.GLOBAL,
+  type: conversationTypes.GLOBAL,
+};
 
 const initialState = {
   users: [],
-  // conversations: [globalConversation],
+  conversations: [globalConversation],
   totalPageNum: 1,
   selectedUser: {},
   loading: false,
@@ -38,7 +38,7 @@ const userReducer = (state = initialState, action) => {
     case types.GET_CONVERSATIONS_SUCCESS:
       return {
         ...state,
-        // conversations: [globalConversation, ...payload.conversations],
+        conversations: [globalConversation, ...payload.conversations],
         totalPageNum: payload.totalPages,
         loading: false,
       };

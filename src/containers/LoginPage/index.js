@@ -29,7 +29,7 @@ const LoginPage = () => {
     const { email, password } = formData;
     dispatch(authActions.loginRequest(email, password));
   };
-  if (isAuthenticated) return <Redirect to="/" />;
+  if (isAuthenticated) return <Redirect to="/dashboard" />;
 
   const loginWithFacebook = (response) => {
     dispatch(authActions.loginWithFacebook(response.accessToken));

@@ -3,6 +3,10 @@ html {
   background-color: #000000eb;
 }
 
+
+.textwhitecolor{
+  color: white;
+}
 #root {
   background-color: #000000eb;
   color: white;
@@ -33,9 +37,6 @@ html {
   max-width: 100% !important;
 }
 
-.container {
-  /* max-width: 100% !important; */
-}
 
 .carouselCover {
   background-size: 100%;
@@ -303,8 +304,8 @@ html {
 
 /* Magazine Section */
 
-.MagazineSection {
-}
+/* .MagazineSection {
+} */
 
 @media only screen and (max-width: 600px) {
   .BlogPageText {
@@ -462,4 +463,13 @@ html {
 }
 .personalInfo{
   margin:10%;
+}
+
+/* Friendship */
+
+.avatar-sm {
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  border-radius: 15%;
 }

@@ -21,6 +21,7 @@ const usersRequest = (
     const res = await api.get(
       `/users?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
     );
+    console.log("RESSSSSSS", res);
     dispatch({
       type: types.GET_USERS_SUCCESS,
       payload: res.data.data,

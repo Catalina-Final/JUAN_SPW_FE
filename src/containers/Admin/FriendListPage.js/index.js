@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchItem from "../../../components/SearchItem";
 import PaginationItem from "../../../components/PaginationItem";
 import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../../../redux/actions";
+import { userActions } from "../../../redux/actions/user.actions";
 import { Button, Row, Col, Container, Table, Tabs, Tab } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { friendListTabNames, actionTypes } from "../../../config/constants";
@@ -18,7 +18,10 @@ const FriendListPage = () => {
   const [sortBy, setSortBy] = useState({ key: "", ascending: -1 });
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.loading);
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state) => {
+    console.log("STATE=======>", state);
+    return state.user.users;
+  });
 
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -40,29 +43,25 @@ const FriendListPage = () => {
     }
   };
 
-  const handleChangeTab = (key) => {
-    setTabKey(key);
-    setPageNum(1);
-    setAction("");
-    setTargetId("");
-  };
-
   useEffect(() => {
     switch (tabKey) {
       case friendListTabNames.FRIENDS:
         dispatch(userActions.friendsRequest(pageNum, 10, query, sortBy));
+        // console.log("1", pageNum, query, sortBy, users);
         break;
       case friendListTabNames.SENT_REQUESTS:
         dispatch(userActions.getSentRequests(pageNum, 10, query, sortBy));
+        // console.log("2", pageNum, query, sortBy, users);
         break;
       case friendListTabNames.RECEIVED_REQUEST:
         dispatch(userActions.getReceivedRequests(pageNum, 10, query, sortBy));
+        // console.log("3", pageNum, query, sortBy, users);
         break;
       case friendListTabNames.ALL_USERS:
         dispatch(userActions.usersRequest(pageNum, 10, query, sortBy));
+        // console.log("4", pageNum, query, sortBy, users);
         break;
       default:
-        break;
     }
   }, [dispatch, pageNum, query, sortBy, tabKey]);
 
@@ -71,6 +70,7 @@ const FriendListPage = () => {
       case actionTypes.ADD_FRIEND:
         dispatch(userActions.addFriend(targetId));
         break;
+
       case actionTypes.REMOVE_FRIEND:
         dispatch(userActions.removeFriend(targetId));
         break;
@@ -80,13 +80,26 @@ const FriendListPage = () => {
       case actionTypes.ACCEPT_REQUEST:
         dispatch(userActions.acceptRequest(targetId));
         break;
+
       case actionTypes.CANCEL_REQUEST:
         dispatch(userActions.cancelRequest(targetId));
         break;
+
       default:
-        break;
     }
   }, [dispatch, action, targetId]);
+
+  useEffect(() => {
+    console.log("USERSD--->", users);
+  }, [users]);
+
+  const handleChangeTab = (key, user) => {
+    setTabKey(key);
+    setPageNum(1);
+    setAction("");
+    setTargetId("");
+    generateActions(user);
+  };
 
   const handleActionClick = (actionType, userId) => {
     setAction(actionType);
@@ -94,6 +107,7 @@ const FriendListPage = () => {
   };
 
   const generateActions = (user) => {
+    console.log("GERERATE ACTION", user);
     if (tabKey === friendListTabNames.FRIENDS) {
       // Generate Remove Friend Button
       return (
@@ -143,19 +157,22 @@ const FriendListPage = () => {
     }
 
     if (tabKey === friendListTabNames.ALL_USERS) {
-      if (user.friendship?.status === "accepted") {
+      if (user?.friendship?.status === "accepted") {
+        console.log("USER ACCEPTED>>", user && user.friendship);
         return (
           <span className="text-success">
             <FontAwesomeIcon icon="check-square" size="sm" /> Friend
           </span>
         );
-      } else if (user.friendship?.status === "requesting") {
+      } else if (user?.friendship?.status === "requesting") {
+        console.log("USER REQUESTED>>", user && user.friendship);
         return (
           <span className="text-warning">
             <FontAwesomeIcon icon="pause-circle" size="sm" /> Requesting
           </span>
         );
       } else {
+        console.log("USER ELSE>>", user && user.friendship);
         return (
           <Button
             variant="primary"
@@ -221,19 +238,25 @@ const FriendListPage = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
+              {users?.map((user) => (
                 <tr key={user._id}>
-                  <td className="text-center">
-                    <img
-                      src={user.avatarUrl}
-                      className="avatar-sm"
-                      alt="avatar"
-                    />
+                  <td className="text-center textwhitecolor">
+                    <div>
+                      <img
+                        src={user.avatarUrl}
+                        className="avatar-sm"
+                        alt="avatar"
+                      />
+                    </div>
                   </td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.friendCount}</td>
-                  <td>{generateActions(user)}</td>
+                  <td className="text-center textwhitecolor">{user.name}</td>
+                  <td className="text-center textwhitecolor">{user.email}</td>
+                  <td className="text-center textwhitecolor">
+                    {user.friendCount}
+                  </td>
+                  <td className="text-center textwhitecolor">
+                    {generateActions(user)}
+                  </td>
                 </tr>
               ))}
             </tbody>
