@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div id="footer" className="footer-bg text-white">
       <Container>
-        <h1 className="footer-head">Contact</h1>
+        <h4 className="footer-head">Contact</h4>
         <p>
           For more detail information do not hesitate to contact us on one of
           these channels

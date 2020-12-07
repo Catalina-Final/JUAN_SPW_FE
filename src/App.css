@@ -46,12 +46,9 @@ html {
   margin: 30px;
 }
 
-.facebookLogin {
-  margin: 20px;
-}
 
-.loginButtons{
-  margin: 20px;
+
+.containerLogin{
   display: flex;
   justify-content: space-evenly;
 }
@@ -63,6 +60,19 @@ html {
 .sectionBlock {
   height: 260px;
   justify-content: space-around;
+}
+.google-btn{
+  height: 100%;
+}
+
+.JumbotronLogin{
+  margin: auto;
+  width: 60%;
+  color: black;
+}
+
+.ContainerFullLogin{
+  margin-top: 5%;
 }
 
 .PhotoWalkSectionText {
@@ -115,6 +125,15 @@ html {
     -moz-column-count: 3;
     -webkit-column-count: 3;
     column-count: 3;
+  }
+  .containerLogin{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .google-btn{
+    margin: 1rem;
+    height: auto;
   }
 }
 @media (max-width: 800px) {
