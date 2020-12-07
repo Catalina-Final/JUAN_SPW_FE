@@ -50,6 +50,16 @@ html {
   margin: 20px;
 }
 
+.loginButtons{
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.loginButton{
+ width: 100%;
+}
+
 .sectionBlock {
   height: 260px;
   justify-content: space-around;

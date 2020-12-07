@@ -185,6 +185,85 @@ const FriendListPage = () => {
     }
   };
 
+  const renderUserList = (user) => {
+    if (tabKey === "FRIEND_LIST.TAB_KEY.ALL_USERS") {
+      return (
+        <tr key={`${user._id}-all-users`}>
+          <td className="text-center textwhitecolor">
+            <div>
+              <img src={user.avatarUrl} className="avatar-sm" alt="avatar" />
+            </div>
+          </td>
+          <td className="text-center textwhitecolor">{user.name}</td>
+          <td className="text-center textwhitecolor">{user.email}</td>
+          <td className="text-center textwhitecolor">{user.friendCount}</td>
+          <td className="text-center textwhitecolor">
+            {generateActions(user)}
+          </td>
+        </tr>
+      );
+    } else if (tabKey === "FRIEND_LIST.TAB_KEY.RECEIVED_REQUEST") {
+      return (
+        <tr key={`${user._id}-received-request`}>
+          <td className="text-center textwhitecolor">
+            <div>
+              <img
+                src={user.from?.avatarUrl}
+                className="avatar-sm"
+                alt="avatar"
+              />
+            </div>
+          </td>
+          <td className="text-center textwhitecolor">{user.from?.name}</td>
+          <td className="text-center textwhitecolor">{user.from?.email}</td>
+          <td className="text-center textwhitecolor">
+            {user.from?.friendCount}
+          </td>
+          <td className="text-center textwhitecolor">
+            {generateActions(user)}
+          </td>
+        </tr>
+      );
+    } else if (tabKey === "FRIEND_LIST.TAB_KEY.SENT_REQUESTS") {
+      return (
+        <tr key={`${user._id}-sent-request`}>
+          <td className="text-center textwhitecolor">
+            <div>
+              <img
+                src={user.to?.avatarUrl}
+                className="avatar-sm"
+                alt="avatar"
+              />
+            </div>
+          </td>
+          <td className="text-center textwhitecolor">{user.to?.name}</td>
+          <td className="text-center textwhitecolor">{user.to?.email}</td>
+          <td className="text-center textwhitecolor">{user.to?.friendCount}</td>
+          <td className="text-center textwhitecolor">
+            {generateActions(user)}
+          </td>
+        </tr>
+      );
+    } else if (tabKey === "FRIEND_LIST.TAB_KEY.FRIENDS") {
+      console.log("USER EXIST====", user);
+      return (
+        <tr key={`${user._id}-friends`}>
+          <td className="text-center textwhitecolor">
+            <div>
+              <img src={user.avatarUrl} className="avatar-sm" alt="avatar" />
+            </div>
+          </td>
+          <td className="text-center textwhitecolor">{user.name}</td>
+          <td className="text-center textwhitecolor">{user.email}</td>
+          <td className="text-center textwhitecolor">{user.friendCount}</td>
+          <td className="text-center textwhitecolor">
+            {generateActions(user)}
+          </td>
+        </tr>
+      );
+    }
+  };
+
   return (
     <Container fluid>
       <h4 className="mt-3">Friend Manage</h4>
@@ -237,29 +316,7 @@ const FriendListPage = () => {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
-              {users?.map((user) => (
-                <tr key={user._id}>
-                  <td className="text-center textwhitecolor">
-                    <div>
-                      <img
-                        src={user.avatarUrl}
-                        className="avatar-sm"
-                        alt="avatar"
-                      />
-                    </div>
-                  </td>
-                  <td className="text-center textwhitecolor">{user.name}</td>
-                  <td className="text-center textwhitecolor">{user.email}</td>
-                  <td className="text-center textwhitecolor">
-                    {user.friendCount}
-                  </td>
-                  <td className="text-center textwhitecolor">
-                    {generateActions(user)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            <tbody>{users?.map((user) => renderUserList(user))}</tbody>
           </Table>
         </Col>
       </Row>

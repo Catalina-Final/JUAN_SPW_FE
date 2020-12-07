@@ -105,16 +105,17 @@ const LoginPage = () => {
           </Form>
         </Col>
       </Row>{" "}
-      <Row>
-        <Col md={{ span: 6, offset: 3 }} className="text-center space-between">
+      <Row className="facebookLogin ">
+        <Col md={{ span: 6, offset: 3 }} className="text-center loginButtons">
           <FacebookLogin
-            className="facebookLogin"
+            className="facebookLogin-btn"
             appId="355021229222362"
             autoLoad={false}
             fields="name,email,picture"
             callback={loginWithFacebook}
           />
-
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} className="text-center ">
           <GoogleLogin
             style={{ margin: "10px" }}
             clientId="1058099593253-1gdouri8klivpfdo7lf0bvf7ff5fovaa.apps.googleusercontent.com"
