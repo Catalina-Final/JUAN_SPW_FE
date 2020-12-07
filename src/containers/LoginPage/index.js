@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import { Redirect, Link } from "react-router-dom";
-import { Container, Row, Col, Form, Button, Jumbotron } from "react-bootstrap";
+import { Container, Row, Form, Button, Jumbotron } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
 import FacebookLogin from "react-facebook-login";
