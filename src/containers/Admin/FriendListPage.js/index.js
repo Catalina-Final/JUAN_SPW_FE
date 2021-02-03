@@ -19,7 +19,6 @@ const FriendListPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.loading);
   const users = useSelector((state) => {
-    console.log("STATE=======>", state);
     return state.user.users;
   });
 
@@ -89,9 +88,7 @@ const FriendListPage = () => {
     }
   }, [dispatch, action, targetId]);
 
-  useEffect(() => {
-    console.log("USERSD--->", users);
-  }, [users]);
+  useEffect(() => {}, [users]);
 
   const handleChangeTab = (key, user) => {
     setTabKey(key);
@@ -107,7 +104,6 @@ const FriendListPage = () => {
   };
 
   const generateActions = (user) => {
-    console.log("GERERATE ACTION", user);
     if (tabKey === friendListTabNames.FRIENDS) {
       // Generate Remove Friend Button
       return (
@@ -158,21 +154,21 @@ const FriendListPage = () => {
 
     if (tabKey === friendListTabNames.ALL_USERS) {
       if (user?.friendship?.status === "accepted") {
-        console.log("USER ACCEPTED>>", user && user.friendship);
+        // console.log("USER ACCEPTED>>", user && user.friendship);
         return (
           <span className="text-success">
             <FontAwesomeIcon icon="check-square" size="sm" /> Friend
           </span>
         );
       } else if (user?.friendship?.status === "requesting") {
-        console.log("USER REQUESTED>>", user && user.friendship);
+        // console.log("USER REQUESTED>>", user && user.friendship);
         return (
           <span className="text-warning">
             <FontAwesomeIcon icon="pause-circle" size="sm" /> Requesting
           </span>
         );
       } else {
-        console.log("USER ELSE>>", user && user.friendship);
+        // console.log("USER ELSE>>", user && user.friendship);
         return (
           <Button
             variant="primary"

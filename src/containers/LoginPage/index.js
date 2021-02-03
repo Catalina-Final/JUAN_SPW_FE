@@ -37,7 +37,6 @@ const LoginPage = () => {
   };
 
   const loginWithGoogle = (response) => {
-    console.log("Google", response);
     dispatch(authActions.loginWithGoogle(response.accessToken));
   };
 

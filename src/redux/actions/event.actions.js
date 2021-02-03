@@ -123,7 +123,6 @@ const createNewEvent = (formData) => async (dispatch) => {
     });
     dispatch(alertActions.setAlert("New event has been created!", "success"));
   } catch (error) {
-    console.log(error.message);
     dispatch({ type: types.CREATE_EVENT_FAILURE, payload: error });
   }
 };
@@ -150,7 +149,7 @@ const deleteEvent = (eventId) => async (dispatch) => {
   dispatch({ type: types.DELETE_EVENT_REQUEST, payload: null });
   try {
     const res = await api.delete(`/events/${eventId}`);
-    console.log(res);
+
     dispatch({
       type: types.DELETE_EVENT_SUCCESS,
       payload: res.data,

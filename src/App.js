@@ -27,6 +27,7 @@ import {
   faChartLine,
   faSignOutAlt,
   faSignInAlt,
+  faPortrait,
 } from "@fortawesome/free-solid-svg-icons";
 import { fab, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { ClipLoader } from "react-spinners";
@@ -53,7 +54,8 @@ library.add(
   faChartLine,
   faSignOutAlt,
   faSignInAlt,
-  faFacebook
+  faFacebook,
+  faPortrait
 );
 
 function App() {

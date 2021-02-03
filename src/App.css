@@ -3,6 +3,12 @@ html {
   background-color: #000000eb;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap');
+
+
+body{
+  font-family: 'Roboto Slab', serif;  letter-spacing: 1px;
+}
 
 .textwhitecolor{
   color: white;
@@ -383,10 +389,7 @@ html {
     text-align: center;
   }
 
-  Col {
-    padding-left: 0px;
-    padding-right: 0px !important;
-  }
+ 
 
   .sectionBlock {
     margin-bottom: 60px;
@@ -405,11 +408,6 @@ html {
     margin-bottom: 15px;
   }
 
-  img {
-    margin: auto;
-    height: 60%;
-    width: 60%;
-  }
 }
 
 /* Footer */
@@ -425,6 +423,11 @@ html {
 .whiteTextBlackBackground {
   color: white;
   background-color: rgba(21, 21, 21, 0.933);
+}
+
+.logoColor{
+  background-color:#888888e1 !important;
+  border: none !important;
 }
 
 /* Calendar */
@@ -478,9 +481,20 @@ html {
 /* Profile Page */
 
 .avatar-lg {
-  border-radius: 20%;
-  margin-right: 10px;
-  width: 30%;
+  border-radius: 50%;
+  /* width: 50%; */
+  width: 150px;
+  height: 150px;
+}
+
+/* .avatarContainer{
+ 
+} */
+
+.editavatarcoverbtn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .avatar-sm {
@@ -494,6 +508,43 @@ html {
   margin:10%;
 }
 
+
+.PersonalInfoContainer{
+  position: absolute;
+  top: -400px;
+  margin: 2rem;
+  color: black;
+  background-color: aliceblue;
+  min-width: 70%;
+  min-height: 500px;
+  border-radius: 5px;
+}
+
+.PersonalInfoContainerInner{
+  margin: 1rem;
+  padding-top: 1rem;;
+}
+
+
+/* Profile Responsive */
+@media only screen and (max-width: 1100px) {
+  
+.PersonalInfoContainer{
+  position: relative;
+  top: 0;
+
+}
+}
+
+@media only screen and (max-width: 1400px) {
+  
+.PersonalInfoContainer{
+  position: none;
+  top: 0px;
+
+}
+}
+
 /* Friendship */
 
 .avatar-sm {
@@ -502,3 +553,8 @@ html {
   height: 45px;
   border-radius: 15%;
 }
+
+
+
+/* SlideSHOW TEST */
+

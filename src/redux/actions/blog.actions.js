@@ -124,7 +124,6 @@ const createNewBlog = (title, content, images) => async (dispatch) => {
     });
     dispatch(alertActions.setAlert("New blog has been created!", "success"));
   } catch (error) {
-    console.log(error.message);
     dispatch({ type: types.CREATE_BLOG_FAILURE, payload: error });
   }
 };
@@ -151,7 +150,7 @@ const deleteBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.DELETE_BLOG_REQUEST, payload: null });
   try {
     const res = await api.delete(`/blogs/${blogId}`);
-    console.log(res);
+
     dispatch({
       type: types.DELETE_BLOG_SUCCESS,
       payload: res.data,

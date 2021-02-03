@@ -58,7 +58,10 @@ const PopularBlogs = () => {
               ) : (
                 <>
                   {blogs.length ? (
-                    <div className="MarginPopular">
+                    <div
+                      onClick={() => handleClickOnBlog(blogs[0]?._id)}
+                      className="MarginPopular"
+                    >
                       <img
                         src={blogs[0].images[0]}
                         width="50%"
@@ -89,7 +92,7 @@ const PopularBlogs = () => {
                   className="d-flex responsivePopularBlogs"
                   style={{ border: "none" }}
                 >
-                  <div>
+                  <div onClick={() => handleClickOnBlog(blogs[1]._id)}>
                     <h5 className="textContentBlog">
                       {blogs[1].title.length <= 99
                         ? blogs[1].title
@@ -104,8 +107,8 @@ const PopularBlogs = () => {
                   </div>
                   <img
                     style={{ margin: "20px" }}
-                    onClick={() => handleClickOnBlog(blogs[1]._id)}
                     width="150px"
+                    onClick={() => handleClickOnBlog(blogs[1]._id)}
                     height="100px"
                     alt="Popular Blogs Second "
                     src={blogs[1].images[0]}
@@ -119,7 +122,7 @@ const PopularBlogs = () => {
             <Col className="responsivePopularBlogs thirdBlogPopular MarginPopular OnHover">
               {blogs.length ? (
                 <div className="d-flex responsivePopularBlogs">
-                  <div>
+                  <div onClick={() => handleClickOnBlog(blogs[2]._id)}>
                     <h5 className="textContentBlog">
                       {blogs[2].title.length <= 99
                         ? blogs[2].title
@@ -133,8 +136,8 @@ const PopularBlogs = () => {
                     <Badge variant="secondary">By {blogs[2].author.name}</Badge>
                   </div>
                   <img
-                    style={{ margin: "20px" }}
                     onClick={() => handleClickOnBlog(blogs[2]._id)}
+                    style={{ margin: "20px" }}
                     width="150px"
                     height="100px"
                     alt="Popular Blogs Second "
@@ -152,7 +155,7 @@ const PopularBlogs = () => {
                   className="d-flex responsivePopularBlogs"
                   style={{ border: "none" }}
                 >
-                  <div>
+                  <div onClick={() => handleClickOnBlog(blogs[3]._id)}>
                     <h5 className="textContentBlog">
                       {blogs[3].title?.length <= 99
                         ? blogs[3].title
@@ -173,8 +176,8 @@ const PopularBlogs = () => {
                   </div>
 
                   <img
-                    style={{ margin: "20px" }}
                     onClick={() => handleClickOnBlog(blogs[3]._id)}
+                    style={{ margin: "20px" }}
                     width="150px"
                     height="100px"
                     alt="Popular Blogs Second "
