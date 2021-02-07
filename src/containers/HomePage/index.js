@@ -9,7 +9,7 @@ import SectionsHomePage from "../../components/SectionsHomePage";
 import PopularBlogs from "../../components/PopularBlogs";
 // import MagazineSection from "../MagazineSection";
 import Footer from "../../components/Footer";
-// import UsersList from "../../components/UsersList";
+import UsersList from "../../components/UsersList";
 // import SlideTest from "../../components/SlideTest";
 
 const HomePage = () => {
@@ -61,7 +61,7 @@ const HomePage = () => {
 
       <SectionsHomePage />
       <PopularBlogs />
-      {/* <UsersList /> */}
+      <UsersList />
 
       {/* <MagazineSection /> */}
 
