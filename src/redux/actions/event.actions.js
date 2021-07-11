@@ -2,67 +2,59 @@ import * as types from "../constants/event.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
 
-const eventsRequest = (
-  pageNum = 1,
-  limit = 9,
-  query = null,
-  ownerId = null,
-  sortBy = null
-) => async (dispatch) => {
-  dispatch({ type: types.EVENT_REQUEST, payload: null });
-  try {
-    let queryString = "";
-    if (query) {
-      queryString = `&title[$regex]=${query}&title[$options]=i`;
+const eventsRequest =
+  (pageNum = 1, limit = 9, query = null, ownerId = null, sortBy = null) =>
+  async (dispatch) => {
+    dispatch({ type: types.EVENT_REQUEST, payload: null });
+    try {
+      let queryString = "";
+      if (query) {
+        queryString = `&title[$regex]=${query}&title[$options]=i`;
+      }
+      if (ownerId) {
+        queryString = `${queryString}&author=${ownerId}`;
+      }
+      let sortByString = "";
+      if (sortBy?.key) {
+        sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
+      }
+      const res = await api.get(
+        `/events?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+      );
+      dispatch({
+        type: types.EVENT_REQUEST_SUCCESS,
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({ type: types.EVENT_REQUEST_FAILURE, payload: error });
     }
-    if (ownerId) {
-      queryString = `${queryString}&author=${ownerId}`;
-    }
-    let sortByString = "";
-    if (sortBy?.key) {
-      sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
-    }
-    const res = await api.get(
-      `/events?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
-    );
-    dispatch({
-      type: types.EVENT_REQUEST_SUCCESS,
-      payload: res.data.data,
-    });
-  } catch (error) {
-    dispatch({ type: types.EVENT_REQUEST_FAILURE, payload: error });
-  }
-};
+  };
 
 // Get events By user
-const getEventsByUser = (
-  userId,
-  pageNum = 1,
-  limit = 3,
-  query = null,
-  sortBy = null
-) => async (dispatch) => {
-  dispatch({ type: types.GET_EVENTS_OF_USER_REQUEST, payload: null });
-  try {
-    let queryString = "";
-    if (query) {
-      queryString = `&title[$regex]=${query}&title[$options]=i`;
+const getEventsByUser =
+  (userId, pageNum = 1, limit = 3, query = null, sortBy = null) =>
+  async (dispatch) => {
+    dispatch({ type: types.GET_EVENTS_OF_USER_REQUEST, payload: null });
+    try {
+      let queryString = "";
+      if (query) {
+        queryString = `&title[$regex]=${query}&title[$options]=i`;
+      }
+      let sortByString = "";
+      if (sortBy?.key) {
+        sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
+      }
+      const res = await api.get(
+        `/events/user/${userId}?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+      );
+      dispatch({
+        type: types.GET_EVENTS_OF_USER_SUCCESS,
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({ type: types.GET_EVENTS_OF_USER_FAILURE, payload: error });
     }
-    let sortByString = "";
-    if (sortBy?.key) {
-      sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
-    }
-    const res = await api.get(
-      `/events/user/${userId}?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
-    );
-    dispatch({
-      type: types.GET_EVENTS_OF_USER_SUCCESS,
-      payload: res.data.data,
-    });
-  } catch (error) {
-    dispatch({ type: types.GET_EVENTS_OF_USER_FAILURE, payload: error });
-  }
-};
+  };
 
 //
 

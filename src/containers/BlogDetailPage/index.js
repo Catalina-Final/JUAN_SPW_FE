@@ -80,18 +80,19 @@ const BlogDetailPage = () => {
               </span>
               <hr />
               <ReactMarkdown
-                source={blog.content}
-                renderers={{
-                  paragraph: (props) => (
-                    <Linkify properties={linkProperties}>
-                      <p>{props.children}</p>
-                    </Linkify>
-                  ),
-                }}
+              skipHtml ={true}
+                source={blog?.content}
+                // renderers={{
+                //   paragraph: (props) => (
+                //     <Linkify properties={linkProperties}>
+                //       <p>{props.children}</p>
+                //     </Linkify>
+                //   ),
+                // }}
               />
               <ShowImages
                 imagesGallery={
-                  Array.isArray(blog.images)
+                  Array.isArray(blog?.images)
                     ? blog.images
                     : ["https://via.placeholder.com/160x100"]
                 }

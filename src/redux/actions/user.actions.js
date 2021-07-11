@@ -201,6 +201,21 @@ const cancelRequest = (userId) => async (dispatch) => {
   }
 };
 
+const addFollower = (userId) => async (dispatch) => {
+  console.log("USERTOFOLLOW Actions", userId);
+  dispatch({ type: types.ADD_FOLLOWER_REQUEST, payload: null });
+  try {
+    const res = await api.post(`/follower/add/${userId._id}`);
+    dispatch({
+      type: types.ADD_FOLLOWER_SUCCESS,
+      payload: { ...res.data.data, targetId: userId._id },
+    });
+    console.log("PAYLOAD ACTIONS --->", res);
+  } catch (error) {
+    dispatch({ type: types.ADD_FOLLOWER_FAILURE, payload: error });
+  }
+};
+
 export const userActions = {
   usersRequest,
   friendsRequest,
@@ -212,4 +227,5 @@ export const userActions = {
   acceptRequest,
   cancelRequest,
   conversationsRequest,
+  addFollower,
 };

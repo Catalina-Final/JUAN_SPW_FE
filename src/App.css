@@ -569,14 +569,22 @@ body{
   display:block;
   margin:auto;
 }
-
+.userListUser{
+  min-width:250px;
+}
 .userList{
   display: flex;
   justify-content: center;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .userListContainer{
   margin-top:auto;
   padding: 15px;
+}
+
+.centerContent{
+  display:block;
+  margin:auto; 
 }

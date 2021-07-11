@@ -51,6 +51,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, loading: false };
 
     case types.ADD_FRIEND_REQUEST:
+    case types.ADD_FOLLOWER_REQUEST:
     case types.REMOVE_FRIEND_REQUEST:
     case types.DECLINE_REQUEST_REQUEST:
     case types.ACCEPT_REQUEST_REQUEST:
@@ -58,6 +59,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case types.ADD_FRIEND_SUCCESS:
+    case types.ADD_FOLLOWER_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -66,7 +68,8 @@ const userReducer = (state = initialState, action) => {
             if (user._id !== payload.targetId) return user;
             return {
               ...user,
-              friendship: { ...user.friendship, status: "requesting" },
+              friendship: { ...user.friendship, status: "accepted" },
+              follower: { ...user.follower, status: "follow" },
             };
           }),
         ],
@@ -96,6 +99,7 @@ const userReducer = (state = initialState, action) => {
         users: [...state.users.filter((user) => user._id !== payload.targetId)],
       };
     case types.ADD_FRIEND_FAILURE:
+    case types.ADD_FOLLOWER_FAILURE:
     case types.REMOVE_FRIEND_FAILURE:
     case types.DECLINE_REQUEST_FAILURE:
     case types.ACCEPT_REQUEST_FAILURE:

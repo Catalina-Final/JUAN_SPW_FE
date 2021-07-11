@@ -83,7 +83,6 @@ const FriendListPage = () => {
       case actionTypes.CANCEL_REQUEST:
         dispatch(userActions.cancelRequest(targetId));
         break;
-
       default:
     }
   }, [dispatch, action, targetId]);
