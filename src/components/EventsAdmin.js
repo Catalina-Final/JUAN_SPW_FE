@@ -27,7 +27,7 @@ const EventsAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(eventActions.getEventsByUser(currentUser.id, pageNum));
+    dispatch(eventActions.getEventsByUser(currentUser?.id, pageNum));
     // eslint-disable-next-line
   }, [dispatch, pageNum]);
 

@@ -24,13 +24,13 @@ const ProfilePage = () => {
   const loading = useSelector((state) => state.auth.loading);
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState({
-    name: currentUser.name,
-    email: currentUser.email,
-    avatarUrl: currentUser.avatarUrl,
-    coverUrl: currentUser.coverUrl,
-    facebook: currentUser.facebook,
-    instagram: currentUser.instagram,
-    portfolioUrl: currentUser.portfolioUrl,
+    name: currentUser?.name,
+    email: currentUser?.email,
+    avatarUrl: currentUser?.avatarUrl,
+    coverUrl: currentUser?.coverUrl,
+    facebook: currentUser?.facebook,
+    instagram: currentUser?.instagram,
+    portfolioUrl: currentUser?.portfolioUrl,
   });
 
   const dispatch = useDispatch();
@@ -41,14 +41,8 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const {
-      name,
-      avatarUrl,
-      coverUrl,
-      facebook,
-      instagram,
-      portfolioUrl,
-    } = formData;
+    const { name, avatarUrl, coverUrl, facebook, instagram, portfolioUrl } =
+      formData;
 
     dispatch(
       authActions.updateProfile(

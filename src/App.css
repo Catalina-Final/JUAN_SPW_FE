@@ -3,14 +3,14 @@ html {
   background-color: #000000eb;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap");
 
-
-body{
-  font-family: 'Roboto Slab', serif;  letter-spacing: 1px;
+body {
+  font-family: "Roboto Slab", serif;
+  letter-spacing: 1px;
 }
 
-.textwhitecolor{
+.textwhitecolor {
   color: white;
 }
 #root {
@@ -38,11 +38,10 @@ body{
   background-repeat: no-repeat;
 }
 
-.carousel-container{
+.carousel-container {
   width: 100%;
   max-width: 100% !important;
 }
-
 
 .carouselCover {
   background-size: 100%;
@@ -52,32 +51,30 @@ body{
   margin: 30px;
 }
 
-
-
-.containerLogin{
+.containerLogin {
   display: flex;
   justify-content: space-evenly;
 }
 
-.loginButton{
- width: 100%;
+.loginButton {
+  width: 100%;
 }
 
 .sectionBlock {
   height: 260px;
   justify-content: space-around;
 }
-.google-btn{
+.google-btn {
   height: 100%;
 }
 
-.JumbotronLogin{
+.JumbotronLogin {
   margin: auto;
   width: 60%;
   color: black;
 }
 
-.ContainerFullLogin{
+.ContainerFullLogin {
   margin-top: 5%;
 }
 
@@ -132,12 +129,12 @@ body{
     -webkit-column-count: 3;
     column-count: 3;
   }
-  .containerLogin{
+  .containerLogin {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
-  .google-btn{
+  .google-btn {
     margin: 1rem;
     height: auto;
   }
@@ -389,8 +386,6 @@ body{
     text-align: center;
   }
 
- 
-
   .sectionBlock {
     margin-bottom: 60px;
   }
@@ -407,11 +402,9 @@ body{
   .EventSection {
     margin-bottom: 15px;
   }
-
 }
 
 /* Footer */
-
 
 #footer {
   padding: 20px;
@@ -425,8 +418,8 @@ body{
   background-color: rgba(21, 21, 21, 0.933);
 }
 
-.logoColor{
-  background-color:#888888e1 !important;
+.logoColor {
+  background-color: #888888e1 !important;
   border: none !important;
 }
 
@@ -491,7 +484,7 @@ body{
  
 } */
 
-.editavatarcoverbtn{
+.editavatarcoverbtn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -501,15 +494,14 @@ body{
   object-fit: cover;
 }
 
-.linkPersonalinfo{
+.linkPersonalinfo {
   word-wrap: break-word;
 }
-.personalInfo{
-  margin:10%;
+.personalInfo {
+  margin: 10%;
 }
 
-
-.PersonalInfoContainer{
+.PersonalInfoContainer {
   position: absolute;
   top: -400px;
   margin: 2rem;
@@ -520,29 +512,24 @@ body{
   border-radius: 5px;
 }
 
-.PersonalInfoContainerInner{
+.PersonalInfoContainerInner {
   margin: 1rem;
-  padding-top: 1rem;;
+  padding-top: 1rem;
 }
-
 
 /* Profile Responsive */
 @media only screen and (max-width: 1100px) {
-  
-.PersonalInfoContainer{
-  position: relative;
-  top: 0;
-
-}
+  .PersonalInfoContainer {
+    position: relative;
+    top: 0;
+  }
 }
 
 @media only screen and (max-width: 1400px) {
-  
-.PersonalInfoContainer{
-  position: none;
-  top: 0px;
-
-}
+  .PersonalInfoContainer {
+    position: none;
+    top: 0px;
+  }
 }
 
 /* Friendship */
@@ -554,8 +541,6 @@ body{
   border-radius: 15%;
 }
 
-
-
 /* SlideSHOW TEST */
 
 /* User list */
@@ -565,26 +550,51 @@ body{
   object-position: center;
   height: 150px;
   width: 150px;
-  border-radius:50%;
-  display:block;
-  margin:auto;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
 }
-.userListUser{
-  min-width:250px;
+.userListUser {
+  min-width: 250px;
 }
-.userList{
+.userList {
   display: flex;
   justify-content: center;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.userListContainer{
-  margin-top:auto;
+.userListContainer {
+  margin-top: auto;
   padding: 15px;
 }
 
-.centerContent{
-  display:block;
-  margin:auto; 
+.centerContent {
+  display: block;
+  margin: auto;
+}
+
+/* MyEditor Styles */
+
+.MyeditorStyles {
+  text-align: center;
+  /* background-color: #ecececb5; */
+  height: 50vh;
+}
+.MyeditorStyles .rich-editor {
+  color: #007694;
+  padding: 10rem;
+}
+
+.rich-editor .rdw-editor-main {
+  background-color: rgb(7, 7, 7);
+}
+
+.rich-editor .DraftEditor-editorContainer {
+  color: #0f98c2;
+  padding: 1rem;
+}
+
+.draft-editor-wrapper {
+  border: 1px solid #ccc;
 }

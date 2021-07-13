@@ -23,8 +23,8 @@ const BlogsAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(blogActions.getBlogsByUser(currentUser.id, pageNum));
-  }, [dispatch, pageNum, currentUser.id]);
+    dispatch(blogActions.getBlogsByUser(currentUser?.id, pageNum));
+  }, [dispatch, pageNum, currentUser?.id]);
 
   return (
     <div>

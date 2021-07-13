@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@editorjs/editorjs": "^2.22.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
@@ -59,16 +60,16 @@
   },
   "browserslist": {
     "production": [
-    ">0.3%",
-    "not ie 11",
-    "not dead",
-    "not op_mini all"
+      ">0.3%",
+      "not ie 11",
+      "not dead",
+      "not op_mini all"
     ],
     "development": [
       ">0.3%",
-    "not ie 11",
-    "not dead",
-    "not op_mini all"
+      "not ie 11",
+      "not dead",
+      "not op_mini all"
     ]
   }
 }
