@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="contact-wrap">Juank060790@gmail.com</div>
             <br></br>
             <p>
-              © Copyright <strong className="license">SPW 2020</strong> All
+              © Copyright <strong className="license">SPW 2021</strong> All
               Rights Reserve
             </p>
           </Col>

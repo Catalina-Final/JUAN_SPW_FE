@@ -7,8 +7,8 @@ import ProfilePage from "../Admin/ProfilePage";
 const Routes = () => {
   return (
     <Switch>
-      <PrivateRoute exact path="/dashboard" component={ProfilePage} />
       <Route path="/" component={PublicLayout} />
+      <PrivateRoute exact path="/dashboard" component={ProfilePage} />
     </Switch>
   );
 };

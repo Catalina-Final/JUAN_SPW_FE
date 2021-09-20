@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../App.css";
 import { Carousel } from "react-bootstrap";
 import First from "./imagesCover/coverImg1.jpg";
 import Second from "./imagesCover/coverImg2.jpg";
 import Third from "./imagesCover/coverImg3.jpg";
-import Fourth from "./imagesCover/coverImg4.jpg";
+
 import SectionsHomePage from "../../components/SectionsHomePage";
 import PopularBlogs from "../../components/PopularBlogs";
+import { useDispatch } from "react-redux";
+
 // import MagazineSection from "../MagazineSection";
-import Footer from "../../components/Footer";
-import UsersList from "../../components/UsersList";
+
+import { blogActions } from "../../redux/actions";
+// import { useHistory } from "react-router";
+// import UsersList from "../../components/UsersList";
 // import SlideTest from "../../components/SlideTest";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  const sortBy = {
+    key: "reviewCount",
+    ascending: -1,
+  };
+
+  useEffect(() => {
+    dispatch(blogActions.blogsRequest(1, 4, null, null, sortBy));
+  }, [dispatch, sortBy]);
+
   return (
     <>
       <Carousel>
@@ -47,7 +62,7 @@ const HomePage = () => {
             </h4>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
+        {/* <Carousel.Item>
           <img className="d-block w-100" src={Fourth} alt="Third slide" />
 
           <Carousel.Caption>
@@ -56,18 +71,11 @@ const HomePage = () => {
               "Share with thoudsands your precious work and get feedback."
             </h4>
           </Carousel.Caption>
-        </Carousel.Item>
+        </Carousel.Item> */}
       </Carousel>
 
       <SectionsHomePage />
       <PopularBlogs />
-      <UsersList />
-
-      {/* <MagazineSection /> */}
-
-      {/* <SlideTest /> */}
-
-      <Footer />
     </>
   );
 };

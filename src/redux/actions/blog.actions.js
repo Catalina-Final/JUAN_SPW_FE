@@ -2,67 +2,59 @@ import * as types from "../constants/blog.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
 
-const blogsRequest = (
-  pageNum = 1,
-  limit = 8,
-  query = null,
-  ownerId = null,
-  sortBy = null
-) => async (dispatch) => {
-  dispatch({ type: types.BLOG_REQUEST, payload: null });
-  try {
-    let queryString = "";
-    if (query) {
-      queryString = `&title[$regex]=${query}&title[$options]=i`;
+const blogsRequest =
+  (pageNum = 1, limit = 8, query = null, ownerId = null, sortBy = null) =>
+  async (dispatch) => {
+    dispatch({ type: types.BLOG_REQUEST, payload: null });
+    try {
+      let queryString = "";
+      if (query) {
+        queryString = `&title[$regex]=${query}&title[$options]=i`;
+      }
+      if (ownerId) {
+        queryString = `${queryString}&author=${ownerId}`;
+      }
+      let sortByString = "";
+      if (sortBy?.key) {
+        sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
+      }
+      const res = await api.get(
+        `/blogs?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+      );
+      dispatch({
+        type: types.BLOG_REQUEST_SUCCESS,
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
     }
-    if (ownerId) {
-      queryString = `${queryString}&author=${ownerId}`;
-    }
-    let sortByString = "";
-    if (sortBy?.key) {
-      sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
-    }
-    const res = await api.get(
-      `/blogs?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
-    );
-    dispatch({
-      type: types.BLOG_REQUEST_SUCCESS,
-      payload: res.data.data,
-    });
-  } catch (error) {
-    dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
-  }
-};
+  };
 
 // Get Blogs By user
-const getBlogsByUser = (
-  userId,
-  pageNum = 1,
-  limit = 5,
-  query = null,
-  sortBy = null
-) => async (dispatch) => {
-  dispatch({ type: types.GET_BLOGS_OF_USER_REQUEST, payload: null });
-  try {
-    let queryString = "";
-    if (query) {
-      queryString = `&title[$regex]=${query}&title[$options]=i`;
+const getBlogsByUser =
+  (userId, pageNum = 1, limit = 5, query = null, sortBy = null) =>
+  async (dispatch) => {
+    dispatch({ type: types.GET_BLOGS_OF_USER_REQUEST, payload: null });
+    try {
+      let queryString = "";
+      if (query) {
+        queryString = `&title[$regex]=${query}&title[$options]=i`;
+      }
+      let sortByString = "";
+      if (sortBy?.key) {
+        sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
+      }
+      const res = await api.get(
+        `/blogs/user/${userId}?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+      );
+      dispatch({
+        type: types.GET_BLOGS_OF_USER_SUCCESS,
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({ type: types.GET_BLOGS_OF_USER_FAILURE, payload: error });
     }
-    let sortByString = "";
-    if (sortBy?.key) {
-      sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
-    }
-    const res = await api.get(
-      `/blogs/user/${userId}?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
-    );
-    dispatch({
-      type: types.GET_BLOGS_OF_USER_SUCCESS,
-      payload: res.data.data,
-    });
-  } catch (error) {
-    dispatch({ type: types.GET_BLOGS_OF_USER_FAILURE, payload: error });
-  }
-};
+  };
 
 const getSingleBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
@@ -131,10 +123,11 @@ const createNewBlog = (title, content, images) => async (dispatch) => {
 const updateBlog = (blogId, title, content) => async (dispatch) => {
   dispatch({ type: types.UPDATE_BLOG_REQUEST, payload: null });
   try {
+    console.log(`res`, blogId);
     // let formData = new FormData();
     // formData.set("title", title);
     // formData.set("content", content);
-    const res = await api.put(`/blogs/${blogId}`, { title, content });
+    const res = await api.put(`/blogs/edit/${blogId}`, { title, content });
 
     dispatch({
       type: types.UPDATE_BLOG_SUCCESS,

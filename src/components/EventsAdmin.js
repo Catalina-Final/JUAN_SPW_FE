@@ -7,10 +7,7 @@ import { eventActions } from "../redux/actions";
 import ClipLoader from "react-spinners/ClipLoader";
 import SingleEvent from "../components/SingleEvent";
 import "../App.css";
-
 // import moment from "moment";
-
-import "../App.css";
 
 const EventsAdmin = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -27,7 +24,7 @@ const EventsAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(eventActions.getEventsByUser(currentUser.id, pageNum));
+    dispatch(eventActions.getEventsByUser(currentUser?.id, pageNum));
     // eslint-disable-next-line
   }, [dispatch, pageNum]);
 

@@ -11,26 +11,27 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { authActions } from "../../../redux/actions";
 import { ClipLoader } from "react-spinners";
-import PublicNavbar from "../../PublicNavbar";
+// import PublicNavbar from "../../PublicNavbar";
 import EventsAdmin from "../../../components/EventsAdmin";
 import BlogsAdmin from "../../../components/BlogsAdmin";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faPortrait } from "@fortawesome/free-solid-svg-icons";
-import FriendListPage from "../FriendListPage.js";
+// import FriendListPage from "../FriendListPage.js";
 // import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 
 const ProfilePage = () => {
   const currentUser = useSelector((state) => state.auth.user);
+  console.log(`currentUser`, currentUser);
   const loading = useSelector((state) => state.auth.loading);
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState({
-    name: currentUser.name,
-    email: currentUser.email,
-    avatarUrl: currentUser.avatarUrl,
-    coverUrl: currentUser.coverUrl,
-    facebook: currentUser.facebook,
-    instagram: currentUser.instagram,
-    portfolioUrl: currentUser.portfolioUrl,
+    name: currentUser?.name,
+    email: currentUser?.email,
+    avatarUrl: currentUser?.avatarUrl,
+    coverUrl: currentUser?.coverUrl,
+    facebook: currentUser?.facebook,
+    instagram: currentUser?.instagram,
+    portfolioUrl: currentUser?.portfolioUrl,
   });
 
   const dispatch = useDispatch();
@@ -41,14 +42,8 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const {
-      name,
-      avatarUrl,
-      coverUrl,
-      facebook,
-      instagram,
-      portfolioUrl,
-    } = formData;
+    const { name, avatarUrl, coverUrl, facebook, instagram, portfolioUrl } =
+      formData;
 
     dispatch(
       authActions.updateProfile(
@@ -108,10 +103,9 @@ const ProfilePage = () => {
   };
 
   return (
-    <>
+    <div>
+      {/* <PublicNavbar /> */}
       <Container fluid>
-        <PublicNavbar />
-
         <div className="text-center">
           <img
             width="100%"
@@ -350,8 +344,8 @@ const ProfilePage = () => {
           </Row>
         )}
       </Container>
-      <FriendListPage />
-    </>
+      {/* <FriendListPage /> */}
+    </div>
   );
 };
 

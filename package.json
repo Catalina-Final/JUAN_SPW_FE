@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^29.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.2",
+    "@cloudinary/react": "^1.0.0-beta.8",
+    "@cloudinary/url-gen": "^1.0.0-beta.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
@@ -14,7 +18,8 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "cloudinary-core": "^2.11.3",
-    "cloudinary-react": "^1.6.8",
+    "cloudinary-react": "^1.7.0",
+    "html-react-parser": "^1.2.7",
     "lodash": "^4.17.21",
     "markdown": "^0.5.0",
     "moment": "^2.27.0",
@@ -59,16 +64,16 @@
   },
   "browserslist": {
     "production": [
-    ">0.3%",
-    "not ie 11",
-    "not dead",
-    "not op_mini all"
+      ">0.3%",
+      "not ie 11",
+      "not dead",
+      "not op_mini all"
     ],
     "development": [
       ">0.3%",
-    "not ie 11",
-    "not dead",
-    "not op_mini all"
+      "not ie 11",
+      "not dead",
+      "not op_mini all"
     ]
   }
 }

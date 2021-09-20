@@ -14,7 +14,7 @@ const PublicNavbar = () => {
     dispatch(authActions.logout());
   };
   const authLinks = (
-    <Container>
+    <Container fluid>
       <Nav className="m-auto navbar-light">
         <Nav.Link className="itemMenu" as={Link} to="/dashboard">
           <i className="fas fa-chart-line" /> Dashboard
@@ -23,7 +23,7 @@ const PublicNavbar = () => {
           <i className="fas fa-registered" /> Blog
         </Nav.Link>{" "}
         <Navbar.Brand as={Link} to="/" className="mr-auto">
-          <img src={logo} alt="SPW" width="200" height="100" />
+          <img src={logo} alt="SPW" width="170" height="70" />
         </Navbar.Brand>
         <Nav.Link className="itemMenu" as={Link} to="/events">
           <i className="fas fa-registered" /> Events

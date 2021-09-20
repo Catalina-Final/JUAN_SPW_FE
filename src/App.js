@@ -32,6 +32,7 @@ import {
 import { fab, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { ClipLoader } from "react-spinners";
 import ScrollToTop from "./utils/ScrollToTop";
+import Footer from "./components/Footer";
 
 library.add(
   fab,
@@ -80,6 +81,7 @@ function App() {
         <Router>
           <ScrollToTop />
           <Routes />
+          <Footer />
         </Router>
       )}
     </>

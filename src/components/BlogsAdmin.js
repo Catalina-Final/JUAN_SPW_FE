@@ -12,6 +12,8 @@ const BlogsAdmin = () => {
   const [pageNum, setPageNum] = useState(1);
   const totalPageNum = useSelector((state) => state.blog.totalPageNum);
   const blogs = useSelector((state) => state.blog.blogs);
+  console.log(`blogs`, blogs);
+
   const loading = useSelector((state) => state.blog.loading);
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -23,7 +25,7 @@ const BlogsAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(blogActions.getBlogsByUser(currentUser.id, pageNum));
+    dispatch(blogActions.getBlogsByUser(currentUser?.id, pageNum));
   }, [dispatch, pageNum, currentUser.id]);
 
   return (

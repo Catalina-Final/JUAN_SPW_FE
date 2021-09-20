@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, CardColumns, Jumbotron, Button } from "react-bootstrap";
+import { Jumbotron, Button } from "react-bootstrap";
 import BlogCard from "../../components/BlogCard";
 import { useSelector, useDispatch } from "react-redux";
 import { blogActions } from "../../redux/actions";
@@ -32,9 +32,9 @@ const HomePageBlogs = () => {
 
   return (
     <div>
-      <Container>
+      <div>
         {" "}
-        <Container>
+        <div>
           <Jumbotron
             style={{
               backgroundImage: `url(${pageBlogsCover})`,
@@ -59,38 +59,36 @@ const HomePageBlogs = () => {
               </Link>
             )}
           </Jumbotron>
-          <CardColumns
-            style={{ flexWrap: "wrap", flexDirection: "row" }}
-            className="d-flex text-center "
-          >
+          <div>
             {loading ? (
               <ClipLoader color="#f86c6b" size={150} loading={loading} />
             ) : (
               <>
                 {blogs.length ? (
-                  <CardColumns>
+                  <div>
                     {blogs.map((blog) => (
                       <BlogCard
                         blog={blog}
-                        key={blog._id}
                         handleClick={handleClickOnBlog}
+                        key={blog._id}
+                        blogs={blogs}
                       />
                     ))}
-                  </CardColumns>
+                  </div>
                 ) : (
                   <p>There are no blogs </p>
                 )}
               </>
             )}
-          </CardColumns>
-        </Container>
+          </div>
+        </div>
         <PaginationItem
           pageNum={pageNum}
           setPageNum={setPageNum}
           totalPageNum={totalPageNum}
           loading={loading}
         />
-      </Container>
+      </div>
     </div>
   );
 };

@@ -1,91 +1,177 @@
-import React, { useEffect, useState } from "react";
-import { Badge, Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { blogActions } from "../redux/actions";
+// import { blogActions } from "../redux/actions";
 import "../App.css";
+import "../../src/styles/popularBlogsStyle.sass";
+import Moment from "react-moment";
 
 const PopularBlogs = () => {
   // eslint-disable-next-line
   const [pageNum, setPageNum] = useState(1);
   const blogs = useSelector((state) => state.blog.blogs);
+  console.log(`blogs`, blogs);
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const loading = useSelector((state) => state.blog.loading);
+  console.log(`loading`, loading);
+  // const sortBy = {
+  //   key: "reviewCount",
+  //   ascending: -1,
+  // };
 
-  useEffect(() => {
-    const sortBy = {
-      key: "reviewCount",
-      ascending: -1,
-    };
-    dispatch(blogActions.blogsRequest(pageNum, 4, null, null, sortBy));
-  }, [dispatch, pageNum]);
+  // useEffect(() => {
+  //   dispatch(blogActions.blogsRequest(pageNum, 4, null, null, sortBy));
+  // }, []);
 
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
   };
 
-  if (loading) {
-    return (
-      <ClipLoader
-        animation="grow"
-        variant="warning"
-        color="#f86c6b"
-        size={250}
-        loading={loading}
-      />
-    );
-  }
-
   return (
     <div className="MarginPopular">
-      <Container className="ContainerPopularBlogs">
-        <h1 className="PopularBlogsText">Popular Blogs</h1>
-        <Row>
-          <Col className="MAINPOPULARBLOG" lg={4}>
-            <div
-              style={{ flexWrap: "wrap", flexDirection: "row" }}
-              className="d-flex text-center OnHover mainPopularBlog responsivePopularBlogs"
-            >
-              {loading ? (
-                <ClipLoader
-                  className="loaderSpinner"
-                  color="#f86c6b"
-                  size={350}
-                  loading={loading}
-                />
-              ) : (
-                <>
-                  {blogs.length ? (
-                    <div
-                      onClick={() => handleClickOnBlog(blogs[0]?._id)}
-                      className="MarginPopular"
-                    >
+      <h1 className="PopularBlogsText">Popular Blogs</h1>
+      <div>
+        {loading ? (
+          <div className="MarginPopular">
+            <ClipLoader
+              className="loaderSpinner"
+              color="#f86c6b"
+              size={350}
+              loading={loading}
+            />
+          </div>
+        ) : (
+          <>
+            {blogs.length ? (
+              <>
+                <div className="popular-blogs-container">
+                  <div
+                    className="post-card-container"
+                    onClick={() => handleClickOnBlog(blogs[0]?._id)}
+                  >
+                    <div className="post-img-container">
                       <img
-                        src={blogs[0].images[0]}
-                        width="50%"
-                        alt="Popular blog"
-                        onClick={() => handleClickOnBlog(blogs[0]?._id)}
+                        alt="blog 1"
+                        src={
+                          blogs[0]?.images
+                            ? blogs[0].images[0]
+                            : "https://via.placeholder.com/160x100"
+                        }
                       />
-                      <h5 className="textContentBlog ">{blogs[0]?.title}</h5>
-                      <p>
-                        {blogs[0]?.content.length <= 99
-                          ? blogs[0]?.content
-                          : blogs[0]?.content.slice(0, 150) + "..."}
-                      </p>
-                      <Badge variant="secondary">
-                        By {blogs[0]?.author.name}
-                      </Badge>
                     </div>
-                  ) : (
-                    <p>There are no blogs </p>
-                  )}
-                </>
-              )}
-            </div>
-          </Col>
-          <Col className="text-center PopularBlogs " lg={7}>
+
+                    <div className="post-card-content">
+                      <div className="post-date">
+                        {" "}
+                        <Moment fromNow>{blogs[0]?.createdAt}</Moment>
+                      </div>
+                      <div className="post-title">
+                        <h4>
+                          {" "}
+                          {blogs[0].title.length <= 50
+                            ? blogs[0].title
+                            : blogs[0].title.slice(0, 30) + "..."}
+                        </h4>
+                        <p>
+                          {blogs[0].content.length <= 99
+                            ? blogs[0].content
+                            : blogs[0].content.slice(0, 50) + "..."}
+                        </p>
+                      </div>
+                      <div className="post-category">
+                        {blogs[0]?.author?.name}
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="post-card-container "
+                    onClick={() => handleClickOnBlog(blogs[1]?._id)}
+                  >
+                    <div className="post-img-container">
+                      <img
+                        alt="blog 2"
+                        src={
+                          blogs[1]?.images
+                            ? blogs[1].images[1]
+                            : "https://via.placeholder.com/160x100"
+                        }
+                      />
+                    </div>
+
+                    <div className="post-card-content">
+                      <div className="post-date">
+                        {" "}
+                        <Moment fromNow>{blogs[1]?.createdAt}</Moment>
+                      </div>
+                      <div className="post-title">
+                        <h4>
+                          {" "}
+                          {blogs[1]?.title.length <= 50
+                            ? blogs[1].title
+                            : blogs[1].title.slice(0, 30) + "..."}
+                        </h4>
+                        <p>
+                          {blogs[1]?.content.length <= 99
+                            ? blogs[1].content
+                            : blogs[1].content.slice(0, 50) + "..."}
+                        </p>
+                      </div>
+                      <div className="post-category">
+                        {blogs[1]?.author?.name}
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="post-card-container"
+                    onClick={() => handleClickOnBlog(blogs[2]?._id)}
+                  >
+                    <div className="post-img-container">
+                      <img
+                        alt="blog 3"
+                        src={
+                          blogs[2]?.images
+                            ? blogs[2].images[1]
+                            : "https://via.placeholder.com/160x100"
+                        }
+                      />
+                    </div>
+
+                    <div className="post-card-content">
+                      <div className="post-date">
+                        {" "}
+                        <Moment fromNow>{blogs[2]?.createdAt}</Moment>
+                      </div>
+                      <div className="post-title">
+                        <h4>
+                          {" "}
+                          {blogs[2]?.title.length <= 50
+                            ? blogs[2].title
+                            : blogs[2].title.slice(0, 30) + "..."}
+                        </h4>
+                        <p>
+                          {blogs[2].content.length <= 99
+                            ? blogs[2].content
+                            : blogs[2].content.slice(0, 50) + "..."}
+                        </p>
+                      </div>
+                      <div className="post-category">
+                        {blogs[2]?.author?.name}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <p>There are no blogs </p>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* <Col className="text-center PopularBlogs " lg={7}>
             <Col className=" responsivePopularBlogs secondBlogPopular MarginPopular OnHover">
               {blogs.length ? (
                 <div
@@ -141,7 +227,12 @@ const PopularBlogs = () => {
                     width="150px"
                     height="100px"
                     alt="Popular Blogs Second "
-                    src={blogs[2].images[0]}
+                    src={
+                      // blogs[2]
+                      //   ? blogs[2].images[0]
+                      //   :
+                      "https://via.placeholder.com/150"
+                    }
                     className="ImagePopularBlogs"
                   />
                 </div>
@@ -189,9 +280,7 @@ const PopularBlogs = () => {
                 <p>There are no blogs </p>
               )}
             </Col>
-          </Col>
-        </Row>
-      </Container>
+          </Col> */}
     </div>
   );
 };

@@ -10,18 +10,24 @@ import {
 } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { blogActions } from "../../redux/actions";
+import TextEditor from "../../components/TextEditor";
 
 const AddEditBlogPage = () => {
+  const [text, setText] = useState("");
+
   const [formData, setFormData] = useState({
     title: "",
     content: "",
     images: null,
   });
+
+  console.log(`formData`, formData);
   const loading = useSelector((state) => state.blog.loading);
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
   const selectedBlog = useSelector((state) => state.blog.selectedBlog);
+  console.log(`selectedBlog`, selectedBlog);
   const redirectTo = useSelector((state) => state.blog.redirectTo);
   const addOrEdit = params.id ? "Edit" : "Add";
 
@@ -45,6 +51,7 @@ const AddEditBlogPage = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log(`formDataSUBMIT`, formData);
     e.preventDefault();
     const { title, content, images } = formData;
     if (addOrEdit === "Add") {
@@ -93,91 +100,102 @@ const AddEditBlogPage = () => {
     );
   };
 
-  return (
-    <Container>
-      <Row>
-        <Col md={{ span: 6, offset: 3 }}>
-          <Form onSubmit={handleSubmit}>
-            <div className="text-center mb-3">
-              <h1 className="text-primary">{addOrEdit} blog</h1>
-              <p className="lead">
-                <i className="fas fa-user" />
-              </p>
-            </div>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                required
-                placeholder="Title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                as="textarea"
-                rows="10"
-                placeholder="Content"
-                name="content"
-                value={formData.content}
-                onChange={handleChange}
-              />
-            </Form.Group>
+  const handleChangeContent = () => {
+    setFormData((formData) => ({
+      ...formData,
+      content: text,
+    }));
+  };
 
-            <Form.Group>
-              {formData?.images?.map((image) => (
-                <img
-                  src={image}
-                  key={image}
-                  width="90px"
-                  height="60px"
-                  alt="blog images"
-                ></img>
-              ))}
-              <Button variant="info" onClick={uploadWidget}>
-                {addOrEdit} Images
-              </Button>
-            </Form.Group>
-            <ButtonGroup className="d-flex mb-3">
-              {loading ? (
-                <Button
-                  className="mr-3"
-                  variant="primary"
-                  type="button"
-                  disabled
-                >
-                  <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  Submitting...
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col lg={{ span: 12 }}>
+            <Form onSubmit={handleSubmit}>
+              <div className="text-center mb-3">
+                <h1 className="text-primary">{addOrEdit} blog</h1>
+                <p className="lead">
+                  <i className="fas fa-user" />
+                </p>
+              </div>
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  required
+                  placeholder="Title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                {formData?.images?.map((image) => (
+                  <img
+                    src={image}
+                    key={image}
+                    width="90px"
+                    height="60px"
+                    alt="blog images"
+                  ></img>
+                ))}
+                <Button variant="info" onClick={uploadWidget}>
+                  {addOrEdit} Images
                 </Button>
-              ) : (
-                <Button className="mr-3" type="submit" variant="primary">
-                  Submit
-                </Button>
-              )}
-              <Button variant="light" onClick={handleCancel} disabled={loading}>
-                Cancel
-              </Button>
-            </ButtonGroup>
-            {addOrEdit === "Edit" && (
-              <ButtonGroup className="d-flex">
+              </Form.Group>
+
+              <TextEditor
+                setText={setText}
+                text={text}
+                setFormData={setFormData}
+                formData={formData}
+                onChange={handleChangeContent}
+              />
+
+              <ButtonGroup className="d-flex mb-3">
+                {loading ? (
+                  <Button
+                    className="mr-2"
+                    variant="primary"
+                    type="button"
+                    disabled
+                  >
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Submitting...
+                  </Button>
+                ) : (
+                  <Button className="mr-3" type="submit" variant="primary">
+                    Submit
+                  </Button>
+                )}
                 <Button
-                  variant="danger"
-                  onClick={handleDelete}
+                  variant="light"
+                  onClick={handleCancel}
                   disabled={loading}
                 >
-                  Delete Blog
+                  Cancel
                 </Button>
               </ButtonGroup>
-            )}
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+              {addOrEdit === "Edit" && (
+                <ButtonGroup className="d-flex">
+                  <Button
+                    variant="danger"
+                    onClick={handleDelete}
+                    disabled={loading}
+                  >
+                    Delete Blog
+                  </Button>
+                </ButtonGroup>
+              )}
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

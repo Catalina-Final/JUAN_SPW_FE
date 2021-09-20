@@ -1,34 +1,32 @@
 html {
   scroll-behavior: smooth;
-  background-color: #000000eb;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap");
 
-
-body{
-  font-family: 'Roboto Slab', serif;  letter-spacing: 1px;
+body {
+  font-family: "Roboto Slab", serif;
+  letter-spacing: 1px;
 }
 
-.textwhitecolor{
-  color: white;
-}
-#root {
-  background-color: #000000eb;
+.textwhitecolor {
   color: white;
 }
 
-.App {
-  text-align: center;
-  background-color: #000000eb;
-  /* height: 100%;
-  width: 100%; */
-  color: white;
+body {
+  /* background: #093028; fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #2e9e71,
+    #093028
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #2e9e71,
+    #093028
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
 }
-
-/* PDF FILES */
-
-/* END PDF FILE */
 
 /* loading Spiner */
 
@@ -38,11 +36,10 @@ body{
   background-repeat: no-repeat;
 }
 
-.carousel-container{
+.carousel-container {
   width: 100%;
   max-width: 100% !important;
 }
-
 
 .carouselCover {
   background-size: 100%;
@@ -52,32 +49,27 @@ body{
   margin: 30px;
 }
 
-
-
-.containerLogin{
+.containerLogin {
   display: flex;
   justify-content: space-evenly;
 }
 
-.loginButton{
- width: 100%;
+.loginButton {
+  width: 100%;
 }
 
 .sectionBlock {
   height: 260px;
   justify-content: space-around;
 }
-.google-btn{
-  height: 100%;
-}
 
-.JumbotronLogin{
+.JumbotronLogin {
   margin: auto;
   width: 60%;
   color: black;
 }
 
-.ContainerFullLogin{
+.ContainerFullLogin {
   margin-top: 5%;
 }
 
@@ -132,12 +124,12 @@ body{
     -webkit-column-count: 3;
     column-count: 3;
   }
-  .containerLogin{
+  .containerLogin {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
-  .google-btn{
+  .google-btn {
     margin: 1rem;
     height: auto;
   }
@@ -389,8 +381,6 @@ body{
     text-align: center;
   }
 
- 
-
   .sectionBlock {
     margin-bottom: 60px;
   }
@@ -407,11 +397,9 @@ body{
   .EventSection {
     margin-bottom: 15px;
   }
-
 }
 
 /* Footer */
-
 
 #footer {
   padding: 20px;
@@ -425,8 +413,8 @@ body{
   background-color: rgba(21, 21, 21, 0.933);
 }
 
-.logoColor{
-  background-color:#888888e1 !important;
+.logoColor {
+  background-color: #888888e1 !important;
   border: none !important;
 }
 
@@ -491,7 +479,7 @@ body{
  
 } */
 
-.editavatarcoverbtn{
+.editavatarcoverbtn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -501,17 +489,21 @@ body{
   object-fit: cover;
 }
 
-.linkPersonalinfo{
+.avatar-mini-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.linkPersonalinfo {
   word-wrap: break-word;
 }
-.personalInfo{
-  margin:10%;
+.personalInfo {
+  margin: 10%;
 }
 
-
-.PersonalInfoContainer{
-  position: absolute;
-  top: -400px;
+.PersonalInfoContainer {
   margin: 2rem;
   color: black;
   background-color: aliceblue;
@@ -520,29 +512,24 @@ body{
   border-radius: 5px;
 }
 
-.PersonalInfoContainerInner{
+.PersonalInfoContainerInner {
   margin: 1rem;
-  padding-top: 1rem;;
+  padding-top: 1rem;
 }
-
 
 /* Profile Responsive */
 @media only screen and (max-width: 1100px) {
-  
-.PersonalInfoContainer{
-  position: relative;
-  top: 0;
-
-}
+  .PersonalInfoContainer {
+    position: relative;
+    top: 0;
+  }
 }
 
 @media only screen and (max-width: 1400px) {
-  
-.PersonalInfoContainer{
-  position: none;
-  top: 0px;
-
-}
+  .PersonalInfoContainer {
+    position: none;
+    top: 0px;
+  }
 }
 
 /* Friendship */
@@ -554,8 +541,6 @@ body{
   border-radius: 15%;
 }
 
-
-
 /* SlideSHOW TEST */
 
 /* User list */
@@ -565,26 +550,70 @@ body{
   object-position: center;
   height: 150px;
   width: 150px;
-  border-radius:50%;
-  display:block;
-  margin:auto;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
 }
-.userListUser{
-  min-width:250px;
+.userListUser {
+  min-width: 250px;
 }
-.userList{
+.userList {
   display: flex;
   justify-content: center;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.userListContainer{
-  margin-top:auto;
+.userListContainer {
+  margin-top: auto;
   padding: 15px;
 }
 
-.centerContent{
-  display:block;
-  margin:auto; 
+.centerContent {
+  display: block;
+  margin: auto;
+}
+
+.textEditorContainer {
+  margin: auto;
+  color: #009473;
+
+  width: 100%;
+}
+
+.ck-editor__editable {
+  height: 50%;
+  color: white;
+  background-color: #444444 !important;
+}
+/* Home Page container */
+
+.homepage-container {
+  min-height: 50vh;
+  width: 100vw;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.signup-container {
+  margin: auto;
+}
+.empty-container {
+  margin: auto;
+}
+
+.buttons-login {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.google-btn {
+  margin: auto;
+}
+
+.popular-blogs-container {
+  display: flex;
+  justify-content: center;
 }
